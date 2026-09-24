@@ -1,3 +1,4 @@
+from analyse import mesurer_rythme, ajuster_rythme
 from resume import resumer
 import requests
 import json
@@ -18,6 +19,7 @@ FICHIER = "historique_" + NOM + ".json"
 if os.path.exists(FICHIER):
     with open(FICHIER, "r", encoding="utf-8") as f:
         messages = json.load(f)
+        rythme_sauve = None
         messages.insert(1, {"role": "system", "content": "Tu te souviens de TOUT ce qui suit. C est ta memoire. Utilise-la."})
     print("Historique charge :", len(messages), "messages")
 else:
@@ -27,6 +29,11 @@ print("LIA prete. Tape quit pour sortir.")
 
 while True:
     u = input("Toi : ")
+    messages.append({"role": "user", "content": u})
+    rythme_calcule = mesurer_rythme(messages)
+    rythme = ajuster_rythme(rythme_calcule, rythme_sauve)
+    rythme_sauve = rythme
+    print("[Rythme detecte :", rythme + "]")
     if u.lower() in ["quit", "exit", "q"]:
         break
     messages.append({"role": "user", "content": u})
