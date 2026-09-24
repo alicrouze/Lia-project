@@ -1,5 +1,7 @@
 from resume import resumer
 import requests
+import json
+import os
 
 with open("id.txt") as f:
     API_KEY = f.read().strip()
@@ -8,14 +10,19 @@ with open("lia_personality.md") as f:
     LIA_PERSONA = f.read()
 
 URL = "https://api.groq.com/openai/v1/chat/completions"
-HEADERS = {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer " + API_KEY
-}
+HEADERS = {"Content-Type": "application/json", "Authorization": "Bearer " + API_KEY}
+
+NOM = input("Qui es-tu ? ").strip().lower()
+FICHIER = "historique_" + NOM + ".json"
+
+if os.path.exists(FICHIER):
+    with open(FICHIER, "r", encoding="utf-8") as f:
+        messages = json.load(f)
+    print("Historique charge :", len(messages), "messages")
+else:
+    messages = [{"role": "system", "content": LIA_PERSONA}]
 
 print("LIA prete. Tape quit pour sortir.")
-
-messages = [{"role": "system", "content": LIA_PERSONA}]
 
 while True:
     u = input("Toi : ")
@@ -29,5 +36,12 @@ while True:
         response = data["choices"][0]["message"]["content"]
         print("LIA :", response)
         messages.append({"role": "assistant", "content": response})
+        with open(FICHIER, "w", encoding="utf-8") as f:
+            json.dump(messages, f, ensure_ascii=False, indent=2)
+        if len(messages) > 30:
+            messages = resumer(messages, URL, HEADERS)
+            with open(FICHIER, "w", encoding="utf-8") as f:
+                json.dump(messages, f, ensure_ascii=False, indent=2)
+            print("[Memoire optimisee]")
     except Exception as e:
         print("Erreur :", e)
