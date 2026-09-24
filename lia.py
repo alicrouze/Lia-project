@@ -20,11 +20,11 @@ if os.path.exists(FICHIER):
     with open(FICHIER, "r", encoding="utf-8") as f:
         messages = json.load(f)
         messages.insert(1, {"role": "system", "content": "Tu te souviens de TOUT ce qui suit. C est ta memoire. Utilise-la."})
-rythme_sauve = None
+    rythme_sauve = None
     print("Historique charge :", len(messages), "messages")
 else:
     messages = [{"role": "system", "content": LIA_PERSONA}]
-rythme_sauve = None
+    rythme_sauve = None
 
 print("LIA prete. Tape quit pour sortir.")
 
