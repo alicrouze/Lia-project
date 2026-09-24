@@ -37,7 +37,7 @@ while True:
     if u.lower() in ["quit", "exit", "q"]:
         break
     messages.append({"role": "user", "content": u})
-    payload = {"model": "qwen/qwen3.8-27b", "messages": messages}
+    payload = {"model": "openai/gpt-oss-120b", "messages": messages}
     try:
         r = requests.post(URL, headers=HEADERS, json=payload)
         data = r.json()
