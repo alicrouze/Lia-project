@@ -17,7 +17,7 @@ FICHIER = "historique_" + NOM + ".json"
 
 if os.path.exists(FICHIER):
     with open(FICHIER, "r", encoding="utf-8") as f:
-        messages = json.load(f)
+        messages = json.load(f)n    messages.insert(1, {"role": "system", "content": "Tu te souviens de TOUT ce qui suit. C est ta memoire. Utilise-la."})
     print("Historique charge :", len(messages), "messages")
 else:
     messages = [{"role": "system", "content": LIA_PERSONA}]
