@@ -19,25 +19,26 @@ FICHIER = "historique_" + NOM + ".json"
 if os.path.exists(FICHIER):
     with open(FICHIER, "r", encoding="utf-8") as f:
         messages = json.load(f)
-        rythme_sauve = None
         messages.insert(1, {"role": "system", "content": "Tu te souviens de TOUT ce qui suit. C est ta memoire. Utilise-la."})
+rythme_sauve = None
     print("Historique charge :", len(messages), "messages")
 else:
     messages = [{"role": "system", "content": LIA_PERSONA}]
+rythme_sauve = None
 
 print("LIA prete. Tape quit pour sortir.")
 
 while True:
     u = input("Toi : ")
+    if u.lower() in ["quit", "exit", "q"]:
+        break
     messages.append({"role": "user", "content": u})
     rythme_calcule = mesurer_rythme(messages)
     rythme = ajuster_rythme(rythme_calcule, rythme_sauve)
     rythme_sauve = rythme
     print("[Rythme detecte :", rythme + "]")
-    if u.lower() in ["quit", "exit", "q"]:
-        break
-    messages.append({"role": "user", "content": u})
-    payload = {"model": "openai/gpt-oss-120b", "messages": messages}
+    messages_avec_rythme = messages + [{"role": "system", "content": "RYTHME ACTUEL DE L UTILISATEUR : " + rythme + ". Adapte ton style a ce rythme."}]
+    payload = {"model": "qwen/qwen3.8-27b", "messages": messages_avec_rythme}
     try:
         r = requests.post(URL, headers=HEADERS, json=payload)
         data = r.json()
