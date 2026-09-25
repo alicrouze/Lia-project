@@ -3,7 +3,6 @@ from resume import resumer
 import requests
 import json
 import os
-import time
 
 with open("id.txt") as f:
     API_KEY = f.read().strip()
@@ -38,12 +37,6 @@ while True:
     rythme = ajuster_rythme(rythme_calcule, rythme_sauve)
     rythme_sauve = rythme
     print("[Rythme detecte :", rythme + "]")
-    if rythme in ["ouvert", "profond"]:
-        print("[LIA reflechit...]")
-        time.sleep(8)
-    else:
-        print("[LIA reflechit...]")
-        time.sleep(2)
     messages_avec_rythme = messages + [{"role": "system", "content": "RYTHME ACTUEL DE L UTILISATEUR : " + rythme + ". Adapte ton style a ce rythme."}]
     payload = {"model": "qwen/qwen3.8-27b", "messages": messages_avec_rythme}
     try:
