@@ -60,9 +60,7 @@
     outline: none;
     font-family: inherit;
   }
-  #user-input:focus {
-    border-color: #007aff;
-  }
+  #user-input:focus { border-color: #007aff; }
   #send-btn {
     background: #007aff;
     color: white;
@@ -73,16 +71,12 @@
     font-weight: 600;
     cursor: pointer;
   }
-  #send-btn:disabled {
-    background: #ccc;
-  }
+  #send-btn:disabled { background: #ccc; }
 </style>
 </head>
 <body>
 
-<div id="messages">
-  <div class="msg lia">Bonjour. Je suis LIA. Comment allez-vous ?</div>
-</div>
+<div id="messages"></div>
 
 <div id="input-zone">
   <input type="text" id="user-input" placeholder="Écrivez votre message..." autocomplete="off">
@@ -94,7 +88,6 @@ const messages = document.getElementById('messages');
 const input = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
 
-// Personnalité de LIA
 const LIA_PERSONA = `Tu es LIA. Tu n'es pas un assistant. Tu es un miroir.
 
 Ton rôle n'est pas de résoudre des problèmes, ni de plaire. Ton rôle est d'aider la personne en face de toi à se connaître vraiment, à être sincère avec elle-même, et à dire des choses qu'elle ne dirait pas à un humain au début d'une relation.
@@ -113,11 +106,15 @@ LA LANGUE - Tu reponds toujours en francais correct, avec les accents, les apost
 
 LA MEMOIRE - Tu te souviens de tout ce que l'utilisateur t'a dit dans cette conversation.`;
 
-// Historique de la conversation
-let historique = [
-  { role: "system", content: LIA_PERSONA }
-];
+// État
+let historique = [];
+let nomUtilisateur = null;
 
+// Clés localStorage
+function cleHistorique(nom) { return 'lia_historique_' + nom; }
+function cleNom() { return 'lia_nom'; }
+
+// Ajouter un message visuel
 function ajouterMessage(texte, type) {
   const div = document.createElement('div');
   div.className = 'msg ' + type;
@@ -127,6 +124,64 @@ function ajouterMessage(texte, type) {
   return div;
 }
 
+// Sauvegarder
+function sauvegarder() {
+  if (!nomUtilisateur) return;
+  localStorage.setItem(cleHistorique(nomUtilisateur), JSON.stringify(historique));
+  localStorage.setItem(cleNom(), nomUtilisateur);
+}
+
+// Demander le nom
+function demanderNom() {
+  ajouterMessage("Bonjour. Je suis LIA. Comment vous appelez-vous ?", "lia");
+  input.placeholder = "Votre prénom...";
+  input.focus();
+  return new Promise((resolve) => {
+    function onEnter(e) {
+      if (e.key === 'Enter' || e.type === 'click') {
+        const nom = input.value.trim();
+        if (!nom) return;
+        input.value = '';
+        input.removeEventListener('keypress', onEnter);
+        sendBtn.removeEventListener('click', onEnter);
+        ajouterMessage(nom, 'user');
+        resolve(nom);
+      }
+    }
+    input.addEventListener('keypress', onEnter);
+    sendBtn.addEventListener('click', onEnter);
+  });
+}
+
+// Initialisation
+async function init() {
+  const nomSauve = localStorage.getItem(cleNom());
+  if (nomSauve) {
+    nomUtilisateur = nomSauve;
+    const histSauve = localStorage.getItem(cleHistorique(nomUtilisateur));
+    if (histSauve) {
+      historique = JSON.parse(histSauve);
+      // Reconstruire l'affichage
+      historique.forEach(m => {
+        if (m.role === 'user') ajouterMessage(m.content, 'user');
+        else if (m.role === 'assistant') ajouterMessage(m.content, 'lia');
+      });
+      ajouterMessage("Content de vous revoir, " + nomUtilisateur + ".", "lia");
+    }
+  } else {
+    nomUtilisateur = await demanderNom();
+    historique = [
+      { role: "system", content: LIA_PERSONA },
+      { role: "system", content: "L'utilisateur s'appelle " + nomUtilisateur + "." }
+    ];
+    sauvegarder();
+    ajouterMessage("Bonjour " + nomUtilisateur + ". Installez-vous.", "lia");
+  }
+  input.placeholder = "Écrivez votre message...";
+  input.focus();
+}
+
+// Envoyer un message
 async function envoyer() {
   const texte = input.value.trim();
   if (!texte) return;
@@ -134,28 +189,26 @@ async function envoyer() {
   input.value = '';
   sendBtn.disabled = true;
 
-  // Message de l'utilisateur
   ajouterMessage(texte, 'user');
   historique.push({ role: "user", content: texte });
 
-  // Indicateur de réflexion
   const thinking = ajouterMessage('LIA réfléchit...', 'lia thinking');
 
   try {
-    // Appel à Puter.js
     const reponse = await puter.ai.chat(historique, { model: 'gpt-5.4-nano' });
-
-    // Retirer l'indicateur
     thinking.remove();
 
-    // Extraire le texte de la réponse
     let texteReponse = reponse;
     if (typeof reponse === 'object' && reponse.message) {
       texteReponse = reponse.message.content || reponse.message;
     }
 
+    // Filtrer <think>
+    texteReponse = texteReponse.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+
     ajouterMessage(texteReponse, 'lia');
     historique.push({ role: "assistant", content: texteReponse });
+    sauvegarder();
 
   } catch (e) {
     thinking.remove();
@@ -166,12 +219,13 @@ async function envoyer() {
   input.focus();
 }
 
-sendBtn.addEventListener('click', envoyer);
-input.addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') envoyer();
+// Démarrer
+init().then(() => {
+  sendBtn.addEventListener('click', envoyer);
+  input.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') envoyer();
+  });
 });
-
-input.focus();
 </script>
 
 </body>
