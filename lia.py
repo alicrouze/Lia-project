@@ -38,9 +38,12 @@ while True:
     rythme_sauve = rythme
     print("[Rythme detecte :", rythme + "]")
     messages_avec_rythme = messages + [{"role": "system", "content": "RYTHME ACTUEL DE L UTILISATEUR : " + rythme + ". Adapte ton style a ce rythme."}]
+    messages_avec_rythme = messages_avec_rythme[-12:]
+    messages_avec_rythme = messages_avec_rythme[-16:]
     payload = {"model": "qwen/qwen3.8-27b", "messages": messages_avec_rythme}
     try:
         r = requests.post(URL, headers=HEADERS, json=payload)
+    time.sleep(2)
         data = r.json()
         response = data["choices"][0]["message"]["content"]
         import re
