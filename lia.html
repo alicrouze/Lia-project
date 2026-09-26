@@ -107,8 +107,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 12px;
-    padding-top: max(8px, env(safe-area-inset-top));
+    padding: 28px 12px;
+    padding-top: max(28px, calc(env(safe-area-inset-top) + 20px));
     flex-shrink: 0;
     position: relative;
     z-index: 10;
@@ -378,8 +378,12 @@ splash.addEventListener('click', async () => {
   const hint = document.getElementById('splash-hint');
   hint.style.transition = 'opacity 0.3s ease';
   hint.style.opacity = '0';
-  logo.style.transform = 'translateY(-40vh) scale(0.15)';
-  logo.style.opacity = '0.3';
+  const cible = document.getElementById('header-logo').getBoundingClientRect();
+  const source = logo.getBoundingClientRect();
+  const deltaY = cible.top + cible.height/2 - (source.top + source.height/2);
+  const facteur = cible.height / source.height;
+  logo.style.transform = 'translateY(' + deltaY + 'px) scale(' + facteur + ')';
+  logo.style.opacity = '1';
   
   setTimeout(() => {
     splash.classList.add('hidden');
