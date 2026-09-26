@@ -370,6 +370,24 @@
   .police-1 { font-family: Palatino, 'Palatino Linotype', 'Book Antiqua', Georgia, serif; }
   .police-2 { font-family: Georgia, 'Times New Roman', serif; }
 
+
+  .etoile-btn {
+    position: absolute;
+    width: 1.5px;
+    height: 1.5px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0;
+    animation: scintilleBtn 4s ease-in-out infinite;
+    pointer-events: none;
+    box-shadow: 0 0 3px rgba(255, 200, 220, 0.8);
+  }
+  
+  @keyframes scintilleBtn {
+    0%, 100% { opacity: 0.1; transform: scale(0.7); }
+    50% { opacity: 0.9; transform: scale(1.3); }
+  }
+
 </style>
 </head>
 <body>
