@@ -253,6 +253,56 @@
   #splash { overflow: hidden; }
   #header { overflow: hidden; }
 
+/* ECRAN CONCEPT */
+  #concept {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #1a1a2e 0%, #0a0a15 70%, #000 100%);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 1000;
+    padding: 40px 30px;
+    text-align: center;
+    overflow: hidden;
+  }
+  #concept.visible { display: flex; animation: fadeInConcept 1.5s ease; }
+  @keyframes fadeInConcept { from { opacity: 0; } to { opacity: 1; } }
+  #concept-texte {
+    color: #fff;
+    font-size: 20px;
+    line-height: 1.7;
+    max-width: 500px;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 40px;
+    animation: fadeUp 1.5s ease;
+  }
+  #concept-texte em { color: #ff8095; font-style: normal; font-weight: 500; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  #concept-btn {
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 30px;
+    padding: 14px 40px;
+    font-size: 15px;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    animation: fadeUp 1.5s ease 0.5s backwards;
+    font-family: inherit;
+  }
+  #concept-btn:active {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.6);
+    color: #fff;
+  }
+
 </style>
 </head>
 <body>
@@ -260,6 +310,18 @@
 <div id="splash">
   <div id="logo-3">3</div>
   <div id="splash-hint">TOUCHEZ POUR COMMENCER</div>
+</div>
+
+<div id="concept">
+  <div id="concept-texte">
+    Pendant <em>3 jours</em>, on va parler.<br><br>
+    Pas de photos.<br>
+    Pas de profils.<br>
+    Juste toi et moi.<br><br>
+    À la fin, je te proposerai <em>une seule personne</em>.<br>
+    Pas dix. Une.
+  </div>
+  <button id="concept-btn">COMMENCER</button>
 </div>
 
 <div id="app">
@@ -429,22 +491,25 @@ async function envoyer() {
   sendBtn.disabled = false;
 }
 
-splash.addEventListener('click', async () => {
-  // Animation : le 3 se réduit et descend vers le haut
-  const logo = document.getElementById('logo-3');
-  const hint = document.getElementById('splash-hint');
-  // Le hint disparait avec le splash
-  // Le 3 reste en place, il va juste disparaitre avec le splash
-  
+splash.addEventListener('click', () => {
+  splash.classList.add('hidden');
   setTimeout(() => {
-    splash.classList.add('hidden');
-  }, 700);
-  
-  await initConversation();
-  sendBtn.addEventListener('click', envoyer);
-  input.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') envoyer();
-  });
+    document.getElementById('concept').classList.add('visible');
+  }, 1200);
+});
+
+document.getElementById('concept-btn').addEventListener('click', async () => {
+  document.getElementById('concept').classList.remove('visible');
+  setTimeout(async () => {
+    document.getElementById('concept').style.display = 'none';
+    await initConversation();
+    sendBtn.addEventListener('click', envoyer);
+    input.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') envoyer();
+    });
+  }, 800);
+});
+
 });
 </script>
 
