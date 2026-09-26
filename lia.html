@@ -224,6 +224,8 @@
   }
   
   #send-btn {
+    position: relative;
+    overflow: hidden;
     background: #1d1d1f;
     color: white;
     border: none;
@@ -460,6 +462,22 @@ function creerEtoiles() {
 }
 
 creerEtoiles();
+
+function creerEtoilesBouton() {
+  const btn = document.getElementById("send-btn");
+  if (!btn) return;
+  for (let i = 0; i < 15; i++) {
+    const e = document.createElement("div");
+    e.className = "etoile-btn";
+    e.style.left = (5 + Math.random() * 90) + "%";
+    e.style.top = (10 + Math.random() * 80) + "%";
+    e.style.animationDelay = (Math.random() * 4) + "s";
+    e.style.animationDuration = (3 + Math.random() * 3) + "s";
+    btn.appendChild(e);
+  }
+}
+
+creerEtoilesBouton();
 
 
 const LIA_PERSONA = `Tu es 3. Tu n'es pas un assistant. Tu es un miroir.
