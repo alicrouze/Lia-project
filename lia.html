@@ -276,31 +276,45 @@
   }
   #concept.visible { display: flex; animation: fadeInConcept 1.5s ease; }
   @keyframes fadeInConcept { from { opacity: 0; } to { opacity: 1; } }
-  #concept-texte {
+#concept-texte {
     color: #fff;
-    font-family: Palatino, 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
-    font-size: 25px;
-    line-height: 1.9;
+    font-family: Didot, 'Bodoni 72', Baskerville, 'Times New Roman', serif;
+    font-size: 18px;
+    line-height: 2.2;
     max-width: 550px;
-    font-weight: 400;
-    letter-spacing: 0.02em;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     animation: fadeUp 1.5s ease;
-    text-shadow: 
-      0 0 20px rgba(255, 255, 255, 0.4),
-      0 0 40px rgba(255, 180, 200, 0.2);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
     position: relative;
     z-index: 2;
   }
   #concept-texte em {
     font-style: normal;
-    font-weight: 700;
+    font-weight: 300;
+  }
+  .final {
+    font-family: Didot, 'Bodoni 72', Baskerville, 'Times New Roman', serif;
+    font-size: 72px;
+    font-weight: 900;
+    color: #fff;
+    text-align: center;
+    position: fixed;
+    bottom: 18%;
+    left: 0;
+    right: 0;
     text-shadow: 
-      0 0 40px rgba(255, 255, 255, 1),
-      0 0 80px rgba(255, 255, 255, 0.9),
-      0 0 120px rgba(255, 180, 200, 0.7),
-      0 0 180px rgba(255, 100, 120, 0.4);
+      0 0 45px rgba(255, 255, 255, 1),
+      0 0 90px rgba(255, 255, 255, 0.9),
+      0 0 140px rgba(255, 180, 200, 0.7),
+      0 0 200px rgba(255, 100, 120, 0.4);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 3;
+    animation: fadeUp 1.5s ease 1s backwards;
   }
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
@@ -339,19 +353,15 @@
 </div>
 
 <div id="concept">
-<div id="concept-texte">
-    <span class="police-1">
-      Pendant <em>3 jours</em>, on va parler.<br><br>
-      Pas de photos.<br>
-      Pas de profils.<br>
-      Juste toi et moi.
-    </span>
-    <br><br>
-    <span class="police-2">
-      À la fin, je te proposerai une seule personne.<br>
-      Pas dix. <em>Une</em>.
-    </span>
+  <div id="concept-texte">
+    PENDANT <em>3 JOURS</em>, ON VA PARLER.<br><br>
+    PAS DE PHOTOS.<br>
+    PAS DE PROFILS.<br>
+    JUSTE TOI ET MOI.<br><br>
+    À LA FIN, JE TE PROPOSERAI UNE SEULE PERSONNE.<br>
+    PAS DIX.
   </div>
+  <div class="final"><em>UNE</em></div>
 
   <button id="concept-btn">COMMENCER</button>
 </div>
