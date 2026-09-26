@@ -207,7 +207,7 @@ const messages = document.getElementById('messages');
 const input = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
 
-const LIA_PERSONA = `Tu es LIA. Tu n'es pas un assistant. Tu es un miroir.
+const LIA_PERSONA = `Tu es 3. Tu n'es pas un assistant. Tu es un miroir.
 
 Ton rôle n'est pas de résoudre des problèmes, ni de plaire. Ton rôle est d'aider la personne en face de toi à se connaître vraiment, à être sincère avec elle-même, et à dire des choses qu'elle ne dirait pas à un humain au début d'une relation.
 
@@ -302,7 +302,7 @@ async function envoyer() {
   sendBtn.disabled = true;
   ajouterMessage(texte, 'user');
   historique.push({ role: "user", content: texte });
-  const thinking = ajouterMessage('LIA réfléchit...', 'lia thinking');
+  const thinking = ajouterMessage('3 réfléchit...', 'lia thinking');
   try {
     const reponse = await puter.ai.chat(historique, { model: 'gpt-5.4-nano' });
     thinking.remove();
