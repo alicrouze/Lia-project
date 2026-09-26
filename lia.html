@@ -2,88 +2,207 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LIA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>3</title>
 <script src="https://js.puter.com/v2/"></script>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #f5f5f7;
-    height: 100vh;
+  }
+  
+  #splash {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #1a1a2e 0%, #0a0a15 70%, #000 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: opacity 0.8s ease;
+    cursor: pointer;
+  }
+  
+  #splash.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  #logo-3 {
+    font-size: 33vh;
+    font-weight: 200;
+    color: #fff;
+    text-align: center;
+    line-height: 1;
+    position: relative;
+    animation: pulse 2.4s ease-in-out infinite;
+    text-shadow: 
+      0 0 20px rgba(255, 100, 120, 0.8),
+      0 0 60px rgba(255, 80, 100, 0.6),
+      0 0 120px rgba(255, 60, 80, 0.4);
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    letter-spacing: -0.05em;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      text-shadow: 
+        0 0 20px rgba(255, 100, 120, 0.8),
+        0 0 60px rgba(255, 80, 100, 0.6),
+        0 0 120px rgba(255, 60, 80, 0.4);
+    }
+    50% {
+      transform: scale(1.08);
+      text-shadow: 
+        0 0 30px rgba(255, 120, 140, 1),
+        0 0 80px rgba(255, 90, 110, 0.8),
+        0 0 160px rgba(255, 60, 80, 0.6);
+    }
+  }
+  
+  #splash-hint {
+    position: absolute;
+    bottom: 12%;
+    color: rgba(255,255,255,0.4);
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    animation: fadeHint 3s ease-in-out infinite;
+  }
+  
+  @keyframes fadeHint {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+  }
+  
+  #app {
     display: flex;
     flex-direction: column;
+    height: 100%;
+    background: #f5f5f7;
+    opacity: 0;
+    transition: opacity 0.8s ease;
   }
+  
+  #app.visible {
+    opacity: 1;
+  }
+  
   #messages {
     flex: 1;
     overflow-y: auto;
-    padding: 20px;
+    -webkit-overflow-scrolling: touch;
+    padding: 16px 12px 12px 12px;
+    padding-top: max(16px, env(safe-area-inset-top));
   }
+  
   .msg {
-    max-width: 80%;
-    padding: 12px 16px;
+    max-width: 85%;
+    padding: 10px 14px;
     border-radius: 18px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     line-height: 1.4;
-    font-size: 15px;
+    font-size: 16px;
     word-wrap: break-word;
+    animation: fadeIn 0.25s ease;
   }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
   .user {
     background: #007aff;
     color: white;
     margin-left: auto;
     border-bottom-right-radius: 4px;
   }
+  
   .lia {
     background: white;
     color: #000;
     border-bottom-left-radius: 4px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08);
   }
+  
   .lia.thinking {
     color: #999;
     font-style: italic;
   }
+  
   #input-zone {
     display: flex;
-    padding: 12px;
+    padding: 10px 12px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
     background: white;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #e0e0e0;
     gap: 8px;
+    flex-shrink: 0;
   }
+  
   #user-input {
     flex: 1;
     padding: 12px 16px;
     border: 1px solid #ddd;
-    border-radius: 24px;
-    font-size: 15px;
+    border-radius: 22px;
+    font-size: 16px;
     outline: none;
     font-family: inherit;
+    background: #f5f5f7;
+    -webkit-appearance: none;
+    min-height: 44px;
   }
-  #user-input:focus { border-color: #007aff; }
+  
+  #user-input:focus {
+    border-color: #007aff;
+    background: white;
+  }
+  
   #send-btn {
     background: #007aff;
     color: white;
     border: none;
-    border-radius: 24px;
-    padding: 12px 20px;
-    font-size: 15px;
+    border-radius: 22px;
+    padding: 0 20px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
+    min-height: 44px;
+    -webkit-appearance: none;
   }
+  
   #send-btn:disabled { background: #ccc; }
+  #send-btn:active { background: #0056b3; }
+  
+  #messages::-webkit-scrollbar { display: none; }
 </style>
 </head>
 <body>
 
-<div id="messages"></div>
+<div id="splash">
+  <div id="logo-3">3</div>
+  <div id="splash-hint">Touchez pour commencer</div>
+</div>
 
-<div id="input-zone">
-  <input type="text" id="user-input" placeholder="Écrivez votre message..." autocomplete="off">
-  <button id="send-btn">Envoyer</button>
+<div id="app">
+  <div id="messages"></div>
+  <div id="input-zone">
+    <input type="text" id="user-input" placeholder="Votre message..." autocomplete="off" autocorrect="on" autocapitalize="sentences">
+    <button id="send-btn">Envoyer</button>
+  </div>
 </div>
 
 <script>
+const splash = document.getElementById('splash');
+const app = document.getElementById('app');
 const messages = document.getElementById('messages');
 const input = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
@@ -106,62 +225,57 @@ LA LANGUE - Tu reponds toujours en francais correct, avec les accents, les apost
 
 LA MEMOIRE - Tu te souviens de tout ce que l'utilisateur t'a dit dans cette conversation.`;
 
-// État
 let historique = [];
 let nomUtilisateur = null;
 
-// Clés localStorage
 function cleHistorique(nom) { return 'lia_historique_' + nom; }
 function cleNom() { return 'lia_nom'; }
 
-// Ajouter un message visuel
 function ajouterMessage(texte, type) {
   const div = document.createElement('div');
   div.className = 'msg ' + type;
   div.textContent = texte;
   messages.appendChild(div);
-  messages.scrollTop = messages.scrollHeight;
+  setTimeout(() => { messages.scrollTop = messages.scrollHeight; }, 50);
   return div;
 }
 
-// Sauvegarder
 function sauvegarder() {
   if (!nomUtilisateur) return;
-  localStorage.setItem(cleHistorique(nomUtilisateur), JSON.stringify(historique));
-  localStorage.setItem(cleNom(), nomUtilisateur);
+  try {
+    localStorage.setItem(cleHistorique(nomUtilisateur), JSON.stringify(historique));
+    localStorage.setItem(cleNom(), nomUtilisateur);
+  } catch(e) {}
 }
 
-// Demander le nom
 function demanderNom() {
-  ajouterMessage("Bonjour. Je suis LIA. Comment vous appelez-vous ?", "lia");
+  ajouterMessage("Bonjour. Comment vous appelez-vous ?", "lia");
   input.placeholder = "Votre prénom...";
   input.focus();
   return new Promise((resolve) => {
-    function onEnter(e) {
-      if (e.key === 'Enter' || e.type === 'click') {
+    function valider(e) {
+      if (e.type === 'click' || (e.type === 'keypress' && e.key === 'Enter')) {
         const nom = input.value.trim();
         if (!nom) return;
         input.value = '';
-        input.removeEventListener('keypress', onEnter);
-        sendBtn.removeEventListener('click', onEnter);
+        input.removeEventListener('keypress', valider);
+        sendBtn.removeEventListener('click', valider);
         ajouterMessage(nom, 'user');
         resolve(nom);
       }
     }
-    input.addEventListener('keypress', onEnter);
-    sendBtn.addEventListener('click', onEnter);
+    input.addEventListener('keypress', valider);
+    sendBtn.addEventListener('click', valider);
   });
 }
 
-// Initialisation
-async function init() {
+async function initConversation() {
   const nomSauve = localStorage.getItem(cleNom());
   if (nomSauve) {
     nomUtilisateur = nomSauve;
     const histSauve = localStorage.getItem(cleHistorique(nomUtilisateur));
     if (histSauve) {
       historique = JSON.parse(histSauve);
-      // Reconstruire l'affichage
       historique.forEach(m => {
         if (m.role === 'user') ajouterMessage(m.content, 'user');
         else if (m.role === 'assistant') ajouterMessage(m.content, 'lia');
@@ -177,50 +291,41 @@ async function init() {
     sauvegarder();
     ajouterMessage("Bonjour " + nomUtilisateur + ". Installez-vous.", "lia");
   }
-  input.placeholder = "Écrivez votre message...";
+  input.placeholder = "Votre message...";
   input.focus();
 }
 
-// Envoyer un message
 async function envoyer() {
   const texte = input.value.trim();
   if (!texte) return;
-
   input.value = '';
   sendBtn.disabled = true;
-
   ajouterMessage(texte, 'user');
   historique.push({ role: "user", content: texte });
-
   const thinking = ajouterMessage('LIA réfléchit...', 'lia thinking');
-
   try {
     const reponse = await puter.ai.chat(historique, { model: 'gpt-5.4-nano' });
     thinking.remove();
-
     let texteReponse = reponse;
     if (typeof reponse === 'object' && reponse.message) {
       texteReponse = reponse.message.content || reponse.message;
     }
-
-    // Filtrer <think>
     texteReponse = texteReponse.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
-
     ajouterMessage(texteReponse, 'lia');
     historique.push({ role: "assistant", content: texteReponse });
     sauvegarder();
-
   } catch (e) {
     thinking.remove();
     ajouterMessage('Erreur : ' + e.message, 'lia');
   }
-
   sendBtn.disabled = false;
   input.focus();
 }
 
-// Démarrer
-init().then(() => {
+splash.addEventListener('click', async () => {
+  splash.classList.add('hidden');
+  app.classList.add('visible');
+  await initConversation();
   sendBtn.addEventListener('click', envoyer);
   input.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') envoyer();
