@@ -34,6 +34,7 @@
   #splash.hidden {
     opacity: 0;
     pointer-events: none;
+    transition: opacity 4s ease;
   }
   
   #logo-3 {
@@ -376,18 +377,11 @@ splash.addEventListener('click', async () => {
   // Animation : le 3 se réduit et descend vers le haut
   const logo = document.getElementById('logo-3');
   const hint = document.getElementById('splash-hint');
-  hint.style.transition = 'opacity 0.3s ease';
-  hint.style.opacity = '0';
-  const cible = document.getElementById('header-logo').getBoundingClientRect();
-  const source = logo.getBoundingClientRect();
-  const deltaY = cible.top + cible.height/2 - (source.top + source.height/2);
-  const facteur = cible.height / source.height;
-  logo.style.transform = 'translateY(' + deltaY + 'px) scale(' + facteur + ')';
-  logo.style.opacity = '1';
+  // Le hint disparait avec le splash
+  // Le 3 reste en place, il va juste disparaitre avec le splash
   
   setTimeout(() => {
     splash.classList.add('hidden');
-    app.classList.add('visible');
   }, 700);
   
   await initConversation();
