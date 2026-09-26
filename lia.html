@@ -271,15 +271,26 @@
   @keyframes fadeInConcept { from { opacity: 0; } to { opacity: 1; } }
   #concept-texte {
     color: #fff;
-    font-size: 20px;
-    line-height: 1.7;
-    max-width: 500px;
-    font-weight: 300;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 26px;
+    line-height: 1.8;
+    max-width: 550px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     animation: fadeUp 1.5s ease;
+    text-shadow: 
+      0 0 20px rgba(255, 255, 255, 0.4),
+      0 0 40px rgba(255, 180, 200, 0.2);
   }
-  #concept-texte em { color: #ff8095; font-style: normal; font-weight: 500; }
+  #concept-texte em {
+    font-style: normal;
+    font-weight: 600;
+    text-shadow: 
+      0 0 25px rgba(255, 255, 255, 0.7),
+      0 0 50px rgba(255, 180, 200, 0.4);
+  }
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
