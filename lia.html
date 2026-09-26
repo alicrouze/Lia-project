@@ -94,7 +94,14 @@
     flex-direction: column;
     height: 100%;
     background: #f5f5f7;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+  }
+  
+  #app.visible {
     opacity: 1;
+    pointer-events: auto;
   }
   
   #app.visible {
@@ -271,25 +278,28 @@
   @keyframes fadeInConcept { from { opacity: 0; } to { opacity: 1; } }
   #concept-texte {
     color: #fff;
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 26px;
-    line-height: 1.8;
+    font-family: Palatino, 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+    font-size: 25px;
+    line-height: 1.9;
     max-width: 550px;
     font-weight: 400;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.02em;
     text-align: center;
     margin-bottom: 50px;
     animation: fadeUp 1.5s ease;
     text-shadow: 
       0 0 20px rgba(255, 255, 255, 0.4),
       0 0 40px rgba(255, 180, 200, 0.2);
+    position: relative;
+    z-index: 2;
   }
   #concept-texte em {
     font-style: normal;
-    font-weight: 600;
+    font-weight: 700;
     text-shadow: 
-      0 0 25px rgba(255, 255, 255, 0.7),
-      0 0 50px rgba(255, 180, 200, 0.4);
+      0 0 30px rgba(255, 255, 255, 1),
+      0 0 60px rgba(255, 180, 200, 0.6),
+      0 0 90px rgba(255, 100, 120, 0.3);
   }
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
@@ -314,6 +324,10 @@
     color: #fff;
   }
 
+
+  .police-1 { font-family: Palatino, 'Palatino Linotype', 'Book Antiqua', Georgia, serif; }
+  .police-2 { font-family: Georgia, 'Times New Roman', serif; }
+
 </style>
 </head>
 <body>
@@ -324,14 +338,20 @@
 </div>
 
 <div id="concept">
-  <div id="concept-texte">
-    Pendant <em>3 jours</em>, on va parler.<br><br>
-    Pas de photos.<br>
-    Pas de profils.<br>
-    Juste toi et moi.<br><br>
-    À la fin, je te proposerai <em>une seule personne</em>.<br>
-    Pas dix. Une.
+<div id="concept-texte">
+    <span class="police-1">
+      Pendant <em>3 jours</em>, on va parler.<br><br>
+      Pas de photos.<br>
+      Pas de profils.<br>
+      Juste toi et moi.
+    </span>
+    <br><br>
+    <span class="police-2">
+      À la fin, je te proposerai une seule personne.<br>
+      Pas dix. <em>Une</em>.
+    </span>
   </div>
+
   <button id="concept-btn">COMMENCER</button>
 </div>
 
@@ -384,6 +404,22 @@ function creerEtoiles() {
     const taille = 0.5 + Math.random() * 0.8;
     e.style.transform = 'scale(' + taille + ')';
     header.appendChild(e);
+  }
+  
+  // Etoiles du concept
+  const concept = document.getElementById('concept');
+  if (concept) {
+    for (let i = 0; i < 100; i++) {
+      const e = document.createElement('div');
+      e.className = 'etoile';
+      e.style.left = Math.random() * 100 + '%';
+      e.style.top = Math.random() * 100 + '%';
+      e.style.animationDelay = (Math.random() * 6) + 's';
+      e.style.animationDuration = (3 + Math.random() * 5) + 's';
+      const taille = 0.6 + Math.random() * 0.9;
+      e.style.transform = 'scale(' + taille + ')';
+      concept.appendChild(e);
+    }
   }
 }
 
@@ -513,6 +549,7 @@ document.getElementById('concept-btn').addEventListener('click', async () => {
   document.getElementById('concept').classList.remove('visible');
   setTimeout(async () => {
     document.getElementById('concept').style.display = 'none';
+    document.getElementById('app').classList.add('visible');
     await initConversation();
     sendBtn.addEventListener('click', envoyer);
     input.addEventListener('keypress', function(e) {
