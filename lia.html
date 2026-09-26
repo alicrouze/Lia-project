@@ -233,6 +233,26 @@
   #send-btn:active { background: #000; }
   
   #messages::-webkit-scrollbar { display: none; }
+
+  /* ETOILES SCINTILLANTES - SUBTILES */
+  .etoile {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background: #ffffff;
+    border-radius: 50%;
+    opacity: 0.2;
+    animation: scintille 5s ease-in-out infinite;
+  }
+  
+  @keyframes scintille {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.6; }
+  }
+  
+  #splash { overflow: hidden; }
+  #header { overflow: hidden; }
+
 </style>
 </head>
 <body>
@@ -259,6 +279,43 @@ const app = document.getElementById('app');
 const messages = document.getElementById('messages');
 const input = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
+
+
+// Generer les etoiles
+function creerEtoiles() {
+  const splash = document.getElementById('splash');
+  const header = document.getElementById('header');
+  
+  // Etoiles du splash : beaucoup, tres discretes
+  for (let i = 0; i < 120; i++) {
+    const e = document.createElement('div');
+    e.className = 'etoile';
+    e.style.left = Math.random() * 100 + '%';
+    e.style.top = Math.random() * 100 + '%';
+    e.style.animationDelay = (Math.random() * 6) + 's';
+    e.style.animationDuration = (3 + Math.random() * 5) + 's';
+    // Taille variable tres legere
+    const taille = 0.6 + Math.random() * 0.9;
+    e.style.transform = 'scale(' + taille + ')';
+    splash.appendChild(e);
+  }
+  
+  // Etoiles du header : quelques unes
+  for (let i = 0; i < 25; i++) {
+    const e = document.createElement('div');
+    e.className = 'etoile';
+    e.style.left = Math.random() * 100 + '%';
+    e.style.top = Math.random() * 100 + '%';
+    e.style.animationDelay = (Math.random() * 6) + 's';
+    e.style.animationDuration = (4 + Math.random() * 4) + 's';
+    const taille = 0.5 + Math.random() * 0.8;
+    e.style.transform = 'scale(' + taille + ')';
+    header.appendChild(e);
+  }
+}
+
+creerEtoiles();
+
 
 const LIA_PERSONA = `Tu es 3. Tu n'es pas un assistant. Tu es un miroir.
 
@@ -304,7 +361,6 @@ function sauvegarder() {
 function demanderNom() {
   ajouterMessage("Bonjour. Comment vous appelez-vous ?", "lia");
   input.placeholder = "Votre prénom...";
-  input.focus();
   return new Promise((resolve) => {
     function valider(e) {
       if (e.type === 'click' || (e.type === 'keypress' && e.key === 'Enter')) {
@@ -345,7 +401,6 @@ async function initConversation() {
     ajouterMessage("Bonjour " + nomUtilisateur + ". Installez-vous.", "lia");
   }
   input.placeholder = "Votre message...";
-  input.focus();
 }
 
 async function envoyer() {
@@ -372,7 +427,6 @@ async function envoyer() {
     ajouterMessage('Erreur : ' + e.message, 'lia');
   }
   sendBtn.disabled = false;
-  input.focus();
 }
 
 splash.addEventListener('click', async () => {
