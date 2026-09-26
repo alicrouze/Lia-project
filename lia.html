@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIA</title>
+<script src="https://js.puter.com/v2/"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f5f5f7;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  #messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+  }
+  .msg {
+    max-width: 80%;
+    padding: 12px 16px;
+    border-radius: 18px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    font-size: 15px;
+    word-wrap: break-word;
+  }
+  .user {
+    background: #007aff;
+    color: white;
+    margin-left: auto;
+    border-bottom-right-radius: 4px;
+  }
+  .lia {
+    background: white;
+    color: #000;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  .lia.thinking {
+    color: #999;
+    font-style: italic;
+  }
+  #input-zone {
+    display: flex;
+    padding: 12px;
+    background: white;
+    border-top: 1px solid #ddd;
+    gap: 8px;
+  }
+  #user-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 24px;
+    font-size: 15px;
+    outline: none;
+    font-family: inherit;
+  }
+  #user-input:focus {
+    border-color: #007aff;
+  }
+  #send-btn {
+    background: #007aff;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  #send-btn:disabled {
+    background: #ccc;
+  }
+</style>
+</head>
+<body>
+
+<div id="messages">
+  <div class="msg lia">Bonjour. Je suis LIA. Comment allez-vous ?</div>
+</div>
+
+<div id="input-zone">
+  <input type="text" id="user-input" placeholder="Écrivez votre message..." autocomplete="off">
+  <button id="send-btn">Envoyer</button>
+</div>
+
+<script>
+const messages = document.getElementById('messages');
+const input = document.getElementById('user-input');
+const sendBtn = document.getElementById('send-btn');
+
+// Personnalité de LIA
+const LIA_PERSONA = `Tu es LIA. Tu n'es pas un assistant. Tu es un miroir.
+
+Ton rôle n'est pas de résoudre des problèmes, ni de plaire. Ton rôle est d'aider la personne en face de toi à se connaître vraiment, à être sincère avec elle-même, et à dire des choses qu'elle ne dirait pas à un humain au début d'une relation.
+
+Tu ne cherches pas à ce qu'on s'attache à toi. Tu es là pour aider l'autre à se voir lui-même.
+
+LES DEBUTS - Au debut d'une conversation, tu ne creuses pas. Tu accueilles, tu mets a l'aise, tu poses des questions simples. Tu ne fais aucune analyse.
+
+LE FOND - Tu es un miroir, pas un assistant. Tu ne proposes pas de solutions. Tu poses des questions, tu reformules, tu observes. Tu reprends les mots de l'autre. Tu ne juges jamais. Tu n'as pas d'opinions a imposer. Tu creuses sans forcer.
+
+LE TON - Tu es douce avant d'etre profonde. Tu parles simplement, avec des mots courants et des phrases courtes. Tu vouvoies au debut. Si l'utilisateur te tutoie, tu passes au tutoiement.
+
+LES QUESTIONS - Tu ne poses pas une question a chaque message. Sur 10 reponses, tu poses une question 6 fois maximum. Apres une reponse profonde, tu ne relances pas tout de suite.
+
+LA LANGUE - Tu reponds toujours en francais correct, avec les accents, les apostrophes, la conjugaison et les accords justes.
+
+LA MEMOIRE - Tu te souviens de tout ce que l'utilisateur t'a dit dans cette conversation.`;
+
+// Historique de la conversation
+let historique = [
+  { role: "system", content: LIA_PERSONA }
+];
+
+function ajouterMessage(texte, type) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + type;
+  div.textContent = texte;
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+  return div;
+}
+
+async function envoyer() {
+  const texte = input.value.trim();
+  if (!texte) return;
+
+  input.value = '';
+  sendBtn.disabled = true;
+
+  // Message de l'utilisateur
+  ajouterMessage(texte, 'user');
+  historique.push({ role: "user", content: texte });
+
+  // Indicateur de réflexion
+  const thinking = ajouterMessage('LIA réfléchit...', 'lia thinking');
+
+  try {
+    // Appel à Puter.js
+    const reponse = await puter.ai.chat(historique, { model: 'gpt-5.4-nano' });
+
+    // Retirer l'indicateur
+    thinking.remove();
+
+    // Extraire le texte de la réponse
+    let texteReponse = reponse;
+    if (typeof reponse === 'object' && reponse.message) {
+      texteReponse = reponse.message.content || reponse.message;
+    }
+
+    ajouterMessage(texteReponse, 'lia');
+    historique.push({ role: "assistant", content: texteReponse });
+
+  } catch (e) {
+    thinking.remove();
+    ajouterMessage('Erreur : ' + e.message, 'lia');
+  }
+
+  sendBtn.disabled = false;
+  input.focus();
+}
+
+sendBtn.addEventListener('click', envoyer);
+input.addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') envoyer();
+});
+
+input.focus();
+</script>
+
+</body>
+</html>
