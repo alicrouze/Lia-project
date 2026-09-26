@@ -38,11 +38,13 @@ while True:
     rythme_sauve = rythme
     print("[Rythme detecte :", rythme + "]")
     messages_avec_rythme = messages + [{"role": "system", "content": "RYTHME ACTUEL DE L UTILISATEUR : " + rythme + ". Adapte ton style a ce rythme."}]
-    payload = {"model": "openai/gpt-oss-120b", "messages": messages_avec_rythme}
+    payload = {"model": "qwen/qwen3.8-27b", "messages": messages_avec_rythme}
     try:
         r = requests.post(URL, headers=HEADERS, json=payload)
         data = r.json()
         response = data["choices"][0]["message"]["content"]
+        import re
+        response = re.sub(r"<think>.*?</think>", "", response, flags=re.DOTALL).strip()
         print("LIA :", response)
         messages.append({"role": "assistant", "content": response})
         with open(FICHIER, "w", encoding="utf-8") as f:
