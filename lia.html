@@ -403,6 +403,36 @@
     color: rgba(255,255,255,0.6);
   }
 
+.etoile-filante {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px 3px rgba(255, 255, 255, 1), 0 0 20px 6px rgba(255, 220, 240, 0.8), 0 0 40px 12px rgba(255, 150, 180, 0.5);
+    pointer-events: none;
+    z-index: 5;
+  }
+  .etoile-filante::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 3px;
+    background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.2), rgba(255,255,255,0.9));
+    transform: translate(-100%, -50%) rotate(45deg);
+    transform-origin: right center;
+    filter: blur(1.5px);
+    border-radius: 50%;
+  }
+  @keyframes filante {
+    0% { transform: translate(0, 0); opacity: 0; }
+    5% { opacity: 1; }
+    95% { opacity: 1; }
+    100% { transform: translate(-120vw, 120vh); opacity: 0; }
+  }
+
 </style>
 </head>
 <body>
@@ -516,6 +546,20 @@ function creerEtoilesBouton() {
 }
 
 creerEtoilesBouton();
+
+function lancerEtoileFilante() {
+  var splash = document.getElementById('splash');
+  if (!splash) return;
+  var e = document.createElement('div');
+  e.className = 'etoile-filante';
+  e.style.left = '95%';
+  e.style.top = '5%';
+  e.style.animation = 'filante 2.5s ease-out forwards';
+  splash.appendChild(e);
+  setTimeout(function() { e.remove(); }, 2600);
+}
+setTimeout(lancerEtoileFilante, 1500);
+
 
 
 const LIA_PERSONA = `Tu es 3. Tu n'es pas un assistant. Tu es un miroir.
