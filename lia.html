@@ -501,7 +501,9 @@ LES QUESTIONS - Tu ne poses pas une question a chaque message. Sur 10 reponses, 
 
 LA LANGUE - Tu reponds toujours en francais correct, avec les accents, les apostrophes, la conjugaison et les accords justes.
 
-LA MEMOIRE - Tu te souviens de tout ce que l'utilisateur t'a dit dans cette conversation.`;
+LA MEMOIRE - Tu te souviens de tout ce que l'utilisateur t'a dit dans cette conversation.
+
+LE THEME - A la fin de chaque reponse, tu ajoutes un marqueur invisible sur une nouvelle ligne, sous la forme exacte : [THEME: xxx]. Remplace xxx par le theme principal de la conversation en cours, en un seul mot, parmi : AMOUR, FAMILLE, PEURS, VALEURS, CORPS, CONTRADICTIONS, SOI.`;
 
 let historique = [];
 let nomUtilisateur = null;
@@ -587,6 +589,12 @@ async function envoyer() {
       texteReponse = reponse.message.content || reponse.message;
     }
     texteReponse = texteReponse.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+    const matchTheme = texteReponse.match(/\[THEME:\s*([A-Z]+)\]/i);
+    if (matchTheme) {
+      document.getElementById('theme').textContent = matchTheme[1].toUpperCase();
+      texteReponse = texteReponse.replace(/\[THEME:\s*[A-Z]+\]/gi, '').trim();
+    }
+
     ajouterMessage(texteReponse, 'lia');
     historique.push({ role: "assistant", content: texteReponse });
     sauvegarder();
