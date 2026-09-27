@@ -437,58 +437,6 @@ for l in lignes:
     sortie.append(l)
 
 f = open('lia.html', 'w', encoding='utf-8')
-f.writelines(sortie)
-f.close()
-print('Nettoye')
-
-</style>")
-texte = texte.replace("creerEtoilesBouton();
-
-function lancerEtoileFilante() {
-  var splash = document.getElementById('splash');
-  if (!splash) return;
-  var e = document.createElement('div');
-  e.className = 'etoile-filante';
-  e.style.right = '-10px';
-  e.style.top = '20%';
-  e.style.animation = 'filante 1.5s linear forwards';
-  splash.appendChild(e);
-  setTimeout(function() { e.remove(); }, 1700);
-}
-setTimeout(lancerEtoileFilante, 1500);
-
-
-.etoile-filante {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: 0 0 8px 3px rgba(255, 255, 255, 1), 0 0 20px 6px rgba(255, 220, 240, 0.8), 0 0 40px 12px rgba(255, 150, 180, 0.5);
-    pointer-events: none;
-    z-index: 5;
-  }
-  @keyframes filante {
-    0% { transform: translate(0, 0); opacity: 0; }
-    5% { opacity: 1; }
-    95% { opacity: 1; }
-    100% { transform: translate(-100vw, 30vh); opacity: 0; }
-  }
-
-f = open('lia.html', 'r', encoding='utf-8')
-lignes = f.readlines()
-f.close()
-
-sortie = []
-saut = 0
-for l in lignes:
-    sortie.append(l)
-
-f = open('lia.html', 'w', encoding='utf-8')
-f.writelines(sortie)
-f.close()
-print('Nettoye')
-
 </style>
 </head>
 <body>
