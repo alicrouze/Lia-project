@@ -577,12 +577,19 @@ function lancerEtoileFilante() {
   var splash = document.getElementById('splash');
   if (!splash) return;
   var e = document.createElement('div');
-  e.className = 'etoile-filante';
-  e.style.right = '-10px';
-  e.style.top = '20%';
-  e.style.animation = 'filante 1.5s linear forwards';
+  e.style.position = 'fixed';
+  e.style.left = '50%';
+  e.style.top = '50%';
+  e.style.width = '80px';
+  e.style.height = '80px';
+  e.style.background = 'white';
+  e.style.borderRadius = '50%';
+  e.style.zIndex = '99999';
+  e.style.boxShadow = '0 0 60px 30px white';
+  e.style.transform = 'translate(-50%, -50%)';
   splash.appendChild(e);
-  setTimeout(function() { e.remove(); }, 1700);
+  console.log('ETOILE AJOUTEE');
+  setTimeout(function() { e.remove(); }, 3000);
 }
 
 
