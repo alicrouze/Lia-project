@@ -443,6 +443,23 @@ f = open('lia.html', 'w', encoding='utf-8')
 
   
 
+.etoile-filante {
+    position: fixed;
+    width: 5px;
+    height: 5px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 1), 0 0 40px 15px rgba(255, 220, 240, 0.8), 0 0 80px 25px rgba(255, 150, 180, 0.5);
+    pointer-events: none;
+    z-index: 99999;
+  }
+  @keyframes filante {
+    0% { right: -20px; top: 20%; opacity: 0; }
+    5% { opacity: 1; }
+    95% { opacity: 1; }
+    100% { right: 100vw; top: 60%; opacity: 0; }
+  }
+
 </style>
 </head>
 <body>
