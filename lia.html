@@ -217,9 +217,103 @@
     width: 20px;
     border-radius: 3px;
   }
+
+  #accueil {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #5a6b9e 0%, #4a5a8a 70%, #3a4a75 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 9999;
+    transition: opacity 4s ease;
+    cursor: pointer;
+  }
+  #accueil.hidden { opacity: 0; pointer-events: none; }
+  #logo-3 {
+    font-size: 40vh;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1;
+    text-shadow: 0 0 30px rgba(255, 100, 120, 1), 0 0 90px rgba(255, 80, 100, 0.8), 0 0 180px rgba(255, 60, 80, 0.6);
+    animation: pulse 4s ease-in-out infinite;
+    font-family: Didot, Baskerville, serif;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+  }
+  #accueil-hint {
+    position: absolute;
+    bottom: 12%;
+    color: rgba(255,255,255,0.5);
+    font-size: 14px;
+    letter-spacing: 0.15em;
+  }
+  #concept {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #5a6b9e 0%, #4a5a8a 70%, #3a4a75 100%);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 9998;
+    padding: 20px 30px;
+    text-align: center;
+  }
+  #concept.visible { display: flex; }
+  #concept-texte {
+    color: #fff;
+    font-family: Didot, Baskerville, serif;
+    font-size: 18px;
+    line-height: 2.2;
+    max-width: 550px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 40px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  }
+  #concept-btn {
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 30px;
+    padding: 14px 40px;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-family: Didot, Baskerville, serif;
+    cursor: pointer;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
 </style>
 </head>
 <body>
+
+
+<div id="accueil">
+  <div id="logo-3">3</div>
+  <div id="accueil-hint">TOUCHEZ POUR COMMENCER</div>
+</div>
+
+<div id="concept">
+  <div id="concept-texte">
+    PENDANT <em>3 JOURS</em>, ON VA PARLER.<br><br>
+    PAS DE PHOTOS.<br>
+    PAS DE PROFILS.<br>
+    JUSTE TOI ET MOI.<br><br>
+    À LA FIN, JE TE PROPOSERAI UNE SEULE PERSONNE.
+  </div>
+  <button id="concept-btn">COMMENCER</button>
+</div>
 
 <div id="app">
   <div id="header">
@@ -448,7 +542,19 @@ async function init() {
   });
 }
 
-init();
+
+document.getElementById('accueil').addEventListener('click', function() {
+  this.classList.add('hidden');
+  setTimeout(function() {
+    document.getElementById('concept').classList.add('visible');
+  }, 1200);
+});
+
+document.getElementById('concept-btn').addEventListener('click', function() {
+  document.getElementById('concept').style.display = 'none';
+  init();
+});
+
 </script>
 
 </body>
