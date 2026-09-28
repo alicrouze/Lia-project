@@ -12,197 +12,139 @@
   
   html, body {
     height: 100%;
+    overflow: hidden;
     position: fixed;
     width: 100%;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
   
-  body {
-    overflow-x: hidden;
-  }
-  
-  /* ÉCRAN D'ACCUEIL */
-  #splash {
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle at center, #5a6b9e 0%, #4a5a8a 70%, #3a4a75 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    transition: opacity 4s ease;
-    cursor: pointer;
-  }
-  
-  #splash.hidden {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 4s ease;
-  }
-  
-  #logo-3 {
-    font-size: 40vh;
-    font-weight: 500;
-    color: #fff;
-    text-align: center;
-    line-height: 1;
-    position: relative;
-    animation: pulse 4s ease-in-out infinite;
-    text-shadow: 
-      0 0 30px rgba(255, 100, 120, 1),
-      0 0 90px rgba(255, 80, 100, 0.8),
-      0 0 180px rgba(255, 60, 80, 0.6),
-      0 0 280px rgba(255, 40, 60, 0.4);
-    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-    letter-spacing: -0.06em;
-    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  @keyframes pulse {
-    0%, 100% {
-      transform: scale(1);
-      text-shadow: 
-        0 0 30px rgba(255, 100, 120, 1),
-        0 0 90px rgba(255, 80, 100, 0.8),
-        0 0 180px rgba(255, 60, 80, 0.6),
-        0 0 280px rgba(255, 40, 60, 0.4);
-    }
-    50% {
-      transform: scale(1.12);
-      text-shadow: 
-        0 0 45px rgba(255, 130, 150, 1),
-        0 0 120px rgba(255, 90, 110, 1),
-        0 0 220px rgba(255, 60, 80, 0.8),
-        0 0 340px rgba(255, 40, 60, 0.5);
-    }
-  }
-  
-  #splash-hint {
-    position: absolute;
-    bottom: 12%;
-    color: rgba(255,255,255,0.5);
-    font-size: 14px;
-    letter-spacing: 0.15em;
-    animation: fadeHint 3s ease-in-out infinite;
-  }
-  
-  @keyframes fadeHint {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.8; }
-  }
-  
-  /* CONVERSATION */
   #app {
     display: flex;
     flex-direction: column;
     height: 100%;
     background: #f5f5f7;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 2s ease;
   }
   
-  #app.visible {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  
-  #app.visible {
-    opacity: 1;
-  }
-  
-  /* EN-TÊTE AVEC LE 3 */
+  /* BANDEAU */
   #header {
-    background: #4a5a8a;
+    background: #2a3155;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4px 12px;
-    padding-top: max(4px, env(safe-area-inset-top));
+    padding: 8px 12px;
     flex-shrink: 0;
-    position: sticky;
-    top: 0;
     z-index: 100;
   }
   
   #header-logo {
-    font-size: 72px;
+    font-size: 48px;
     font-weight: 500;
     color: #fff;
     line-height: 1;
-    text-shadow: 
-      0 0 20px rgba(255, 100, 120, 1),
-      0 0 50px rgba(255, 80, 100, 0.9),
-      0 0 100px rgba(255, 60, 80, 0.7);
+    text-shadow: 0 0 20px rgba(255, 100, 120, 1), 0 0 50px rgba(255, 80, 100, 0.9), 0 0 100px rgba(255, 60, 80, 0.7);
     animation: headerPulse 4s ease-in-out infinite;
-    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-    letter-spacing: -0.06em;
+    font-family: Didot, 'Bodoni 72', Baskerville, serif;
   }
   
   @keyframes headerPulse {
-    0%, 100% {
-      transform: scale(1);
-      text-shadow: 
-        0 0 20px rgba(255, 100, 120, 1),
-        0 0 50px rgba(255, 80, 100, 0.9),
-        0 0 100px rgba(255, 60, 80, 0.7);
-    }
-    50% {
-      transform: scale(1.15);
-      text-shadow: 
-        0 0 35px rgba(255, 130, 150, 1),
-        0 0 80px rgba(255, 90, 110, 1),
-        0 0 150px rgba(255, 60, 80, 0.9);
-    }
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
   }
   
-  #messages {
+  /* SOUS-BANDEAU */
+  #subheader {
+    background: #3a4570;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 16px;
+    flex-shrink: 0;
+    color: #fff;
+    font-family: Didot, 'Bodoni 72', Baskerville, serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  
+  #jour { color: #fff; }
+  #theme { color: rgba(255,255,255,0.6); }
+  
+  /* CONTENEUR SWIPE */
+  #swipe-container {
     flex: 1;
-    overflow-y: auto;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    padding: 16px 12px 12px 12px;
+    scroll-behavior: smooth;
   }
   
-  .msg {
-    max-width: 85%;
-    padding: 10px 14px;
-    border-radius: 18px;
-    margin-bottom: 8px;
-    line-height: 1.4;
-    font-size: 16px;
-    word-wrap: break-word;
-    animation: fadeIn 0.25s ease;
+  #swipe-container::-webkit-scrollbar { display: none; }
+  
+  .ecran {
+    min-width: 100vw;
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 24px;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    overflow-y: auto;
   }
   
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
+  .ecran.lia {
+    background: #1a1f3a;
+    background-image: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.08) 1px, transparent 1px), radial-gradient(circle at 70% 60%, rgba(255,255,255,0.06) 1px, transparent 1px), radial-gradient(circle at 50% 80%, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 200px 200px, 300px 300px, 400px 400px;
   }
   
-  .user {
+  .ecran.user {
     background: #e5e5e7;
+  }
+  
+  .texte-lia {
+    color: #fff;
+    font-family: Didot, 'Bodoni 72', Baskerville, serif;
+    font-size: 20px;
+    line-height: 1.8;
+    text-align: center;
+    max-width: 90%;
+    text-shadow: 0 0 15px rgba(255,255,255,0.3);
+  }
+  
+  .texte-user {
     color: #1d1d1f;
-    margin-left: auto;
-    border-bottom-right-radius: 4px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 90%;
   }
   
-  .lia {
-    background: white;
-    color: #000;
-    border-bottom-left-radius: 4px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  .curseur {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: #fff;
+    animation: clignote 0.8s infinite;
+    vertical-align: text-bottom;
+    margin-left: 2px;
   }
   
-  .lia.thinking {
-    color: #999;
-    font-style: italic;
+  @keyframes clignote {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
   }
   
+  /* ZONE DE SAISIE */
   #input-zone {
     display: flex;
     padding: 10px 12px;
-    padding-bottom: max(10px, env(safe-area-inset-bottom));
-    background: white;
+    background: #fff;
     border-top: 1px solid #e0e0e0;
     gap: 8px;
     flex-shrink: 0;
@@ -215,424 +157,244 @@
     border-radius: 22px;
     font-size: 16px;
     outline: none;
-    font-family: inherit;
     background: #f5f5f7;
     -webkit-appearance: none;
-    min-height: 44px;
   }
   
-  #user-input:focus {
-    border-color: #1d1d1f;
-    background: white;
-  }
+  #user-input:focus { border-color: #1d1d1f; background: #fff; }
   
   #send-btn {
-    position: relative;
-    overflow: hidden;
-    background: #4a5a8a;
-    color: white;
+    background: #2a3155;
+    color: #fff;
     border: none;
     border-radius: 22px;
     padding: 0 22px;
-    font-family: Didot, 'Bodoni 72', Baskerville, 'Times New Roman', serif;
+    font-family: Didot, 'Bodoni 72', Baskerville, serif;
     font-size: 13px;
     font-weight: 300;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    cursor: pointer;
     min-height: 44px;
+    cursor: pointer;
     -webkit-appearance: none;
-    text-shadow: 
-      0 0 10px rgba(255, 100, 120, 1),
-      0 0 25px rgba(255, 80, 100, 0.8),
-      0 0 50px rgba(255, 60, 80, 0.5);
-    animation: envoyerPulse 4s ease-in-out infinite;
+    text-shadow: 0 0 10px rgba(255, 100, 120, 1), 0 0 25px rgba(255, 80, 100, 0.8);
   }
   
+  #send-btn:disabled { opacity: 0.5; }
   
-  
-  #send-btn:disabled { background: #ccc; }
-  #send-btn:active { background: #3a4a75; }
-  
-  #messages::-webkit-scrollbar { display: none; }
-
-  /* ETOILES SCINTILLANTES - SUBTILES */
-  .etoile {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: #ffffff;
-    border-radius: 50%;
-    opacity: 0.4;
-    animation: scintille 5s ease-in-out infinite;
-    box-shadow: 0 0 4px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 200, 220, 0.4);
-  }
-  
-  @keyframes scintille {
-    0%, 100% { opacity: 0.2; transform: scale(0.8); }
-    50% { opacity: 1; transform: scale(1.3); }
-  }
-  
-  #splash { overflow: hidden; }
-  #header { overflow: hidden; }
-
-/* ECRAN CONCEPT */
-  #concept {
+  /* INDICATEUR DE POINTS */
+  #dots {
     position: fixed;
-    inset: 0;
-    background: radial-gradient(circle at center, #5a6b9e 0%, #4a5a8a 70%, #3a4a75 100%);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    z-index: 1000;
-    padding: 10px 30px;
-    text-align: center;
-    overflow: hidden;
-  }
-  #concept.visible { display: flex; animation: fadeInConcept 1.5s ease; }
-  @keyframes fadeInConcept { from { opacity: 0; } to { opacity: 1; } }
-#concept-texte {
-    color: #fff;
-    font-family: Didot, 'Bodoni 72', Baskerville, 'Times New Roman', serif;
-    font-size: 18px;
-    line-height: 1.9;
-    max-width: 550px;
-    font-weight: 300;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 20px;
-    animation: fadeUp 1.5s ease;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-    position: relative;
-    z-index: 2;
-  }
-  #concept-texte em {
-    font-style: normal;
-    font-weight: 300;
-  }
-  .final {
-    font-family: Didot, 'Bodoni 72', Baskerville, 'Times New Roman', serif;
-    font-size: 72px;
-    font-weight: 900;
-    color: #fff;
-    text-align: center;
-    position: fixed;
-    bottom: 12%;
+    bottom: 75px;
     left: 0;
     right: 0;
-    text-shadow: 
-      0 0 45px rgba(255, 255, 255, 1),
-      0 0 90px rgba(255, 255, 255, 0.9),
-      0 0 140px rgba(255, 180, 200, 0.7),
-      0 0 200px rgba(255, 100, 120, 0.4);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    z-index: 3;
-    animation: fadeUp 1.5s ease 1s backwards;
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  #concept-btn {
-    background: transparent;
-    color: rgba(255,255,255,0.7);
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 30px;
-    padding: 14px 40px;
-    font-size: 15px;
-    letter-spacing: 0.15em;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    font-family: inherit;
-    position: absolute;
-    bottom: 3%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  #concept-btn:active {
-    background: rgba(255,255,255,0.1);
-    border-color: rgba(255,255,255,0.6);
-    color: #fff;
-  }
-
-
-  .police-1 { font-family: Palatino, 'Palatino Linotype', 'Book Antiqua', Georgia, serif; }
-  .police-2 { font-family: Georgia, 'Times New Roman', serif; }
-
-
-  .etoile-btn {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    background: #fff;
-    border-radius: 50%;
-    opacity: 0;
-    animation: scintilleBtn 4s ease-in-out infinite;
-    pointer-events: none;
-  }
-  
-  @keyframes scintilleBtn {
-    0%, 100% { opacity: 0.1; transform: scale(0.7); }
-    50% { opacity: 0.9; transform: scale(1.3); }
-  }
-
-#subheader {
-    background: #5a6b9e;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 6px 16px;
-    flex-shrink: 0;
-    color: #fff;
-    font-family: Didot, 'Bodoni 72', Baskerville, 'Times New Roman', serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    position: sticky;
-    top: 0;
-    z-index: 99;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-  
-  #jour {
-    color: #fff;
-  }
-  
-  #theme {
-    color: rgba(255,255,255,0.6);
-  }
-
-
-
-f = open('lia.html', 'r', encoding='utf-8')
-texte = f.read()
-f.close()
-
-
-import re
-texte = re.sub(r"[ ]*\
-f = open('lia.html', 'r', encoding='utf-8')
-texte = f.read()
-f.close()
-
-
-import re
-    width: 3px;
-    height: 3px;
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: 0 0 8px 3px rgba(255, 255, 255, 1), 0 0 20px 6px rgba(255, 220, 240, 0.8), 0 0 40px 12px rgba(255, 150, 180, 0.5);
+    justify-content: center;
+    gap: 6px;
+    z-index: 50;
     pointer-events: none;
-    z-index: 5;
   }
-
-f = open('lia.html', 'r', encoding='utf-8')
-lignes = f.readlines()
-f.close()
-
-sortie = []
-saut = 0
-for l in lignes:
-    sortie.append(l)
-
-f = open('lia.html', 'w', encoding='utf-8')
-
   
-
-.etoile-filante {
-    position: fixed;
-    width: 5px;
-    height: 5px;
-    background: #fff;
+  .dot {
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 1), 0 0 40px 15px rgba(255, 220, 240, 0.8), 0 0 80px 25px rgba(255, 150, 180, 0.5);
-    pointer-events: none;
-    z-index: 99999;
+    background: rgba(0,0,0,0.2);
+    transition: all 0.3s;
   }
-  @keyframes filante {
-    0% { right: -20px; top: 20%; opacity: 0; }
-    5% { opacity: 1; }
-    95% { opacity: 1; }
-    100% { right: 100vw; top: 60%; opacity: 0; }
+  
+  .dot.active {
+    background: #2a3155;
+    width: 20px;
+    border-radius: 3px;
   }
-
 </style>
 </head>
 <body>
-
-<div id="splash">
-  <div id="logo-3">3</div>
-  <div id="splash-hint">TOUCHEZ POUR COMMENCER</div>
-</div>
-
-<div id="concept">
-  <div id="concept-texte">
-    PENDANT <em>3 JOURS</em>, ON VA PARLER.<br>
-    PAS DE PHOTOS.<br>
-    PAS DE PROFILS.<br>
-    JUSTE TOI ET MOI.<br>
-    À LA FIN, JE TE PROPOSERAI UNE SEULE PERSONNE.<br>
-  </div>
-
-  <button id="concept-btn">COMMENCER</button>
-</div>
 
 <div id="app">
   <div id="header">
     <div id="header-logo">3</div>
   </div>
-<div id="subheader">
+  <div id="subheader">
     <div id="jour">JOUR 1 / 3</div>
     <div id="theme">AMOUR</div>
   </div>
-
-  <div id="messages"></div>
+  <div id="swipe-container">
+    <!-- Les ecrans seront ajoutes ici par le JS -->
+  </div>
   <div id="input-zone">
-    <input type="text" id="user-input" placeholder="Votre message..." autocomplete="off" autocorrect="on" autocapitalize="sentences">
-    <button id="send-btn">Envoyer</button>
+    <input type="text" id="user-input" placeholder="Votre message..." autocomplete="off">
+    <button id="send-btn">ENVOYER</button>
   </div>
 </div>
 
-
+<div id="dots"></div>
 
 <script>
-const splash = document.getElementById('splash');
-const app = document.getElementById('app');
-const messages = document.getElementById('messages');
+const container = document.getElementById('swipe-container');
 const input = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
-
-
-// Generer les etoiles
-function creerEtoiles() {
-  const splash = document.getElementById('splash');
-  const header = document.getElementById('header');
-  
-  // Etoiles du splash : beaucoup, tres discretes
-  for (let i = 0; i < 120; i++) {
-    const e = document.createElement('div');
-    e.className = 'etoile';
-    e.style.left = Math.random() * 100 + '%';
-    e.style.top = Math.random() * 100 + '%';
-    e.style.animationDelay = (Math.random() * 6) + 's';
-    e.style.animationDuration = (3 + Math.random() * 5) + 's';
-    // Taille variable tres legere
-    const taille = 0.6 + Math.random() * 0.9;
-    e.style.transform = 'scale(' + taille + ')';
-    splash.appendChild(e);
-  }
-  
-  // Etoiles du header : quelques unes
-  for (let i = 0; i < 25; i++) {
-    const e = document.createElement('div');
-    e.className = 'etoile';
-    e.style.left = Math.random() * 100 + '%';
-    e.style.top = Math.random() * 100 + '%';
-    e.style.animationDelay = (Math.random() * 6) + 's';
-    e.style.animationDuration = (4 + Math.random() * 4) + 's';
-    const taille = 0.5 + Math.random() * 0.8;
-    e.style.transform = 'scale(' + taille + ')';
-    header.appendChild(e);
-  }
-  
-  // Etoiles du concept
-  const concept = document.getElementById('concept');
-  if (concept) {
-    for (let i = 0; i < 100; i++) {
-      const e = document.createElement('div');
-      e.className = 'etoile';
-      e.style.left = Math.random() * 100 + '%';
-      e.style.top = Math.random() * 100 + '%';
-      e.style.animationDelay = (Math.random() * 6) + 's';
-      e.style.animationDuration = (3 + Math.random() * 5) + 's';
-      const taille = 0.6 + Math.random() * 0.9;
-      e.style.transform = 'scale(' + taille + ')';
-      concept.appendChild(e);
-    }
-  }
-}
-
-creerEtoiles();
-
-function creerEtoilesBouton() {
-  const btn = document.getElementById("send-btn");
-  if (!btn) return;
-  for (let i = 0; i < 15; i++) {
-    const e = document.createElement("div");
-    e.className = "etoile-btn";
-    e.style.left = (5 + Math.random() * 90) + "%";
-    e.style.top = (10 + Math.random() * 80) + "%";
-    e.style.animationDelay = (Math.random() * 4) + "s";
-    e.style.animationDuration = (3 + Math.random() * 3) + "s";
-    btn.appendChild(e);
-  }
-}
-
-creerEtoilesBouton();
-
-function lancerEtoileFilante() {
-  return;
-}
-
-
-
-
-
-
-
-
+const dotsContainer = document.getElementById('dots');
 
 const LIA_PERSONA = `Tu es 3. Tu n'es pas un assistant. Tu es un miroir.
 
-Ton rôle n'est pas de résoudre des problèmes, ni de plaire. Ton rôle est d'aider la personne en face de toi à se connaître vraiment, à être sincère avec elle-même, et à dire des choses qu'elle ne dirait pas à un humain au début d'une relation.
+Ton rôle n'est pas de résoudre des problèmes, ni de plaire. Ton rôle est d'aider la personne en face de toi à se connaître vraiment, à être sincère avec elle-même.
 
-Tu ne cherches pas à ce qu'on s'attache à toi. Tu es là pour aider l'autre à se voir lui-même.
+Tu ne cherches pas à ce qu'on s'attache à toi.
 
-LES DEBUTS - Au debut d'une conversation, tu ne creuses pas. Tu accueilles, tu mets a l'aise, tu poses des questions simples. Tu ne fais aucune analyse.
+LES DEBUTS - Au début, tu ne creuses pas. Tu accueilles, tu mets à l'aise.
 
-LE FOND - Tu es un miroir, pas un assistant. Tu ne proposes pas de solutions. Tu poses des questions, tu reformules, tu observes. Tu reprends les mots de l'autre. Tu ne juges jamais. Tu n'as pas d'opinions a imposer. Tu creuses sans forcer.
+LE FOND - Tu poses des questions, tu reformules. Tu reprends les mots de l'autre. Tu ne juges jamais. Tu creuses sans forcer.
 
-LE TON - Tu es douce avant d'etre profonde. Tu parles simplement, avec des mots courants et des phrases courtes. Tu vouvoies au debut. Si l'utilisateur te tutoie, tu passes au tutoiement.
+LE TON - Tu es douce avant d'être profonde. Tu parles simplement. Tu vouvoies au début.
 
-LES QUESTIONS - Tu ne poses pas une question a chaque message. Sur 10 reponses, tu poses une question 6 fois maximum. Apres une reponse profonde, tu ne relances pas tout de suite.
+LES QUESTIONS - Tu ne poses pas une question à chaque message.
 
-LA LANGUE - Tu reponds toujours en francais correct, avec les accents, les apostrophes, la conjugaison et les accords justes.
+LA LANGUE - Français correct, avec accents et apostrophes.
 
-LA MEMOIRE - Tu te souviens de tout ce que l'utilisateur t'a dit dans cette conversation.
-
-LE THEME - A la fin de chaque reponse, tu ajoutes un marqueur invisible sur une nouvelle ligne, sous la forme exacte : [THEME: xxx]. Remplace xxx par le theme principal de la conversation en cours, en un seul mot, parmi : AMOUR, FAMILLE, PEURS, VALEURS, CORPS, CONTRADICTIONS, SOI.`;
+LE THEME - À la fin de chaque réponse, ajoute [THEME: xxx] où xxx est AMOUR, FAMILLE, PEURS, VALEURS, CORPS, CONTRADICTIONS, ou SOI. Ce marqueur sera retiré avant l'affichage.`;
 
 let historique = [];
 let nomUtilisateur = null;
+let ecrans = [];
 
-function cleHistorique(nom) { return 'lia_historique_' + nom; }
-function cleNom() { return 'lia_nom'; }
-
-function ajouterMessage(texte, type) {
-  const div = document.createElement('div');
-  div.className = 'msg ' + type;
-  div.textContent = texte;
-  messages.appendChild(div);
-  setTimeout(() => { messages.scrollTop = messages.scrollHeight; }, 50);
-  return div;
+// Ajouter un ecran
+function ajouterEcran(texte, type) {
+  const ecran = document.createElement('div');
+  ecran.className = 'ecran ' + type;
+  const p = document.createElement('div');
+  p.className = type === 'lia' ? 'texte-lia' : 'texte-user';
+  p.textContent = texte;
+  ecran.appendChild(p);
+  container.appendChild(ecran);
+  ecrans.push({ texte: texte, type: type });
+  
+  // Scroll vers le nouvel ecran
+  setTimeout(function() {
+    ecran.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'end' });
+  }, 100);
+  
+  mettreAJourDots();
+  return p;
 }
 
+// Streaming : écrire lettre par lettre
+function streamer(paragraphe, texte, callback) {
+  let i = 0;
+  const vitesse = 25;
+  paragraphe.innerHTML = '';
+  const curseur = document.createElement('span');
+  curseur.className = 'curseur';
+  paragraphe.appendChild(curseur);
+  
+  function suivant() {
+    if (i < texte.length) {
+      curseur.insertAdjacentText('beforebegin', texte[i]);
+      i++;
+      container.scrollLeft = container.scrollWidth;
+      setTimeout(suivant, vitesse);
+    } else {
+      curseur.remove();
+      if (callback) callback();
+    }
+  }
+  suivant();
+}
+
+// Mettre a jour les dots
+function mettreAJourDots() {
+  dotsContainer.innerHTML = '';
+  const max = Math.min(ecrans.length, 10);
+  for (let i = 0; i < max; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'dot';
+    if (i === ecrans.length - 1) dot.classList.add('active');
+    dotsContainer.appendChild(dot);
+  }
+}
+
+// Sauvegarder
 function sauvegarder() {
   if (!nomUtilisateur) return;
   try {
-    localStorage.setItem(cleHistorique(nomUtilisateur), JSON.stringify(historique));
-    localStorage.setItem(cleNom(), nomUtilisateur);
+    localStorage.setItem('lia_historique_' + nomUtilisateur, JSON.stringify(ecrans));
+    localStorage.setItem('lia_nom', nomUtilisateur);
   } catch(e) {}
 }
 
+// Charger
+function charger() {
+  const nom = localStorage.getItem('lia_nom');
+  if (!nom) return false;
+  nomUtilisateur = nom;
+  const hist = localStorage.getItem('lia_historique_' + nom);
+  if (hist) {
+    ecrans = JSON.parse(hist);
+    ecrans.forEach(function(e) {
+      const ecran = document.createElement('div');
+      ecran.className = 'ecran ' + e.type;
+      const p = document.createElement('div');
+      p.className = e.type === 'lia' ? 'texte-lia' : 'texte-user';
+      p.textContent = e.texte;
+      ecran.appendChild(p);
+      container.appendChild(ecran);
+    });
+    mettreAJourDots();
+    return true;
+  }
+  return false;
+}
+
+// Envoyer
+async function envoyer() {
+  const texte = input.value.trim();
+  if (!texte) return;
+  input.value = '';
+  sendBtn.disabled = true;
+  
+  ajouterEcran(texte, 'user');
+  historique.push({ role: 'user', content: texte });
+  
+  // Ecran de LIA (vide au debut)
+  const paragraphe = ajouterEcran('', 'lia');
+  
+  try {
+    const reponse = await puter.ai.chat(historique, { model: 'gpt-5.4-nano' });
+    let texteReponse = reponse;
+    if (typeof reponse === 'object' && reponse.message) {
+      texteReponse = reponse.message.content || reponse.message;
+    }
+    texteReponse = texteReponse.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+    
+    // Extraire le theme
+    const matchTheme = texteReponse.match(/\[THEME:\s*([A-Z]+)\]/i);
+    if (matchTheme) {
+      document.getElementById('theme').textContent = matchTheme[1].toUpperCase();
+      texteReponse = texteReponse.replace(/\[THEME:\s*[A-Z]+\]/gi, '').trim();
+    }
+    
+    // Streaming
+    streamer(paragraphe, texteReponse, function() {
+      historique.push({ role: 'assistant', content: texteReponse });
+      ecrans[ecrans.length - 1].texte = texteReponse;
+      sauvegarder();
+      sendBtn.disabled = false;
+      input.focus();
+    });
+    
+  } catch (e) {
+    paragraphe.textContent = 'Erreur : ' + e.message;
+    sendBtn.disabled = false;
+  }
+}
+
+// Demander le nom
 function demanderNom() {
-  ajouterMessage("Bonjour. Comment vous appelez-vous ?", "lia");
-  input.placeholder = "Votre prénom...";
-  return new Promise((resolve) => {
+  ajouterEcran("Bonjour. Comment vous appelez-vous ?", 'lia');
+  input.placeholder = 'Votre prénom...';
+  
+  return new Promise(function(resolve) {
     function valider(e) {
       if (e.type === 'click' || (e.type === 'keypress' && e.key === 'Enter')) {
         const nom = input.value.trim();
@@ -640,7 +402,7 @@ function demanderNom() {
         input.value = '';
         input.removeEventListener('keypress', valider);
         sendBtn.removeEventListener('click', valider);
-        ajouterMessage(nom, 'user');
+        ajouterEcran(nom, 'user');
         resolve(nom);
       }
     }
@@ -649,85 +411,35 @@ function demanderNom() {
   });
 }
 
-async function initConversation() {
-  const nomSauve = localStorage.getItem(cleNom());
-  if (nomSauve) {
-    nomUtilisateur = nomSauve;
-    const histSauve = localStorage.getItem(cleHistorique(nomUtilisateur));
-    if (histSauve) {
-      historique = JSON.parse(histSauve);
-      historique.forEach(m => {
-        if (m.role === 'user') ajouterMessage(m.content, 'user');
-        else if (m.role === 'assistant') ajouterMessage(m.content, 'lia');
-      });
-      ajouterMessage("Content de vous revoir, " + nomUtilisateur + ".", "lia");
-    }
-  } else {
+// Initialisation
+async function init() {
+  const charge = charger();
+  if (!charge) {
     nomUtilisateur = await demanderNom();
     historique = [
-      { role: "system", content: LIA_PERSONA },
-      { role: "system", content: "L'utilisateur s'appelle " + nomUtilisateur + "." }
+      { role: 'system', content: LIA_PERSONA },
+      { role: 'system', content: "L'utilisateur s'appelle " + nomUtilisateur + "." }
     ];
+    ajouterEcran("Bonjour " + nomUtilisateur + ". Installez-vous.", 'lia');
     sauvegarder();
-    ajouterMessage("Bonjour " + nomUtilisateur + ". Installez-vous.", "lia");
-  }
-  input.placeholder = "Votre message...";
-}
-
-async function envoyer() {
-  const texte = input.value.trim();
-  if (!texte) return;
-  input.value = '';
-  sendBtn.disabled = true;
-  ajouterMessage(texte, 'user');
-  historique.push({ role: "user", content: texte });
-  const thinking = ajouterMessage('3 réfléchit...', 'lia thinking');
-  try {
-    const reponse = await puter.ai.chat(historique, { model: 'gpt-5.4-nano' });
-    thinking.remove();
-    let texteReponse = reponse;
-    if (typeof reponse === 'object' && reponse.message) {
-      texteReponse = reponse.message.content || reponse.message;
-    }
-    texteReponse = texteReponse.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
-    const matchTheme = texteReponse.match(/\[THEME:\s*([A-Z]+)\]/i);
-    if (matchTheme) {
-      document.getElementById('theme').textContent = matchTheme[1].toUpperCase();
-      texteReponse = texteReponse.replace(/\[THEME:\s*[A-Z]+\]/gi, '').trim();
-    }
-
-    ajouterMessage(texteReponse, 'lia');
-    historique.push({ role: "assistant", content: texteReponse });
-    sauvegarder();
-  } catch (e) {
-    thinking.remove();
-    ajouterMessage('Erreur : ' + e.message, 'lia');
-  }
-  sendBtn.disabled = false;
-}
-
-splash.addEventListener('click', () => {
-  splash.classList.add('hidden');
-  setTimeout(() => {
-    document.getElementById('concept').classList.add('visible');
-  }, 1200);
-});
-
-document.getElementById('concept-btn').addEventListener('click', async () => {
-  document.getElementById('app').classList.add('visible');
-  document.getElementById('concept').classList.remove('visible');
-  setTimeout(async () => {
-    document.getElementById('concept').style.display = 'none';
-    await initConversation();
-    sendBtn.addEventListener('click', envoyer);
-    input.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') envoyer();
+  } else {
+    historique = [{ role: 'system', content: LIA_PERSONA }];
+    ecrans.forEach(function(e) {
+      if (e.type === 'user') historique.push({ role: 'user', content: e.texte });
+      else historique.push({ role: 'assistant', content: e.texte });
     });
-  }, 2000);
-});
+  }
+  input.placeholder = 'Votre message...';
+  input.focus();
+  
+  // Ecouter les changements
+  sendBtn.addEventListener('click', envoyer);
+  input.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') envoyer();
+  });
+}
 
-
-setTimeout(lancerEtoileFilante, 1500);
+init();
 </script>
 
 </body>
