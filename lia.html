@@ -440,22 +440,8 @@ for l in lignes:
     sortie.append(l)
 
 f = open('lia.html', 'w', encoding='utf-8')
-.etoile-filante {
-    position: fixed;
-    width: 4px;
-    height: 4px;
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: 0 0 10px 4px rgba(255, 255, 255, 1), 0 0 30px 10px rgba(255, 220, 240, 0.8), 0 0 60px 20px rgba(255, 150, 180, 0.5);
-    pointer-events: none;
-    z-index: 99999;
-  }
-  @keyframes filante {
-    0% { transform: translate(0, 0); opacity: 0; }
-    5% { opacity: 1; }
-    95% { opacity: 1; }
-    100% { transform: translate(-100vw, 30vh); opacity: 0; }
-  }
+
+  
 
 </style>
 </head>
@@ -574,29 +560,7 @@ function creerEtoilesBouton() {
 creerEtoilesBouton();
 
 function lancerEtoileFilante() {
-  var splash = document.getElementById('splash');
-  if (!splash) {
-    document.body.innerHTML = '<h1 style="color:red;text-align:center;padding-top:100px;font-size:40px;">SPLASH NULL</h1>';
-    return;
-  }
-  if (splash.style.opacity === '0' || splash.classList.contains('hidden')) {
-    document.body.innerHTML = '<h1 style="color:orange;text-align:center;padding-top:100px;font-size:40px;">SPLASH CACHE</h1>';
-    return;
-  }
-  var e = document.createElement('div');
-  e.style.position = 'fixed';
-  e.style.left = '50%';
-  e.style.top = '50%';
-  e.style.width = '80px';
-  e.style.height = '80px';
-  e.style.background = 'white';
-  e.style.borderRadius = '50%';
-  e.style.zIndex = '99999';
-  e.style.boxShadow = '0 0 60px 30px white';
-  e.style.transform = 'translate(-50%, -50%)';
-  splash.appendChild(e);
-  console.log('ETOILE AJOUTEE');
-  setTimeout(function() { e.remove(); }, 3000);
+  return;
 }
 
 
