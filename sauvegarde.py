@@ -13,7 +13,7 @@ HEADERS = {
     "Accept": "application/vnd.github+json"
 }
 
-FICHIERS = ["lia.py", "lia_personality.md", "sauvegarde.py", "lia.html", "analyse.py", "resume.py", "logo.png"]
+FICHIERS = ["lia.py", "lia_personality.md", "sauvegarde.py", "lia.html", "analyse.py", "resume.py", "logo.png", "écran-accueil.jpg"]
 
 def upload(nom_fichier):
     with open(nom_fichier, "rb") as f:
