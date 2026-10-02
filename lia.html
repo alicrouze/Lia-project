@@ -7,20 +7,6 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>3</title>
 <script src="https://js.puter.com/v2/">
-function creerEtoilesAccueil() {
-  var conteneur = document.getElementById('etoiles-accueil');
-  if (!conteneur) return;
-  for (var i = 0; i < 80; i++) {
-    var e = document.createElement('div');
-    e.className = 'etoile';
-    e.style.left = Math.random() * 100 + '%';
-    e.style.top = Math.random() * 100 + '%';
-    e.style.animationDelay = (Math.random() * 5) + 's';
-    e.style.animationDuration = (3 + Math.random() * 4) + 's';
-    conteneur.appendChild(e);
-  }
-}
-creerEtoilesAccueil();
 
 </script>
 <style>
