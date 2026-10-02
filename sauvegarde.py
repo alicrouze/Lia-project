@@ -13,18 +13,22 @@ HEADERS = {
     "Accept": "application/vnd.github+json"
 }
 
-FICHIERS = ["lia.py", "lia_personality.md", "sauvegarde.py", "lia.html", "analyse.py", "resume.py", "logo.png", "écran-accueil.jpg"]
+FICHIERS = ["lia.py", "lia_personality.md", "sauvegarde.py", "lia.html", "analyse.py", "resume.py", "logo.png", "fond.jpg"]
 
 def upload(nom_fichier):
-    with open(nom_fichier, "rb") as f:
-        contenu = f.read()
+    try:
+        with open(nom_fichier, "rb") as f:
+            contenu = f.read()
+    except:
+        print(nom_fichier, "-> fichier introuvable")
+        return
+    
     contenu_b64 = base64.b64encode(contenu).decode()
-
-    url = f"https://api.github.com/repos/{USER}/{REPO}/contents/{nom_fichier}"
-
+    url = "https://api.github.com/repos/" + USER + "/" + REPO + "/contents/" + nom_fichier
+    
     r = requests.get(url, headers=HEADERS)
     sha = r.json().get("sha") if r.status_code == 200 else None
-
+    
     data = {
         "message": "Sauvegarde depuis iPhone",
         "content": contenu_b64,
@@ -32,7 +36,7 @@ def upload(nom_fichier):
     }
     if sha:
         data["sha"] = sha
-
+    
     r = requests.put(url, headers=HEADERS, json=data)
     print(nom_fichier, "->", r.status_code)
 
