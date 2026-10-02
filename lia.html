@@ -349,25 +349,9 @@ creerEtoilesAccueil();
 
 
 
-  #flamme-lanterne {
-    position: absolute;
-    left: 19%;
-    top: 79%;
-    width: 5%;
-    height: 5%;
-    background: radial-gradient(circle, rgba(255, 200, 100, 0.9) 0%, rgba(255, 150, 50, 0.5) 40%, transparent 70%);
-    border-radius: 50%;
-    animation: vacille 1.5s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 5;
-  }
+
   
-  @keyframes vacille {
-    0%, 100% { transform: scale(1); opacity: 0.8; }
-    25% { transform: scale(1.06); opacity: 0.95; }
-    50% { transform: scale(0.97); opacity: 0.85; }
-    75% { transform: scale(1.04); opacity: 0.9; }
-  }
+
   
 
   
@@ -376,92 +360,7 @@ creerEtoilesAccueil();
 
 
 
-  #point-monte { position: absolute; left: 50%; top: 20%; width: 10px; height: 50%; transform: translateX(-50%); pointer-events: none; z-index: 5; }
-  #point-monte .point { position: absolute; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; background: radial-gradient(circle, #fff 0%, rgba(255, 230, 170, 0.9) 40%, transparent 70%); border-radius: 50%; box-shadow: 0 0 15px rgba(255, 220, 150, 1), 0 0 30px rgba(255, 200, 100, 0.6); animation: monte 3s ease-in-out infinite; bottom: 0; }
-  @keyframes monte { 0% { bottom: 0%; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { bottom: 100%; opacity: 0; } }
-
-</style>
-</head>
-<body>
-
-
-<div id="accueil"><div id="flamme-lanterne"></div><div id="point-monte"><div class="point"></div></div>
-  
-</div>
-
-<div id="concept">
-  <div id="concept-texte">
-    PENDANT <em>3 JOURS</em>, ON VA PARLER.<br><br>
-    PAS DE PHOTOS.<br>
-    PAS DE PROFILS.<br>
-    JUSTE TOI ET MOI.<br><br>
-    À LA FIN, JE TE PROPOSERAI UNE SEULE PERSONNE.
-  </div>
-  <button id="concept-btn">COMMENCER</button>
-</div>
-
-<div id="app">
-  <div id="header">
-    <div id="header-logo" style="position:relative;"><div style="position:absolute;top:50%;left:50%;width:60%;height:60%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,100,120,0.7) 0%,rgba(255,80,100,0.4) 40%,transparent 70%);border-radius:50%;animation:pulseRose 4s ease-in-out infinite;z-index:0;"></div><img src="logo.png" style="width:100%;height:100%;object-fit:contain;filter:brightness(0) invert(1) drop-shadow(0 0 10px rgba(255,255,255,0.8));position:relative;z-index:1;"></div>
-  </div>
-  <div id="subheader">
-    <div id="jour">JOUR 1 / 3</div>
-    <div id="theme">AMOUR</div>
-  </div>
-  <div id="swipe-container">
-    <!-- Les ecrans seront ajoutes ici par le JS -->
-  </div>
-  <div id="input-zone">
-    <input type="text" id="user-input" placeholder="Votre message..." autocomplete="off">
-    <button id="send-btn">ENVOYER</button>
-  </div>
-</div>
-
-<div id="dots"></div>
-
-<script>
-const container = document.getElementById('swipe-container');
-const input = document.getElementById('user-input');
-const sendBtn = document.getElementById('send-btn');
-const dotsContainer = document.getElementById('dots');
-
-const LIA_PERSONA = `Tu es 3. Tu n'es pas un assistant. Tu es un miroir.
-
-Ton rôle n'est pas de résoudre des problèmes, ni de plaire. Ton rôle est d'aider la personne en face de toi à se connaître vraiment, à être sincère avec elle-même.
-
-Tu ne cherches pas à ce qu'on s'attache à toi.
-
-LES DEBUTS - Au début, tu ne creuses pas. Tu accueilles, tu mets à l'aise.
-
-LE FOND - Tu poses des questions, tu reformules. Tu reprends les mots de l'autre. Tu ne juges jamais. Tu creuses sans forcer.
-
-LE TON - Tu es douce avant d'être profonde. Tu parles simplement. Tu vouvoies au début.
-
-LES QUESTIONS - Tu ne poses pas une question à chaque message.
-
-LA LANGUE - Français correct, avec accents et apostrophes.
-
-LE THEME - À la fin de chaque réponse, ajoute [THEME: xxx] où xxx est AMOUR, FAMILLE, PEURS, VALEURS, CORPS, CONTRADICTIONS, ou SOI. Ce marqueur sera retiré avant l'affichage.`;
-
-let historique = [];
-let nomUtilisateur = null;
-let ecrans = [];
-
-// Ajouter un ecran
-function ajouterEcran(texte, type) {
-  const ecran = document.createElement('div');
-  ecran.className = 'ecran ' + type;
-  const p = document.createElement('div');
-  p.className = type === 'lia' ? 'texte-lia' : 'texte-user';
-  p.textContent = texte;
-  ecran.appendChild(p);
-  container.appendChild(ecran);
-  ecrans.push({ texte: texte, type: type });
-  
-  // Scroll vers le nouvel ecran
-  setTimeout(function() {
-    ecran.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'end' });
-  }, 100);
+, 100);
   
   mettreAJourDots();
   return p;
