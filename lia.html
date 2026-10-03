@@ -78,6 +78,47 @@
 
 
 
+
+  #input-zone {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100vw - 120px);
+    height: 48px;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+    pointer-events: auto;
+  }
+  #user-input {
+    flex: 1;
+    height: 48px;
+    padding: 0 60px 0 20px;
+    border: none;
+    border-radius: 24px;
+    font-size: 16px;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    -webkit-appearance: none;
+  }
+  #user-input::placeholder { color: rgba(255, 255, 255, 0.5); }
+  #send-btn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: transparent;
+    color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 11;
+  }
+
 </style>
 </head>
 <body>
@@ -86,6 +127,7 @@
 
 <div id="chat">
   <div id="bulles"></div>
+  <div id="input-zone"><input type="text" id="user-input" placeholder="Écris-moi quelque chose..." autocomplete="off"><button id="send-btn">→</button></div>
 </div>
 
 <script>
