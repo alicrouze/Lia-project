@@ -79,44 +79,48 @@
 
 
 
+
+
+
+
+
   #input-zone {
     position: fixed;
-    bottom: 24px;
+    bottom: 17%;
     left: 50%;
     transform: translateX(-50%);
-    width: calc(100vw - 120px);
-    height: 48px;
+    width: 78vw;
+    height: 50px;
     display: flex;
     align-items: center;
-    z-index: 10;
-    pointer-events: auto;
+    z-index: 100;
   }
   #user-input {
     flex: 1;
-    height: 48px;
-    padding: 0 60px 0 20px;
+    height: 50px;
+    padding: 0 60px 0 60px;
     border: none;
-    border-radius: 24px;
+    border-radius: 25px;
     font-size: 16px;
     outline: none;
     background: transparent;
     color: #fff;
     -webkit-appearance: none;
   }
-  #user-input::placeholder { color: rgba(255, 255, 255, 0.5); }
+  #user-input::placeholder { color: rgba(255, 255, 255, 0.55); }
   #send-btn {
     position: absolute;
-    right: 0;
+    right: 2px;
     top: 50%;
     transform: translateY(-50%);
-    width: 48px;
-    height: 48px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     background: transparent;
     color: transparent;
     border: none;
     cursor: pointer;
-    z-index: 11;
+    z-index: 101;
   }
 
 </style>
