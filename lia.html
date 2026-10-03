@@ -33,18 +33,7 @@
   #chat.visible { opacity: 1; }
   
   /* BULLES */
-  #bulles {
-    flex: 1;
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-    margin-top: 130px;
-    margin-bottom: 100px;
-  }
-  #bulles::-webkit-scrollbar { display: none; }
+
   
   .bulle {
     min-width: calc(100vw - 80px);
@@ -130,6 +119,10 @@
     cursor: pointer;
     z-index: 101;
   }
+
+
+  #bulles { flex: 1; display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; margin-top: 200px; margin-bottom: 120px; align-items: flex-start; }
+  #bulles::-webkit-scrollbar { display: none; }
 
 </style>
 </head>
