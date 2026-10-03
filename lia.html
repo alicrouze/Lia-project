@@ -4,7 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-visual">
 <title>3</title>
-<script src="https://js.puter.com/v2/"></script>
+<script src="https://js.puter.com/v2/">
+if (window.visualViewport) {
+  window.visualViewport.addEventListener('resize', function() {
+    window.scrollTo(0, 0);
+    document.body.style.height = window.visualViewport.height + 'px';
+  });
+}
+window.addEventListener('resize', function() { window.scrollTo(0, 0); });
+
+</script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html, body { height: 100%; width: 100%; overflow: hidden; position: fixed; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
@@ -24,7 +33,7 @@
   #chat {
     position: fixed;
     inset: 0;
-    background: url('ecran-chat.jpg') center/cover no-repeat;
+    background: url('ecran-chat-final.jpg') center/cover no-repeat;
     display: flex;
     flex-direction: column;
     opacity: 0;
@@ -124,6 +133,12 @@
   #bulles { flex: 1; display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; margin-top: 200px; margin-bottom: 120px; align-items: flex-start; }
   #bulles::-webkit-scrollbar { display: none; }
 
+
+  #input-zone {
+    position: fixed !important;
+    bottom: 8% !important;
+  }
+
 </style>
 </head>
 <body>
@@ -217,6 +232,15 @@ document.getElementById('accueil').addEventListener('click', function() {
   document.getElementById('chat').classList.add('visible');
   setTimeout(demarrer, 1000);
 });
+
+if (window.visualViewport) {
+  window.visualViewport.addEventListener('resize', function() {
+    window.scrollTo(0, 0);
+    document.body.style.height = window.visualViewport.height + 'px';
+  });
+}
+window.addEventListener('resize', function() { window.scrollTo(0, 0); });
+
 </script>
 
 </body>
