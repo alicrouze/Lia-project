@@ -223,12 +223,6 @@ document.getElementById('accueil').addEventListener('click', function() {
   setTimeout(demarrer, 1000);
 });
 
-if (window.visualViewport) {
-  window.visualViewport.addEventListener('resize', function() {
-    window.scrollTo(0, 0);
-    document.body.style.height = window.visualViewport.height + 'px';
-  });
-}
 window.addEventListener('resize', function() { window.scrollTo(0, 0); });
 </script>
 
