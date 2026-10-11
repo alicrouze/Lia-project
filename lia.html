@@ -97,7 +97,7 @@ function demanderNom() {
         input.value = '';
         input.removeEventListener('keypress', valider);
         sendBtn.removeEventListener('click', valider);
-        ajouterBulle(nom, 'user');
+        ajouterBulle(nom, 'user'); setTimeout(function(){ document.getElementById("indicateur").classList.add("visible"); }, 100);
         resolve(nom);
       }
     }
