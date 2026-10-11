@@ -39,16 +39,21 @@ window.addEventListener('resize', function() { window.scrollTo(0, 0); });
 .bulle { min-width: calc(100vw - 80px); width: calc(100vw - 80px); margin: 0 40px; scroll-snap-align: center; flex-shrink: 0; padding: 20px 24px; background: rgba(255, 255, 255, 0.10); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.20); border-radius: 24px; color: #fff; font-size: 16px; line-height: 1.45; display: flex; align-items: center; max-height: 60%; overflow-y: auto; }
 .bulle.user { background: rgba(100, 130, 200, 0.25); }
 
+#indicateur .logo-333 { font-size: 11px; color: rgba(212, 169, 96, 0.8); margin-right: 10px; font-family: -apple-system, sans-serif; }
+#indicateur .logo-333.recherche { animation: clignote 0.8s ease-in-out infinite; }
+#indicateur .theme { margin-left: auto; font-family: Georgia, serif; font-style: italic; font-size: 11px; color: rgba(255,255,255,0.6); text-align: right; max-width: 35vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@keyframes clignote { 0%%, 100%% { opacity: 1; } 50%% { opacity: 0.2; } }
 </style>
 <body>
 
 <div id="accueil"></div>
 
 <div id="chat">
-  <div id="indicateur"><span class="logo-mini">3Ɛ</span><span class="point3">3</span><span class="point3">3</span><span class="point3">3</span></div>
+  <div id="indicateur"><span class="logo-mini">3Ɛ</span><span class="logo-333" id="logo-333">3.3.3</span><span class="point3">3</span><span class="point3">3</span><span class="point3">3</span></div>
   <div id="input-zone"><button id="plus-btn">+</button><input type="text" id="user-input" placeholder="Écris-moi quelque chose..." autocomplete="off"><button id="send-btn">→</button></div>
   <div id="bulles"></div>
 </div></head><script>
+function faireClignoter(actif) { var el = document.getElementById("logo-333"); if (!el) return; if (actif) { el.classList.add("recherche"); } else { el.classList.remove("recherche"); } }
 const bulles = document.getElementById('bulles');
 const input = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
@@ -94,7 +99,7 @@ async function envoyer() {
   sendBtn.disabled = true;
   ajouterBulle(texte, 'user');
   historique.push({ role: 'user', content: texte });
-  const bulleLia = ajouterBulle('...', 'lia');
+  faireClignoter(true); const bulleLia = ajouterBulle('...', 'lia');
   try {
     const reponse = await puter.ai.chat(historique, { model: 'gpt-5.4-nano' });
     let t = reponse;
@@ -107,7 +112,7 @@ async function envoyer() {
   } catch (e) {
     bulleLia.textContent = 'Erreur : ' + e.message;
   }
-  sendBtn.disabled = false;
+  faireClignoter(false); sendBtn.disabled = false;
   input.focus();
 }
 
