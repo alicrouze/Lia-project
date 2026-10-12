@@ -22,9 +22,9 @@ html, body { height: 100%; width: 100%; overflow: hidden; font-family: -apple-sy
 #send-btn { position: absolute; right: 6px; width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #6a7bff 0%, #5a6bef 100%); color: #fff; border: none; font-size: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
 #send-btn:disabled { opacity: 0.5; }
 
-#bulles { position: absolute; top: 210px; left: 0; right: 0; bottom: 0; display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; align-items: flex-start; padding-top: 20px; }
+#bulles { position: absolute; top: 195px; left: 0; right: 0; bottom: 0; display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; align-items: flex-start; padding-top: 20px; }
 #bulles::-webkit-scrollbar { display: none; }
-.bulle { min-width: 85vw; width: 85vw; margin: 0 7.5vw; scroll-snap-align: center; flex-shrink: 0; padding: 20px 24px; background: rgba(255, 255, 255, 0.10); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.20); border-radius: 24px; color: #fff; font-size: 16px; line-height: 1.45; display: flex; align-items: center; max-height: 60%; overflow-y: auto; }
+.bulle { min-width: 85vw; width: 85vw; margin: 0 7.5vw; scroll-snap-align: center; flex-shrink: 0; padding: 20px 24px; background: rgba(255, 255, 255, 0.10); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.20); border-radius: 24px; color: #fff; font-size: 16px; line-height: 1.45; display: block; max-height: 60%; overflow-y: auto; }
 .bulle.user { background: rgba(100, 130, 200, 0.25); }
 </style>
 </head>
@@ -60,7 +60,7 @@ function ajouterBulle(texte, type) {
   b.className = 'bulle ' + type;
   b.textContent = texte;
   bulles.appendChild(b);
-  setTimeout(function() { b.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }, 100);
+  setTimeout(function() { b.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'center' }); }, 100);
   return b;
 }
 
