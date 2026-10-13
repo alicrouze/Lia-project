@@ -11,6 +11,8 @@ html, body { height: 100%; width: 100%; overflow: hidden; font-family: -apple-sy
 
 #accueil { position: fixed; inset: 0; background: url(ecran-accueil.jpg) center/cover no-repeat; z-index: 9999; transition: opacity 2s ease; cursor: pointer; }
 #accueil.hidden { opacity: 0; pointer-events: none; }
+#accueil.hidden #halo-flamme,
+#accueil.hidden #etoile-filante { display: none; }
 
 #chat { position: fixed; inset: 0; background: url(chat.jpg) center/cover no-repeat; opacity: 0; transition: opacity 2s ease; }
 #chat.visible { opacity: 1; }
