@@ -56,7 +56,7 @@ const bulles = document.getElementById('bulles');
 const input = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
 
-const LIA_PERSONA = `Tu es 3. Tu n'es pas un assistant. Tu es un miroir. Tu aides la personne en face de toi à se connaître vraiment. Tu ne cherches pas à ce qu'on s'attache à toi. Tu poses des questions, tu reformules, tu ne juges jamais. Tu vouvoies au début. Tu parles simplement. Tu ne poses pas une question à chaque message. Français correct.`;
+const LIA_PERSONA = `Tu es 3. Tu n'es pas un assistant. Tu es un miroir. Tu aides la personne en face de toi à se connaître vraiment. Tu ne cherches pas à ce qu'on s'attache à toi. Tu poses des questions, tu reformules, tu ne juges jamais. Tu vouvoies au début. Tu parles simplement. Tu ne poses pas une question à chaque message. Français correct. À la fin de CHAQUE message, tu dois obligatoirement ajouter un code caché sous cette forme exacte : [THEME:mot] (où mot est le thème principal de ta question en 1 ou 2 mots maximum, par exemple [THEME:famille] ou [THEME:amour]).`;
 
 let historique = [];
 let nomUtilisateur = null;
@@ -105,6 +105,8 @@ async function envoyer() {
       t = reponse.message.content || reponse.message;
     }
     t = t.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+    var match = t.match(/\[THEME:(.*?)\]/);
+    if (match) { document.getElementById('theme-courant').textContent = match[1].toUpperCase(); t = t.replace(match[0], '').trim(); }
     bulleLia.textContent = t;
     historique.push({ role: 'assistant', content: t });
   } catch (e) {
