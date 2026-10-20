@@ -70,6 +70,15 @@ function ajouterBulle(texte, type) {
   return b;
 }
 
+function ajouterImage(src) {
+  const b = document.createElement('div');
+  b.className = 'bulle image';
+  b.innerHTML = '<img src="' + src + '" style="max-width:100%; max-height:250px; border-radius:16px;">';
+  bulles.appendChild(b);
+  setTimeout(function() { b.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }, 100);
+  return b;
+}
+
 function demanderNom() {
   ajouterBulle("Bonjour. Comment vous appelez-vous ?", 'lia');
   input.placeholder = 'Votre prénom...';
@@ -122,6 +131,7 @@ async function demarrer() {
     { role: 'system', content: LIA_PERSONA },
     { role: 'system', content: "L'utilisateur s'appelle " + nomUtilisateur + "." }
   ];
+  ajouterImage('image_qui_je_suis.jpg');
   ajouterBulle("Bonjour " + nomUtilisateur + ". On a trois jours pour apprendre à se connaître.", 'lia');
   input.placeholder = 'Écris-moi quelque chose...';
   sendBtn.addEventListener('click', envoyer);
