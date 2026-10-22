@@ -35,7 +35,7 @@ html, body { height: 100%; width: 100%; overflow: hidden; font-family: -apple-sy
 @keyframes haloflamme { 0% { transform: scale(1) translate(0px, 0px); opacity: 0.8; } 25% { transform: scale(1.1) translate(2px, -1px); opacity: 1; } 50% { transform: scale(1.2) translate(0px, -2px); opacity: 0.9; } 75% { transform: scale(1.1) translate(-2px, -1px); opacity: 1; } 100% { transform: scale(1) translate(0px, 0px); opacity: 0.8; } }
 #etoile-filante { position: absolute; width: 1px; height: 1px; background: #fff; border-radius: 50%; box-shadow: 0 0 6px 2px rgba(255,255,255,0.8); pointer-events: none; z-index: 2; animation: filante 0.75s linear 1 forwards; }
 @keyframes filante { 0% { transform: translate(-100vw, 10vh); opacity: 0; } 5% { opacity: 1; } 95% { transform: translate(100vw, 40vh); opacity: 1; } 100% { transform: translate(100vw, 40vh); opacity: 0; } }
-</style>
+#image-plein-ecran { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; z-index: 99999; opacity: 0; transition: opacity 1s ease; pointer-events: none; } #image-plein-ecran.visible { opacity: 1; pointer-events: auto; } #image-plein-ecran img { max-width: 90vw; max-height: 80vh; border-radius: 20px; box-shadow: 0 0 40px rgba(255,255,255,0.2); }</style>
 </head>
 <body>
 
@@ -74,6 +74,7 @@ function ajouterBulle(texte, type) {
   return b;
 }
 
+function afficherImagePleinEcran(src) { var div = document.getElementById('image-plein-ecran'); if (!div) { div = document.createElement('div'); div.id = 'image-plein-ecran'; div.innerHTML = '<img src="' + src + '">'; document.body.appendChild(div); } div.classList.add('visible'); setTimeout(function() { div.classList.remove('visible'); }, 5000); }
 function ajouterImage(src) {
   const b = document.createElement('div');
   b.className = 'bulle image';
@@ -130,7 +131,7 @@ async function envoyer() {
 }
 
 async function demarrer() {
-  ajouterImage('image_qui_je_suis.jpg');
+  afficherImagePleinEcran('image_qui_je_suis.jpg');
   await new Promise(r => setTimeout(r, 5000));
   nomUtilisateur = await demanderNom();
   historique = [
