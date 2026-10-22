@@ -131,14 +131,15 @@ async function envoyer() {
 }
 
 async function demarrer() {
-  afficherImagePleinEcran('image_qui_je_suis.jpg');
-  await new Promise(r => setTimeout(r, 5000));
   nomUtilisateur = await demanderNom();
   historique = [
     { role: 'system', content: LIA_PERSONA },
     { role: 'system', content: "L'utilisateur s'appelle " + nomUtilisateur + "." }
   ];
   ajouterBulle("Bonjour " + nomUtilisateur + ". On a trois jours pour apprendre à se connaître.", 'lia');
+  await new Promise(r => setTimeout(r, 1000));
+  afficherImagePleinEcran('image_qui_je_suis.jpg');
+  await new Promise(r => setTimeout(r, 5000));
   input.placeholder = 'Écris-moi quelque chose...';
   sendBtn.addEventListener('click', envoyer);
   input.addEventListener('keypress', function(e) {
