@@ -41,7 +41,7 @@ html, body { height: 100%; width: 100%; overflow: hidden; font-family: -apple-sy
 <div id="accueil"><div id="halo-flamme"></div><div id="etoile-filante"></div></div>
 
 <div id="chat">
-  <span class="theme" id="theme-courant"></span><div id="menu-btn"><span class="barre"></span><span class="barre"></span><span class="barre"></span></div><div id="menu-deroulant"><a href="#">Mon Miroir</a><a href="#">Ma Clé</a><a href="#">À propos de 3</a><a href="#">Débloquer mon Match</a></div>
+  <div id="zone-logo" style="position: absolute; top: 140px; left: 5%; width: 60px; height: 60px; cursor: pointer; z-index: 999;"></div><span class="theme" id="theme-courant"></span><div id="menu-deroulant"><a href="#">Mon Miroir</a><a href="#">Ma Clé</a><a href="#">À propos de 3</a><a href="#">Débloquer mon Match</a></div>
   <div id="input-zone"><button id="plus-btn">+</button><input type="text" id="user-input" placeholder="Écris-moi quelque chose..." autocomplete="off"><button id="send-btn">→</button></div>
   <div id="bulles"></div>
 </div>
@@ -151,7 +151,7 @@ document.getElementById('accueil').addEventListener('click', function() {
   document.getElementById('chat').classList.add('visible');
   setTimeout(demarrer, 1000);
 });
-document.getElementById('menu-btn').addEventListener('click', function(e) { e.stopPropagation(); document.getElementById('menu-deroulant').classList.toggle('visible'); }); document.addEventListener('click', function() { document.getElementById('menu-deroulant').classList.remove('visible'); });</script>
+document.getElementById('zone-logo').addEventListener('click', function(e) { e.stopPropagation(); document.getElementById('menu-deroulant').classList.toggle('visible'); }); document.addEventListener('click', function() { document.getElementById('menu-deroulant').classList.remove('visible'); });</script>
 
 </body>
 </html>
