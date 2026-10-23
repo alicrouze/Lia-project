@@ -3,6 +3,7 @@
 <head>
 <script src="https://js.puter.com/v2/">
 
+
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-visual">
@@ -156,6 +157,7 @@ document.getElementById('accueil').addEventListener('click', function() {
   setTimeout(demarrer, 1000);
 });
 document.getElementById('zone-logo').addEventListener('click', function(e) { e.stopPropagation(); document.getElementById('menu-deroulant').classList.toggle('visible'); }); document.addEventListener('click', function() { document.getElementById('menu-deroulant').classList.remove('visible'); });function ouvrirPanneau(titre, contenu) { document.getElementById('panneau-contenu').innerHTML = '<h2>' + titre + '</h2>' + contenu; document.getElementById('panneau').classList.add('visible'); } 
+
 
 
 
