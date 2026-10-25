@@ -96,6 +96,7 @@ async function demarrer() {
   input.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') envoyer();
   });
+  afficherCarte();
 }
 
 document.getElementById('accueil').addEventListener('click', function() {
