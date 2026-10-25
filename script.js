@@ -88,7 +88,7 @@ async function demarrer() {
     { role: 'system', content: "L'utilisateur s'appelle " + nomUtilisateur + "." }
   ];
   ajouterBulle("Bonjour " + nomUtilisateur + ". On a trois jours pour apprendre à se connaître.", 'lia');
-  await new Promise(r => setTimeout(r, 5000)); setTimeout(afficherCarte, 1000);
+  await new Promise(r => setTimeout(r, 5000)); setTimeout(afficherCarte, 2500);
   afficherImagePleinEcran('image_qui_je_suis.jpg');
   input.placeholder = 'Écris-moi quelque chose...';
   sendBtn.addEventListener('click', envoyer);
