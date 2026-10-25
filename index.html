@@ -23,12 +23,12 @@
   </div>
 
   <div id="input-zone"><button id="plus-btn">+</button><input type="text" id="user-input" placeholder="Écris-moi quelque chose..." autocomplete="off"><button id="send-btn">→</button></div>
-  <div id="bulles"></div><div id="carte-swipe" class="cachee"><div id="carte-texte" style="pointer-events: none;"></div><div id="carte-touch" style="position: absolute; inset: 0; z-index: 10; touch-action: none;"></div><div id="carte-aide" style="font-size: 11px; color: rgba(255,255,255,0.4); text-align: center; margin-top: 10px;">Glissez vers le haut pour Oui, vers le bas pour Non</div><div id="carte-boutons"><button id="btn-non">❌ Non</button><button id="btn-oui">✅ Oui</button></div></div>
+  <div id="bulles"></div><div id="carte-swipe" class="cachee"><div id="carte-texte" style="pointer-events: none;"></div><div id="carte-touch" style="position: absolute; inset: 0; z-index: 10; touch-action: none;"></div><div id="carte-aide" style="font-size: 11px; color: rgba(255,255,255,0.4); text-align: center; margin-top: 10px;">Glissez vers le haut pour Oui, vers le bas pour Non</div></div>
 </div>
 
 <script src="script.js"></script>
 
 <div id="panneau"><div id="panneau-contenu"></div><div id="fermer-panneau" onclick="document.getElementById('panneau').classList.remove('visible')">✕</div></div>
 
-<button onclick="afficherCarte()" style="position:fixed; bottom: 20px; left: 10px; z-index: 999; background: #d4a960; border: none; padding: 8px; border-radius: 5px; color: #000;">TEST CARTE</button><button onclick="swipeCarte(true)" style="position:fixed; bottom: 20px; left: 100px; z-index: 999; background: #ff5555; border: none; padding: 8px; border-radius: 5px; color: #fff;">SWIPE TEST</button></body>
+</body>
 </html>
