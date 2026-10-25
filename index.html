@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<script src="https://js.puter.com/v2/"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-visual">
+<title>3</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="accueil"><div id="halo-flamme"></div><div id="etoile-filante"></div></div>
+
+<div id="chat">
+  <div id="zone-logo" style="position: absolute; top: 80px; left: 5%; width: 60px; height: 60px; cursor: pointer; z-index: 999;"></div>
+  <span class="theme" id="theme-courant"></span>
+  
+  <div id="menu-deroulant">
+    <a href="#" onclick="ouvrirPanneau('miroir')">Mon Miroir</a>
+    <a href="#" onclick="ouvrirPanneau('cle')">Ma Clé</a>
+    <a href="#" onclick="ouvrirPanneau('apropos')">À propos de 3</a>
+    <a href="#" onclick="ouvrirPanneau('match')">Débloquer mon Match</a>
+  </div>
+
+  <div id="input-zone"><button id="plus-btn">+</button><input type="text" id="user-input" placeholder="Écris-moi quelque chose..." autocomplete="off"><button id="send-btn">→</button></div>
+  <div id="bulles"></div>
+</div>
+
+<script src="script.js"></script>
+
+<div id="panneau"><div id="panneau-contenu"></div><div id="fermer-panneau" onclick="document.getElementById('panneau').classList.remove('visible')">✕</div></div>
+
+</body>
+</html>
