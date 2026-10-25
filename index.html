@@ -23,7 +23,7 @@
   </div>
 
   <div id="input-zone"><button id="plus-btn">+</button><input type="text" id="user-input" placeholder="Écris-moi quelque chose..." autocomplete="off"><button id="send-btn">→</button></div>
-  <div id="bulles"></div><div id="carte-swipe" class="cachee"><div id="carte-texte"></div><div id="carte-aide" style="font-size: 11px; color: rgba(255,255,255,0.4); text-align: center; margin-top: 10px;">Glissez vers le haut pour Oui, vers le bas pour Non</div><div id="carte-boutons"><button id="btn-non">❌ Non</button><button id="btn-oui">✅ Oui</button></div></div>
+  <div id="bulles"></div><div id="carte-swipe" class="cachee"><div id="carte-texte" style="pointer-events: none;"></div><div id="carte-touch" style="position: absolute; inset: 0; z-index: 10; touch-action: none;"></div><div id="carte-aide" style="font-size: 11px; color: rgba(255,255,255,0.4); text-align: center; margin-top: 10px;">Glissez vers le haut pour Oui, vers le bas pour Non</div><div id="carte-boutons"><button id="btn-non">❌ Non</button><button id="btn-oui">✅ Oui</button></div></div>
 </div>
 
 <script src="script.js"></script>
