@@ -38,7 +38,7 @@ html, body { height: 100%; width: 100%; overflow: hidden; font-family: -apple-sy
 #panneau { position: fixed; inset: 0; background: rgba(10, 15, 30, 0.95); backdrop-filter: blur(20px); z-index: 9999; display: none; flex-direction: column; padding: 40px 20px; color: #fff; font-family: -apple-system, sans-serif; overflow-y: auto; } 
 #panneau.visible { display: flex; } 
 #panneau-contenu { max-width: 600px; margin: 0 auto; width: 100%; } 
-#panneau-contenu h2 { color: #d4a960; font-family: Baskerville, serif; font-style: italic; margin-bottom: 20px; font-size: 24px; } 
+#panneau-contenu h2 { color: #d4a960; font-family: Baskerville, serif; font-style: normal; margin-bottom: 20px; font-size: 24px; } 
 #panneau-contenu p { font-size: 16px; line-height: 1.6; margin-bottom: 15px; color: rgba(255,255,255,0.85); } 
 #panneau-contenu .mention { font-size: 13px; color: rgba(255,255,255,0.5); font-style: italic; margin-top: 30px; } 
 #fermer-panneau { position: absolute; top: 20px; right: 20px; font-size: 24px; color: #fff; cursor: pointer; }
