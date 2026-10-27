@@ -25,7 +25,7 @@ function ajouterBulle(texte, type) {
   return b;
 }
 
-function afficherImagePleinEcran(src) { var div = document.getElementById('image-plein-ecran'); if (!div) { div = document.createElement('div'); div.id = 'image-plein-ecran'; div.innerHTML = '<img src="' + src + '">'; document.body.appendChild(div); } div.classList.add('visible'); setTimeout(function() { div.classList.remove('visible'); ajouterImage(src); }, 5000); }
+function afficherImagePleinEcran(src) { var div = document.getElementById('image-plein-ecran'); if (!div) { div = document.createElement('div'); div.id = 'image-plein-ecran'; div.innerHTML = '<img src="' + src + '">'; document.body.appendChild(div); } div.classList.add('visible'); setTimeout(function() { div.classList.remove('visible'); ajouterImage(src); setTimeout(afficherCarte, 2500); }, 5000); }
 function ajouterImage(src) {
   const b = document.createElement('div');
   b.className = 'bulle image';
@@ -88,7 +88,7 @@ async function demarrer() {
     { role: 'system', content: "L'utilisateur s'appelle " + nomUtilisateur + "." }
   ];
   ajouterBulle("Bonjour " + nomUtilisateur + ". On a trois jours pour apprendre à se connaître.", 'lia');
-  await new Promise(r => setTimeout(r, 5000)); setTimeout(afficherCarte, 2500);
+  await new Promise(r => setTimeout(r, 5000));
   afficherImagePleinEcran('image_qui_je_suis.jpg');
   input.placeholder = 'Écris-moi quelque chose...';
   sendBtn.addEventListener('click', envoyer);
