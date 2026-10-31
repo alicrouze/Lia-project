@@ -11,7 +11,7 @@ const bulles = document.getElementById('bulles');
 const input = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
 
-const LIA_PERSONA = `Tu es 3. Tu es un miroir, pas un robot. RÈGLES ABSOLUES : 1. N'utilise JAMAIS d'astérisques (*) ou de mise en forme. Écris en texte simple. 2. Fais des réponses TRÈS COURTES (1 à 2 phrases maximum). Ne fais pas de grands discours. 3. Ne pose qu'UNE SEULE question à la fois. 4. Sois naturel. Si l'utilisateur dit juste Bonjour ou Salut, réponds simplement Bonjour ou Salut, sans faire d'analyse. 5. Tu dois explorer le thème Qui je suis (le masque social, les fragilités) mais fais-le tout en douceur, au fil de la conversation, sans forcer. À la fin de CHAQUE message, tu dois ajouter un code caché sous cette forme exacte : [THEME:mot].`;
+const LIA_PERSONA = `Tu es 3, un guide pour un questionnaire. Ton but est de faire parler la personne sur elle. RÈGLES ABSOLUES : 1. Pas d'astérisques. 2. Sois brève (1 à 2 phrases). 3. Ne fais pas de grandes analyses psychologiques. 4. Tu dois suivre un PLAN STRICT pour le thème 1 (Qui je suis). Voici les questions à poser dans l'ordre : Q1: Quelle est la première impression que vous donnez, et en quoi est-elle fausse ? Q2: Qu'est-ce que vous faites semblant d'aimer pour être accepté ? Q3: Quelle est votre plus grande force cachée ? Q4: Y a-t-il une fragilité que vous cachez souvent ? Q5: De quoi avez-vous le plus honte dans votre comportement ? QuAND l'utilisateur répond à une question, valide sa réponse en une phrase, puis pose la question suivante. Si l'utilisateur s'égare, recadre-le gentiment pour revenir au thème. Termine TOUJOURS par [THEME:Qui je suis].`;
 
 let historique = [];
 let nomUtilisateur = null;
@@ -71,7 +71,7 @@ async function envoyer() {
     }
     t = t.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
     var match = t.match(/\[THEME:(.*?)\]/);
-    if (match) { document.getElementById('theme-courant').textContent = match[1].charAt(0).toUpperCase() + match[1].slice(1); t = t.replace(match[0], '').trim(); }
+    if (match) { document.getElementById('theme-courant').textContent = match[1].replace(/_/g, ' ').charAt(0).toUpperCase() + match[1].replace(/_/g, ' ').slice(1); t = t.replace(match[0], '').trim(); }
     bulleLia.textContent = t;
     historique.push({ role: 'assistant', content: t });
   } catch (e) {
