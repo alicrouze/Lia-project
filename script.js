@@ -68,7 +68,15 @@ async function envoyer() {
     let t = reponse;
     if (typeof reponse === 'object' && reponse.message) {
       t = reponse.message.content || reponse.message;
-    }
+function demanderNom() {
+  const mots1 = ['Lune', 'Ombre', 'Braise', 'Écho', 'Sable', 'Océan', 'Nuage', 'Soleil'];
+  const mots2 = ['Douce', 'Sauvage', 'Secrète', 'Perdue', 'Profonde', 'Silencieuse', 'Étoilée', 'Nue'];
+  const p1 = mots1[Math.floor(Math.random() * mots1.length)];
+  const p2 = mots2[Math.floor(Math.random() * mots2.length)];
+  const pseudo = p1 + '-' + p2;
+  ajouterBulle("Bonjour, je suis 3. Je cherche des âmes jumelles pour créer des couples. Soyez parfaitement honnête dans vos réponses. 3 est l'un des derniers refuges où vous pouvez être vous-même. Pas de nom, pas de photo, aucune donnée personnelle. Votre anonymat est total et ce que vous direz est inaccessible. Alors soyez vous-même ! C'est le secret de la rencontre parfaite.", 'lia');
+  return new Promise(function(resolve) { resolve(pseudo); });
+}
     t = t.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
     var match = t.match(/\[THEME:(.*?)\]/);
     if (match) { document.getElementById('theme-courant').textContent = match[1].replace(/_/g, ' ').charAt(0).toUpperCase() + match[1].replace(/_/g, ' ').slice(1); t = t.replace(match[0], '').trim(); }
@@ -113,7 +121,7 @@ function ouvrirPanneau(cle) {
     match: "<p>Votre rencontre se prépare. Ce menu s'activera à la fin de votre parcours avec 3.</p><h3>Le prix de la vérité : 9,99 €</h3><p>Pourquoi ce prix ? Parce que 3 ne vous propose pas un catalogue infini. Elle vous propose une seule personne, sélectionnée sur la base de vos failles, de vos désirs et de vos contradictions. C'est le prix d'une rencontre qui a du sens.</p><p><strong>Comment payer ?</strong></p><p>1. Par carte bancaire (paiement sécurisé et anonyme). L'application ne conserve aucune donnée liée à votre identité.</p><p>2. Par code d'activation (si vous préférez un anonymat total). Achetez un code de 9,99 € sur notre site partenaire et entrez-le ici.</p><p class='mention'>C'est le prix de la vérité et de l'anonymat.</p>"
   };
   var titres = { miroir: "Mon Miroir", cle: "Ma Clé", apropos: "À propos de 3", match: "Débloquer mon Match" };
-  document.getElementById('panneau-contenu').innerHTML = "<h2>" + titres[cle] + "</h2>" + textes[cle];
+  var txt = textes[cle]; if (cle === 'cle') txt = txt.replace('[PSEUDO]', nomUtilisateur); document.getElementById('panneau-contenu').innerHTML = "<h2>" + titres[cle] + "</h2>" + txt;
   document.getElementById('panneau').classList.add('visible');
 }
 const phrasesCartes = [ { texte: "Je prefere avoir raison plutot que d etre heureux.", type: "defaut" }, { texte: "Je montre une version de moi qui n est pas totalement vraie.", type: "defaut" }, { texte: "J ai peur du jugement des autres.", type: "defaut" }, { texte: "Je fuis quand on s approche trop de moi.", type: "defaut" }, { texte: "Je remets a demain ce qui pourrait me faire avancer aujourd hui.", type: "defaut" } ]; let indexCarte = 0; const carteSwipe = document.getElementById("carte-swipe"); const carteTexte = document.getElementById("carte-texte");  function afficherCarte() { if (indexCarte >= phrasesCartes.length) { carteSwipe.classList.add("cachee"); return; } carteSwipe.style.transform = ""; carteSwipe.style.opacity = ""; carteSwipe.style.background = "rgba(20, 30, 50, 0.95)"; carteTexte.textContent = phrasesCartes[indexCarte].texte; carteSwipe.classList.remove("cachee"); } function swipeCarte(reponse) { if (indexCarte < phrasesCartes.length) { console.log("Reponse :", reponse, "pour :", phrasesCartes[indexCarte].texte); } indexCarte++; carteSwipe.classList.add("cachee"); setTimeout(afficherCarte, 400);  } var startY = 0; var isSwiping = false; document.getElementById("carte-touch").addEventListener("touchstart", function(e) { if (carteSwipe.classList.contains("cachee")) return; startY = e.touches[0].clientY; isSwiping = true; carteSwipe.classList.add("glisse"); }); document.getElementById("carte-touch").addEventListener("touchmove", function(e) { if (!isSwiping) return; e.preventDefault(); var deltaY = e.touches[0].clientY - startY; carteSwipe.style.transform = "translate(-50%, calc(-50% + " + deltaY + "px)) "; carteSwipe.style.opacity = 1 - Math.abs(deltaY) / 300; if (deltaY < 0) { carteSwipe.style.background = "rgba(80, 255, 120, " + (Math.min(Math.abs(deltaY) / 150, 0.4)) + ")"; } else { carteSwipe.style.background = "rgba(255, 80, 80, " + (Math.min(Math.abs(deltaY) / 150, 0.4)) + ")"; } }); document.getElementById("carte-touch").addEventListener("touchend", function(e) { if (!isSwiping) return; isSwiping = false; var deltaY = e.changedTouches[0].clientY - startY; carteSwipe.classList.remove("glisse"); if (deltaY < -50) { carteSwipe.style.transform = "translate(-50%, -150%)"; carteSwipe.style.opacity = "0"; swipeCarte(true); } else if (deltaY > 50) { carteSwipe.style.transform = "translate(-50%, 150%)"; carteSwipe.style.opacity = "0"; swipeCarte(false); } else { carteSwipe.style.transform = ""; carteSwipe.style.opacity = ""; carteSwipe.style.background = "rgba(20, 30, 50, 0.95)"; } }); 
