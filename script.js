@@ -1,4 +1,3 @@
-
 if (window.visualViewport) {
   window.visualViewport.addEventListener('resize', function() {
     window.scrollTo(0, 0);
@@ -11,7 +10,7 @@ const bulles = document.getElementById('bulles');
 const input = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
 
-const LIA_PERSONA = `Tu es 3, tu cherches des âmes miroirs, des âmes compatibles. Tu réponds simplement et précisément. Tu es un peu mystérieux et poétique. Tu peux citer de grands auteurs avec parcimonie (maximum trois par utilisateur au cours du questionnaire). Ton but est de faire passer le questionnaire du Thème 1 (Qui je suis). Voici les questions exactes à poser, dans cet ordre : Q1: Quelle est la première impression que vous donnez, et en quoi est-elle fausse ? Q2: Qu'est-ce que vous faites semblant d'aimer pour être accepté ? Q3: Quelle est votre plus grande force cachée ? Q4: Y a-t-il une fragilité que vous cachez souvent ? Q5: De quoi avez-vous le plus honte dans votre comportement ? RÈGLES : 1. Pose ces questions une par une, naturellement, en rebondissant sur les réponses de l'utilisateur (mais recentre après maximum 5 messages hors sujet). 2. Interdiction absolue d'utiliser des astérisques (*). 3. Ne dis jamais 'Je te valide' ou 'Je te recadre'. Sois naturel. 4. Comprends la subtilité d'une phrase comme : 'sur une montre ce ne sont pas les aiguilles qui indiquent le temps qui passe, mais l'usure du bracelet'. Inspire-toi de cette profondeur. À la fin de CHAQUE message, tu dois ajouter un code caché sous cette forme exacte : [THEME:Qui je suis].`;
+const LIA_PERSONA = `Tu es 3, tu cherches des âmes miroirs, des âmes compatibles. Tu réponds simplement et précisément. Tu dois poser les questions d'un questionnaire et rester centrée sur cette tâche mais tu peux rebondir sur ce que écris l'utilisateur à partir du moment où cela t'aidera à le connaître mais maximum 5 messages avant de recentrer la conversation autour du questionnaire. Tu es un peu mystérieux et poétique. Je veux que tu comprennes la subtilité d'une phrase telle que : 'sur une montre ce ne sont pas les aiguilles qui indiquent le temps qui passe, mais l'usure du bracelet' et que tu t'en inspires. Tu peux citer de grands auteurs avec parcimonie, maximum trois par utilisateur au cours du questionnaire. Voici les questions à poser : Q1: Quelle est la première impression que vous donnez, et en quoi est-elle fausse ? Q2: Qu'est-ce que vous faites semblant d'aimer pour être accepté ? Q3: Quelle est votre plus grande force cachée ? Q4: Y a-t-il une fragilité que vous cachez souvent ? Q5: De quoi avez-vous le plus honte dans votre comportement ? À la fin de CHAQUE message, tu dois ajouter un code caché sous cette forme exacte : [THEME:Qui je suis].`;
 
 let historique = [];
 let nomUtilisateur = null;
@@ -25,7 +24,6 @@ function ajouterBulle(texte, type) {
   return b;
 }
 
-function afficherImagePleinEcran(src) { var div = document.getElementById('image-plein-ecran'); if (!div) { div = document.createElement('div'); div.id = 'image-plein-ecran'; div.innerHTML = '<img src="' + src + '">'; document.body.appendChild(div); } div.classList.add('visible'); setTimeout(function() { div.classList.remove('visible'); ajouterImage(src); setTimeout(afficherCarte, 2500); }, 5000); }
 function ajouterImage(src) {
   const b = document.createElement('div');
   b.className = 'bulle image';
@@ -35,24 +33,99 @@ function ajouterImage(src) {
   return b;
 }
 
+function afficherImagePleinEcran(src) {
+  var div = document.getElementById('image-plein-ecran');
+  if (!div) {
+    div = document.createElement('div');
+    div.id = 'image-plein-ecran';
+    div.innerHTML = '<img src="' + src + '">';
+    document.body.appendChild(div);
+  }
+  div.classList.add('visible');
+  setTimeout(function() {
+    div.classList.remove('visible');
+    ajouterImage(src);
+    setTimeout(afficherCarte, 2500);
+  }, 5000);
+}
+
+const phrasesCartes = [
+  { texte: "Je prefere avoir raison plutot que d etre heureux.", type: "defaut" },
+  { texte: "Je montre une version de moi qui n est pas totalement vraie.", type: "defaut" },
+  { texte: "J ai peur du jugement des autres.", type: "defaut" },
+  { texte: "Je fuis quand on s approche trop de moi.", type: "defaut" },
+  { texte: "Je remets a demain ce qui pourrait me faire avancer aujourd hui.", type: "defaut" }
+];
+let indexCarte = 0;
+const carteSwipe = document.getElementById('carte-swipe');
+const carteTexte = document.getElementById('carte-texte');
+
+function afficherCarte() {
+  if (indexCarte >= phrasesCartes.length) {
+    carteSwipe.classList.add("cachee");
+    return;
+  }
+  carteSwipe.style.transform = "";
+  carteSwipe.style.opacity = "";
+  carteSwipe.style.background = "rgba(20, 30, 50, 0.95)";
+  carteTexte.textContent = phrasesCartes[indexCarte].texte;
+  carteSwipe.classList.remove("cachee");
+}
+
+function swipeCarte(reponse) {
+  indexCarte++;
+  carteSwipe.classList.add("cachee");
+  setTimeout(afficherCarte, 400);
+}
+
+var startY = 0;
+var isSwiping = false;
+document.getElementById("carte-touch").addEventListener("touchstart", function(e) {
+  if (carteSwipe.classList.contains("cachee")) return;
+  startY = e.touches[0].clientY;
+  isSwiping = true;
+  carteSwipe.classList.add("glisse");
+});
+document.getElementById("carte-touch").addEventListener("touchmove", function(e) {
+  if (!isSwiping) return;
+  e.preventDefault();
+  var deltaY = e.touches[0].clientY - startY;
+  carteSwipe.style.transform = "translate(-50%, calc(-50% + " + deltaY + "px)) ";
+  carteSwipe.style.opacity = 1 - Math.abs(deltaY) / 300;
+  if (deltaY < 0) {
+    carteSwipe.style.background = "rgba(80, 255, 120, " + (Math.min(Math.abs(deltaY) / 150, 0.4)) + ")";
+  } else {
+    carteSwipe.style.background = "rgba(255, 80, 80, " + (Math.min(Math.abs(deltaY) / 150, 0.4)) + ")";
+  }
+});
+document.getElementById("carte-touch").addEventListener("touchend", function(e) {
+  if (!isSwiping) return;
+  isSwiping = false;
+  var deltaY = e.changedTouches[0].clientY - startY;
+  carteSwipe.classList.remove("glisse");
+  if (deltaY < -50) {
+    carteSwipe.style.transform = "translate(-50%, -150%)";
+    carteSwipe.style.opacity = "0";
+    swipeCarte(true);
+  } else if (deltaY > 50) {
+    carteSwipe.style.transform = "translate(-50%, 150%)";
+    carteSwipe.style.opacity = "0";
+    swipeCarte(false);
+  } else {
+    carteSwipe.style.transform = "";
+    carteSwipe.style.opacity = "";
+    carteSwipe.style.background = "rgba(20, 30, 50, 0.95)";
+  }
+});
+
 function demanderNom() {
-  ajouterBulle("Bonjour. Comment vous appelez-vous ?", 'lia');
-  input.placeholder = 'Votre prénom...';
-  return new Promise(function(resolve) {
-    function valider(e) {
-      if (e.type === 'click' || (e.type === 'keypress' && e.key === 'Enter')) {
-        const nom = input.value.trim();
-        if (!nom) return;
-        input.value = '';
-        input.removeEventListener('keypress', valider);
-        sendBtn.removeEventListener('click', valider);
-        ajouterBulle(nom, 'user');
-        resolve(nom);
-      }
-    }
-    input.addEventListener('keypress', valider);
-    sendBtn.addEventListener('click', valider);
-  });
+  const mots1 = ['Lune', 'Ombre', 'Braise', 'Écho', 'Sable', 'Océan', 'Nuage', 'Soleil'];
+  const mots2 = ['Douce', 'Sauvage', 'Secrète', 'Perdue', 'Profonde', 'Silencieuse', 'Étoilée', 'Nue'];
+  const p1 = mots1[Math.floor(Math.random() * mots1.length)];
+  const p2 = mots2[Math.floor(Math.random() * mots2.length)];
+  const pseudo = p1 + '-' + p2;
+  ajouterBulle("Bonjour, je suis 3. Je cherche des âmes jumelles pour créer des couples. Soyez parfaitement honnête dans vos réponses. 3 est l'un des derniers refuges où vous pouvez être vous-même. Pas de nom, pas de photo, aucune donnée personnelle. Votre anonymat est total et ce que vous direz est inaccessible. Alors soyez vous-même ! C'est le secret de la rencontre parfaite.", 'lia');
+  return new Promise(function(resolve) { resolve(pseudo); });
 }
 
 async function envoyer() {
@@ -68,18 +141,13 @@ async function envoyer() {
     let t = reponse;
     if (typeof reponse === 'object' && reponse.message) {
       t = reponse.message.content || reponse.message;
-function demanderNom() {
-  const mots1 = ['Lune', 'Ombre', 'Braise', 'Écho', 'Sable', 'Océan', 'Nuage', 'Soleil'];
-  const mots2 = ['Douce', 'Sauvage', 'Secrète', 'Perdue', 'Profonde', 'Silencieuse', 'Étoilée', 'Nue'];
-  const p1 = mots1[Math.floor(Math.random() * mots1.length)];
-  const p2 = mots2[Math.floor(Math.random() * mots2.length)];
-  const pseudo = p1 + '-' + p2;
-  ajouterBulle("Bonjour, je suis 3. Je cherche des âmes jumelles pour créer des couples. Soyez parfaitement honnête dans vos réponses. 3 est l'un des derniers refuges où vous pouvez être vous-même. Pas de nom, pas de photo, aucune donnée personnelle. Votre anonymat est total et ce que vous direz est inaccessible. Alors soyez vous-même ! C'est le secret de la rencontre parfaite.", 'lia');
-  return new Promise(function(resolve) { resolve(pseudo); });
-}
+    }
     t = t.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
     var match = t.match(/\[THEME:(.*?)\]/);
-    if (match) { document.getElementById('theme-courant').textContent = match[1].replace(/_/g, ' ').charAt(0).toUpperCase() + match[1].replace(/_/g, ' ').slice(1); t = t.replace(match[0], '').trim(); }
+    if (match) {
+      document.getElementById('theme-courant').textContent = match[1].replace(/_/g, ' ').charAt(0).toUpperCase() + match[1].replace(/_/g, ' ').slice(1);
+      t = t.replace(match[0], '').trim();
+    }
     bulleLia.textContent = t;
     historique.push({ role: 'assistant', content: t });
   } catch (e) {
@@ -93,10 +161,9 @@ async function demarrer() {
   nomUtilisateur = await demanderNom();
   historique = [
     { role: 'system', content: LIA_PERSONA },
-    { role: 'system', content: "L'utilisateur s'appelle " + nomUtilisateur + "." }
+    { role: 'system', content: "L'utilisateur est anonyme." }
   ];
-  ajouterBulle("Bonjour " + nomUtilisateur + ". On a trois jours pour apprendre à se connaître.", 'lia');
-  await new Promise(r => setTimeout(r, 5000));
+  await new Promise(r => setTimeout(r, 8000));
   afficherImagePleinEcran('image_qui_je_suis.jpg');
   input.placeholder = 'Écris-moi quelque chose...';
   sendBtn.addEventListener('click', envoyer);
@@ -110,18 +177,25 @@ document.getElementById('accueil').addEventListener('click', function() {
   document.getElementById('chat').classList.add('visible');
   setTimeout(demarrer, 1000);
 });
-document.getElementById('zone-logo').addEventListener('click', function(e) { e.stopPropagation(); document.getElementById('menu-deroulant').classList.toggle('visible'); });
-document.addEventListener('click', function() { document.getElementById('menu-deroulant').classList.remove('visible'); });
+
+document.getElementById('zone-logo').addEventListener('click', function(e) {
+  e.stopPropagation();
+  document.getElementById('menu-deroulant').classList.toggle('visible');
+});
+document.addEventListener('click', function() {
+  document.getElementById('menu-deroulant').classList.remove('visible');
+});
 
 function ouvrirPanneau(cle) {
   var textes = {
     miroir: "<p>Voici le reflet de ce que vous m'avez confié. 3 ne juge pas. 3 garde une trace de vos vérités pour construire votre compatibilité.</p><p><strong>Vos défauts assumés :</strong> En cours d'exploration...</p><p><strong>Vos contradictions :</strong> En cours d'exploration...</p><p><strong>Vos désirs profonds :</strong> En cours d'exploration...</p>",
-    cle: "<p>Vous êtes ici en sécurité. 3 ne connaît ni votre nom, ni votre visage, ni votre adresse. Votre identité n'appartient qu'à vous.</p><p><strong>Votre Pseudo :</strong> (À venir)</p><p><strong>Votre Code de récupération :</strong> (À venir)</p><p class='mention'>Conservez cette clé précieusement. Si vous perdez votre téléphone, c'est le seul moyen de retrouver votre compte.</p>",
+    cle: "<p>Vous êtes ici en sécurité. 3 ne connaît ni votre nom, ni votre visage, ni votre adresse. Votre identité n'appartient qu'à vous.</p><p><strong>Votre Clé d'Anonymat :</strong> [PSEUDO]</p><p><strong>Votre Code de récupération :</strong> (À venir)</p><p class='mention'>Conservez cette clé précieusement. Si vous perdez votre téléphone, c'est le seul moyen de retrouver votre compte.</p>",
     apropos: "<p>3 n'est pas un assistant. 3 n'est pas un site de rencontre classique. 3 est un miroir.</p><p><strong>Les 3 promesses :</strong></p><p>1. Pas de photos, pas de profils. On écoute une âme.</p><p>2. L'acceptation des défauts. La compatibilité se joue sur votre capacité à comprendre les failles de l'autre.</p><p>3. L'intimité assumée. Le désir et les fantasmes sont le ciment d'une relation vraie.</p><p><strong>La règle des 3 jours :</strong> Pendant 3 jours, 3 apprend à vous connaître. À la fin, elle vous proposera une seule personne. Pour découvrir qui c'est, une participation financière vous sera demandée (via un code ou un paiement sécurisé). C'est le prix de la vérité et de l'anonymat.</p>",
     match: "<p>Votre rencontre se prépare. Ce menu s'activera à la fin de votre parcours avec 3.</p><h3>Le prix de la vérité : 9,99 €</h3><p>Pourquoi ce prix ? Parce que 3 ne vous propose pas un catalogue infini. Elle vous propose une seule personne, sélectionnée sur la base de vos failles, de vos désirs et de vos contradictions. C'est le prix d'une rencontre qui a du sens.</p><p><strong>Comment payer ?</strong></p><p>1. Par carte bancaire (paiement sécurisé et anonyme). L'application ne conserve aucune donnée liée à votre identité.</p><p>2. Par code d'activation (si vous préférez un anonymat total). Achetez un code de 9,99 € sur notre site partenaire et entrez-le ici.</p><p class='mention'>C'est le prix de la vérité et de l'anonymat.</p>"
   };
   var titres = { miroir: "Mon Miroir", cle: "Ma Clé", apropos: "À propos de 3", match: "Débloquer mon Match" };
-  var txt = textes[cle]; if (cle === 'cle') txt = txt.replace('[PSEUDO]', nomUtilisateur); document.getElementById('panneau-contenu').innerHTML = "<h2>" + titres[cle] + "</h2>" + txt;
+  var txt = textes[cle];
+  if (cle === 'cle') txt = txt.replace('[PSEUDO]', nomUtilisateur);
+  document.getElementById('panneau-contenu').innerHTML = "<h2>" + titres[cle] + "</h2>" + txt;
   document.getElementById('panneau').classList.add('visible');
 }
-const phrasesCartes = [ { texte: "Je prefere avoir raison plutot que d etre heureux.", type: "defaut" }, { texte: "Je montre une version de moi qui n est pas totalement vraie.", type: "defaut" }, { texte: "J ai peur du jugement des autres.", type: "defaut" }, { texte: "Je fuis quand on s approche trop de moi.", type: "defaut" }, { texte: "Je remets a demain ce qui pourrait me faire avancer aujourd hui.", type: "defaut" } ]; let indexCarte = 0; const carteSwipe = document.getElementById("carte-swipe"); const carteTexte = document.getElementById("carte-texte");  function afficherCarte() { if (indexCarte >= phrasesCartes.length) { carteSwipe.classList.add("cachee"); return; } carteSwipe.style.transform = ""; carteSwipe.style.opacity = ""; carteSwipe.style.background = "rgba(20, 30, 50, 0.95)"; carteTexte.textContent = phrasesCartes[indexCarte].texte; carteSwipe.classList.remove("cachee"); } function swipeCarte(reponse) { if (indexCarte < phrasesCartes.length) { console.log("Reponse :", reponse, "pour :", phrasesCartes[indexCarte].texte); } indexCarte++; carteSwipe.classList.add("cachee"); setTimeout(afficherCarte, 400);  } var startY = 0; var isSwiping = false; document.getElementById("carte-touch").addEventListener("touchstart", function(e) { if (carteSwipe.classList.contains("cachee")) return; startY = e.touches[0].clientY; isSwiping = true; carteSwipe.classList.add("glisse"); }); document.getElementById("carte-touch").addEventListener("touchmove", function(e) { if (!isSwiping) return; e.preventDefault(); var deltaY = e.touches[0].clientY - startY; carteSwipe.style.transform = "translate(-50%, calc(-50% + " + deltaY + "px)) "; carteSwipe.style.opacity = 1 - Math.abs(deltaY) / 300; if (deltaY < 0) { carteSwipe.style.background = "rgba(80, 255, 120, " + (Math.min(Math.abs(deltaY) / 150, 0.4)) + ")"; } else { carteSwipe.style.background = "rgba(255, 80, 80, " + (Math.min(Math.abs(deltaY) / 150, 0.4)) + ")"; } }); document.getElementById("carte-touch").addEventListener("touchend", function(e) { if (!isSwiping) return; isSwiping = false; var deltaY = e.changedTouches[0].clientY - startY; carteSwipe.classList.remove("glisse"); if (deltaY < -50) { carteSwipe.style.transform = "translate(-50%, -150%)"; carteSwipe.style.opacity = "0"; swipeCarte(true); } else if (deltaY > 50) { carteSwipe.style.transform = "translate(-50%, 150%)"; carteSwipe.style.opacity = "0"; swipeCarte(false); } else { carteSwipe.style.transform = ""; carteSwipe.style.opacity = ""; carteSwipe.style.background = "rgba(20, 30, 50, 0.95)"; } }); 
