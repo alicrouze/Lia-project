@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<script src="https://js.puter.com/v2/"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-visual">
 <title>3</title>
+<script src="https://js.puter.com/v2/"></script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,13 +22,25 @@
     <a href="#" onclick="ouvrirPanneau('match')">Débloquer mon Match</a>
   </div>
 
-  <div id="input-zone"><button id="plus-btn">+</button><input type="text" id="user-input" placeholder="Écris-moi quelque chose..." autocomplete="off"><button id="send-btn">→</button></div>
-  <div id="bulles"></div><div id="carte-swipe" class="cachee"><div id="carte-texte" style="pointer-events: none;"></div><div id="carte-touch" style="position: absolute; inset: 0; z-index: 10; touch-action: none;"></div><div id="carte-aide" style="font-size: 11px; color: rgba(255,255,255,0.4); text-align: center; margin-top: 10px;">Glissez vers le haut pour Oui, vers le bas pour Non</div></div>
+  <div id="input-zone">
+    <button id="plus-btn">+</button>
+    <input type="text" id="user-input" placeholder="Écris-moi quelque chose..." autocomplete="off">
+    <button id="send-btn">→</button>
+  </div>
+  
+  <div id="bulles"></div>
+  
+  <div id="carte-swipe" class="cachee">
+    <div id="carte-texte" style="pointer-events: none;"></div>
+    <div id="carte-touch" style="position: absolute; inset: 0; z-index: 10; touch-action: none;"></div>
+    <div id="carte-aide" style="font-size: 11px; color: rgba(255,255,255,0.4); text-align: center; margin-top: 10px;">Glissez vers le haut pour Oui, vers le bas pour Non</div>
+  </div>
 </div>
 
-<script src="script.js"></script>
+<div id="image-plein-ecran"></div>
 
 <div id="panneau"><div id="panneau-contenu"></div><div id="fermer-panneau" onclick="document.getElementById('panneau').classList.remove('visible')">✕</div></div>
 
+<script src="script.js"></script>
 </body>
 </html>
