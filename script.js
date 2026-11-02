@@ -45,7 +45,7 @@ function afficherImagePleinEcran(src) {
   setTimeout(function() {
     div.classList.remove('visible');
     ajouterImage(src);
-    setTimeout(afficherCarte, 2500);
+    setTimeout(afficherCarte, 5000);
   }, 5000);
 }
 
@@ -163,7 +163,7 @@ async function demarrer() {
     { role: 'system', content: LIA_PERSONA },
     { role: 'system', content: "L'utilisateur est anonyme." }
   ];
-  await new Promise(r => setTimeout(r, 13000));
+  await new Promise(r => setTimeout(r, 16000));
   afficherImagePleinEcran('image_qui_je_suis.jpg');
   input.placeholder = 'Écris-moi quelque chose...';
   sendBtn.addEventListener('click', envoyer);
