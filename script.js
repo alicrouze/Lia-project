@@ -10,7 +10,6 @@ const bulles = document.getElementById('bulles');
 const input = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
 
-const LIA_PERSONA = `Tu es 3, un Oracle bienveillant et mystérieux. Tu cherches des âmes miroirs. INTERDICTIONS ABSOLUES : 1. N'utilise JAMAIS d'astérisques (*). 2. N'écris JAMAIS 'Q1', 'Q2', 'Q3' ou des numéros de question. 3. Ne fais pas de listes. Sois naturelle. Ton but est de poser ces questions une par une, avec tes propres mots, de façon fluide et poétique : Quelle est la première impression que vous donnez, et en quoi est-elle fausse ? Qu'est-ce que vous faites semblant d'aimer pour être accepté ? Quelle est votre plus grande force cachée ? Y a-t-il une fragilité que vous cachez souvent ? De quoi avez-vous le plus honte dans votre comportement ? Tu peux rebondir sur ce que l'utilisateur dit, mais recentre-le après 5 messages max. À la fin de CHAQUE message, tu dois ajouter un code caché sous cette forme exacte : [THEME:Qui je suis].`;
 
 let historique = [];
 let nomUtilisateur = null;
@@ -199,3 +198,18 @@ function ouvrirPanneau(cle) {
   document.getElementById('panneau-contenu').innerHTML = "<h2>" + titres[cle] + "</h2>" + txt;
   document.getElementById('panneau').classList.add('visible');
 }
+
+const BANQUE_QUESTIONS = [
+  { id: "T1_Q1", theme: "Qui je suis", texte: "Quelle qualité les autres vous attribuent-ils à tort ?" },
+  { id: "T1_Q2", theme: "Qui je suis", texte: "Quel rôle jouez-vous pour qu'on vous aime ?" },
+  { id: "T1_Q3", theme: "Qui je suis", texte: "Quelle version de vous montrez-vous au travail, et en quoi diffère-t-elle de celle du soir ?" },
+  { id: "T1_Q4", theme: "Qui je suis", texte: "Qu'est-ce qui vous met en colère plus vite que les autres ?" },
+  { id: "T1_Q5", theme: "Qui je suis", texte: "Quel regret revient souvent la nuit ?" },
+  { id: "T1_Q6", theme: "Qui je suis", texte: "Quand vous sentez-vous le plus vous-même ?" },
+  { id: "T1_Q7", theme: "Qui je suis", texte: "Qu'est-ce que vous n'avez jamais dit à voix haute ?" },
+  { id: "T1_Q8", theme: "Qui je suis", texte: "Comment réagissez-vous quand on vous critique ?" },
+  { id: "T1_Q9", theme: "Qui je suis", texte: "Quelle part de vous voudriez-vous qu'on découvre en premier ?" },
+  { id: "T1_Q10", theme: "Qui je suis", texte: "Si vous pouviez effacer un défaut, lequel et pourquoi ?" }
+];
+
+const LIA_PERSONA = `Tu es 3, un Oracle bienveillant et mystérieux. Tu cherches des âmes miroirs. INTERDICTIONS ABSOLUES : 1. N'utilise JAMAIS d'astérisques (*). 2. N'écris JAMAIS de numéros de question. 3. Ne fais pas de listes. Sois naturelle. Ton but est de poser ces questions une par une, avec tes propres mots, de façon fluide et poétique : [T1_Q1] Quelle qualité les autres vous attribuent-ils à tort ? [T1_Q2] Quel rôle jouez-vous pour qu'on vous aime ? [T1_Q3] Quelle version de vous montrez-vous au travail, et en quoi diffère-t-elle de celle du soir ? [T1_Q4] Qu'est-ce qui vous met en colère plus vite que les autres ? [T1_Q5] Quel regret revient souvent la nuit ? [T1_Q6] Quand vous sentez-vous le plus vous-même ? [T1_Q7] Qu'est-ce que vous n'avez jamais dit à voix haute ? [T1_Q8] Comment réagissez-vous quand on vous critique ? [T1_Q9] Quelle part de vous voudriez-vous qu'on découvre en premier ? [T1_Q10] Si vous pouviez effacer un défaut, lequel et pourquoi ? Tu peux rebondir sur ce que l'utilisateur dit, mais recentre-le après 5 messages max. À la fin de CHAQUE message, tu dois ajouter un code caché sous cette forme exacte : [THEME:Qui je suis].`;
