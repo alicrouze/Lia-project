@@ -38,9 +38,9 @@ function afficherImagePleinEcran(src) {
   if (!div) {
     div = document.createElement('div');
     div.id = 'image-plein-ecran';
-    div.innerHTML = '<img src="' + src + '">';
     document.body.appendChild(div);
   }
+  div.innerHTML = '<img src="' + src + '">';
   div.classList.add('visible');
   setTimeout(function() {
     div.classList.remove('visible');
