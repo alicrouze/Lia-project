@@ -66,6 +66,13 @@ const phrasesCartes = [
   { texte: "Je fuis quand on s approche trop de moi.", type: "defaut" },
   { texte: "Je remets a demain ce qui pourrait me faire avancer aujourd hui.", type: "defaut" }
 ];
+const phrasesCartes = [
+  { texte: "Je prefere avoir raison plutot que d etre heureux.", type: "defaut" },
+  { texte: "Je montre une version de moi qui n est pas totalement vraie.", type: "defaut" },
+  { texte: "J ai peur du jugement des autres.", type: "defaut" },
+  { texte: "Je fuis quand on s approche trop de moi.", type: "defaut" },
+  { texte: "Je remets a demain ce qui pourrait me faire avancer aujourd hui.", type: "defaut" }
+];
 let indexCarte = 0;
 const carteSwipe = document.getElementById('carte-swipe');
 const carteTexte = document.getElementById('carte-texte');
