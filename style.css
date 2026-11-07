@@ -9,21 +9,21 @@ html, body { height: 100%; width: 100%; overflow: hidden; font-family: -apple-sy
 
 .theme { position: absolute; top: 115px; right: 8%; font-family: Baskerville, "Times New Roman", serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.8); text-align: right; max-width: 35vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; z-index: 50; }
 
-#input-zone { position: absolute; top: 150px; left: 50%; transform: translateX(-50%); width: 85vw; height: 56px; display: flex; align-items: center; background: rgba(40, 50, 80, 0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 28px; padding: 0 6px 0 16px; gap: 8px; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+#input-zone { position: absolute; top: 25%; left: 50%; transform: translateX(-50%); width: 85vw; height: 56px; display: flex; align-items: center; background: rgba(40, 50, 80, 0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 28px; padding: 0 6px 0 16px; gap: 8px; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
 #plus-btn { width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.4); background: transparent; color: rgba(255,255,255,0.7); font-size: 20px; flex-shrink: 0; }
 #user-input { flex: 1; height: 44px; margin-right: 50px; border: none; background: transparent; color: #fff; font-size: 15px; outline: none; padding: 0 8px; }
 #user-input::placeholder { color: rgba(255, 255, 255, 0.45); }
 #send-btn { position: absolute; right: 6px; width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #6a7bff 0%, #5a6bef 100%); color: #fff; border: none; font-size: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
 #send-btn:disabled { opacity: 0.5; }
 
-#bulles { position: absolute; top: 190px; left: 0; right: 0; bottom: 0; display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; align-items: flex-start; padding-top: 20px; }
+#bulles { position: absolute; top: 33%; left: 0; right: 0; bottom: 0; display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; align-items: flex-start; padding-top: 20px; }
 #bulles::-webkit-scrollbar { display: none; }
 .bulle { min-width: 85vw; width: 85vw; margin: 0 7.5vw; scroll-snap-align: center; flex-shrink: 0; padding: 20px 24px; background: rgba(255, 255, 255, 0.10); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.20); border-radius: 24px; color: #fff; font-size: 16px; line-height: 1.45; display: block; max-height: 60%; overflow-y: auto; }
 .bulle.user { background: rgba(100, 130, 200, 0.25); }
 .bulle.image { display: flex; align-items: center; justify-content: center; padding: 10px; }
 .bulle.image img { max-width: 100%; max-height: 250px; border-radius: 16px; object-fit: cover; }
 
-#halo-flamme { position: absolute; bottom: 15%; left: 19%; width: 25px; height: 25px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 50%); filter: blur(2px); animation: haloflamme 2.5s ease-in-out infinite; pointer-events: none; z-index: 1; }
+#halo-flamme { position: absolute; bottom: 18%; left: 19%; width: 25px; height: 25px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 50%); filter: blur(2px); animation: haloflamme 2.5s ease-in-out infinite; pointer-events: none; z-index: 1; }
 @keyframes haloflamme { 0% { transform: scale(1) translate(0px, 0px); opacity: 0.8; } 25% { transform: scale(1.1) translate(2px, -1px); opacity: 1; } 50% { transform: scale(1.2) translate(0px, -2px); opacity: 0.9; } 75% { transform: scale(1.1) translate(-2px, -1px); opacity: 1; } 100% { transform: scale(1) translate(0px, 0px); opacity: 0.8; } }
 #etoile-filante { position: absolute; width: 1px; height: 1px; background: #fff; border-radius: 50%; box-shadow: 0 0 6px 2px rgba(255,255,255,0.8); pointer-events: none; z-index: 2; animation: filante 0.75s linear 1 forwards; }
 @keyframes filante { 0% { transform: translate(-100vw, 10vh); opacity: 0; } 5% { opacity: 1; } 95% { transform: translate(100vw, 40vh); opacity: 1; } 100% { transform: translate(100vw, 40vh); opacity: 0; } }
