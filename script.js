@@ -8,13 +8,13 @@ window.addEventListener('resize', function() { window.scrollTo(0, 0); });
 
 const bulles = document.getElementById('bulles');
 const imagesThemes = {
-  "Thème 1": "image_qui_je_suis.jpg",
-  "Thème 2": "image_comment_j_aime_3.jpg",
-  "Thème 3": "image_avec_les_autres_1.jpg",
-  "Thème 4": "image_intimite_1.jpg",
-  "Thème 5": "image_valeurs_1.jpg",
-  "Thème 6": "image_famille_1.jpg",
-  "Thème 7": "image_contradictions_1.jpg"
+  "Thème 1": "images/image_qui_je_suis.jpg",
+  "Thème 2": "images/image_comment_j_aime_3.jpg",
+  "Thème 3": "images/image_avec_les_autres_1.jpg",
+  "Thème 4": "images/image_intimite_1.jpg",
+  "Thème 5": "images/image_valeurs_1.jpg",
+  "Thème 6": "images/image_famille_1.jpg",
+  "Thème 7": "images/image_contradictions_1.jpg"
 };
 const input = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
