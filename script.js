@@ -7,6 +7,15 @@ if (window.visualViewport) {
 window.addEventListener('resize', function() { window.scrollTo(0, 0); });
 
 const bulles = document.getElementById('bulles');
+const imagesThemes = {
+  "Thème 1": "image_qui_je_suis.jpg",
+  "Thème 2": "image_comment_j_aime_3.jpg",
+  "Thème 3": "image_avec_les_autres_1.jpg",
+  "Thème 4": "image_intimite_1.jpg",
+  "Thème 5": "image_valeurs_1.jpg",
+  "Thème 6": "image_famille_1.jpg",
+  "Thème 7": "image_contradictions_1.jpg"
+};
 const input = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
 
@@ -228,7 +237,7 @@ async function demarrer() {
     { role: 'system', content: "L'utilisateur est anonyme." }
   ];
   await new Promise(r => setTimeout(r, 16000));
-  afficherImagePleinEcran('image_qui_je_suis.jpg');
+  afficherImagePleinEcran(imagesThemes["Thème 1"]);
   input.placeholder = 'Écris-moi quelque chose...';
   sendBtn.addEventListener('click', envoyer);
   input.addEventListener('keypress', function(e) {
