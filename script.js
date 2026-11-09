@@ -9,7 +9,7 @@ window.addEventListener('resize', function() { window.scrollTo(0, 0); });
 const bulles = document.getElementById('bulles');
 const imagesThemes = {
   "Thème 1": "images/image_qui_je_suis.jpg",
-  "Thème 2": "images/image_comment_j_aime_3.jpg",
+  "Thème 2": "images/image_comment_j_aime_1.jpg",
   "Thème 3": "images/image_avec_les_autres_1.jpg",
   "Thème 4": "images/image_intimite_1.jpg",
   "Thème 5": "images/image_valeurs_1.jpg",
