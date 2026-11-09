@@ -8,13 +8,13 @@ window.addEventListener('resize', function() { window.scrollTo(0, 0); });
 
 const bulles = document.getElementById('bulles');
 const imagesThemes = {
-  "Thème 1": "images/image_qui_je_suis.jpg",
-  "Thème 2": "images/image_comment_j_aime_1.jpg",
-  "Thème 3": "images/image_avec_les_autres_1.jpg",
-  "Thème 4": "images/image_intimite_1.jpg",
-  "Thème 5": "images/image_valeurs_1.jpg",
-  "Thème 6": "images/image_famille_1.jpg",
-  "Thème 7": "images/image_contradictions_1.jpg"
+  "Thème 1": ["images/image_qui_je_suis.jpg", "images/image_qui_je_suis_2.jpg", "images/image_qui_je_suis3.jpg"],
+  "Thème 2": ["images/image_comment_j_aime_1.jpg", "images/image_comment_j_aime_2.jpg", "images/image_comment_j_aime_3.jpg"],
+  "Thème 3": ["images/image_avec_les_autres_1.jpg", "images/image_avec_les_autres_2.jpg", "images/image_avec_les_autres_3.jpg"],
+  "Thème 4": ["images/image_intimite_1.jpg", "images/image_intimite_2.jpg", "images/image_intimite_3.jpg"],
+  "Thème 5": ["images/image_valeurs_1.jpg", "images/image_valeurs_2.jpg", "images/image_valeurs_3.jpg"],
+  "Thème 6": ["images/image_famille_1.jpg", "images/image_famille_2.jpg", "images/image_famille_3.jpg"],
+  "Thème 7": ["images/image_contradictions_1.jpg", "images/image_contradictions_2.jpg", "images/image_contradictions_3.jpg"]
 };
 const input = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
@@ -31,6 +31,7 @@ QUAND TU POSES LA DERNIÈRE QUESTION DU THÈME 7, tu dois ajouter ce code exact 
 À la fin de CHAQUE message, ajoute le code du thème en cours : [THEME:Qui je suis], [THEME:Comment j'aime], [THEME:Comment je suis avec les autres], [THEME:Mon corps et mon intimité], [THEME:Ce qui compte pour moi], [THEME:Ma famille], ou [THEME:Mes contradictions et mes péchés].`;
 
 let historique = [];
+let compteurQuestions = 0;
 let nomUtilisateur = null;
 
 function ajouterBulle(texte, type) {
@@ -223,6 +224,18 @@ async function envoyer() {
     }
     bulleLia.textContent = t;
     historique.push({ role: 'assistant', content: t });
+
+    compteurQuestions++;
+    if (compteurQuestions % 3 === 0) {
+      var themeActuel = document.getElementById('theme-courant').textContent;
+      var images = imagesThemes[themeActuel];
+      if (images) {
+        var imgIndex = Math.floor(compteurQuestions / 3) - 1;
+        if (imgIndex < images.length) {
+          setTimeout(function() { afficherImagePleinEcran(images[imgIndex]); }, 2000);
+        }
+      }
+    }
   } catch (e) {
     bulleLia.textContent = 'Erreur : ' + e.message;
   }
@@ -237,7 +250,7 @@ async function demarrer() {
     { role: 'system', content: "L'utilisateur est anonyme." }
   ];
   await new Promise(r => setTimeout(r, 16000));
-  afficherImagePleinEcran(imagesThemes["Thème 1"]);
+  afficherImagePleinEcran(imagesThemes["Thème 1"][0]);
   input.placeholder = 'Écris-moi quelque chose...';
   sendBtn.addEventListener('click', envoyer);
   input.addEventListener('keypress', function(e) {
