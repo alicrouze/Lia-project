@@ -208,16 +208,26 @@ async function envoyer() {
       t = reponse.message.content || reponse.message;
     }
     t = t.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
-    var matchTheme = t.match(/\[THEME:(.*?)\]/);
-    if (matchTheme) {
-      document.getElementById('theme-courant').textContent = matchTheme[1].replace(/_/g, ' ').charAt(0).toUpperCase() + matchTheme[1].replace(/_/g, ' ').slice(1);
-      t = t.replace(matchTheme[0], '').trim();
-      var themeActuel = matchTheme[1];
-      if (BANQUE_CARTES[themeActuel]) {
-        phrasesCartes = BANQUE_CARTES[themeActuel];
-        indexCarte = 0;
-      }
-    }
+    var THEME_MAP = {
+  "Qui je suis": "Thème 1",
+  "Comment j'aime": "Thème 2",
+  "Comment je suis avec les autres": "Thème 3",
+  "Mon corps et mon intimité": "Thème 4",
+  "Ce qui compte pour moi": "Thème 5",
+  "Ma famille": "Thème 6",
+  "Mes contradictions et mes péchés": "Thème 7"
+};
+var themeActuel = "Thème 1";
+var matchTheme = t.match(/\[THEME:(.*?)\]/);
+if (matchTheme) {
+  document.getElementById('theme-courant').textContent = matchTheme[1].replace(/_/g, ' ').charAt(0).toUpperCase() + matchTheme[1].replace(/_/g, ' ').slice(1);
+  t = t.replace(matchTheme[0], '').trim();
+  themeActuel = THEME_MAP[matchTheme[1]] || "Thème 1";
+  if (BANQUE_CARTES[themeActuel]) {
+    phrasesCartes = BANQUE_CARTES[themeActuel];
+    indexCarte = 0;
+  }
+}
     if (t.includes('[ACTION:DEFAUTS]')) {
       t = t.replace('[ACTION:DEFAUTS]', '').trim();
       setTimeout(ouvrirPanneauDefauts, 1000);
@@ -227,7 +237,7 @@ async function envoyer() {
 
     compteurQuestions++;
     if (compteurQuestions % 3 === 0) {
-      var themeActuel = document.getElementById('theme-courant').textContent;
+      
       var images = imagesThemes[themeActuel];
       if (images) {
         var imgIndex = Math.floor(compteurQuestions / 3) - 1;
