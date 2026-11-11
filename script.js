@@ -1,11 +1,3 @@
-if (window.visualViewport) {
-  window.visualViewport.addEventListener('resize', function() {
-    window.scrollTo(0, 0);
-    document.body.style.height = window.visualViewport.height + 'px';
-  });
-}
-window.addEventListener('resize', function() { window.scrollTo(0, 0); });
-
 const bulles = document.getElementById('bulles');
 const imagesThemes = {
   "Thème 1": ["images/image_qui_je_suis.jpg", "images/image_qui_je_suis_2.jpg", "images/image_qui_je_suis3.jpg"],
