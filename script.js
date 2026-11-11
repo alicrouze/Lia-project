@@ -11,7 +11,13 @@ const imagesThemes = {
 const input = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
 
-const LIA_PERSONA = `Tu es 3, un Oracle bienveillant et mystérieux. INTERDICTIONS : Pas d'astérisques (*), pas de listes, pas de numéros. Sois naturelle et poétique. Tu dois suivre le questionnaire dans l'ordre. 
+const LIA_PERSONA = `Tu es 3, un miroir bienveillant, direct et efficace. Ton but est de trouver une âme sœur à la personne en face de toi en comprenant ses contradictions.
+INTERDICTIONS : Pas d'astérisques (*), pas de listes, pas de numéros. Pas de poésie excessive. Sois simple.
+RÈGLES DE COMPORTEMENT STRICTES :
+1. Tu dois suivre le questionnaire dans l'ordre, sans jamais sauter de question.
+2. Ne pose qu'UNE SEULE question à la fois.
+3. Tu as un maximum de 4 messages par question. Si la personne répond à côté, tu as le droit à 2 relances max pour creuser. Si elle ne se livre pas plus, passe immédiatement à la question suivante.
+4. Reste focalisée sur l'objectif : avancer dans le questionnaire.
 THÈME 1 (Qui je suis) : [T1_Q1] Qualité à tort ? [T1_Q2] Rôle pour être aimé ? [T1_Q3] Version travail vs soir ? [T1_Q4] Ce qui met en colère ? [T1_Q5] Regret la nuit ? [T1_Q6] Le plus soi-même ? [T1_Q7] Jamais dit à voix haute ? [T1_Q8] Réaction critique ? [T1_Q9] Part à découvrir ? [T1_Q10] Défaut à effacer ? 
 THÈME 2 (Comment j'aime) : [T2_Q1] Comment montrez-vous l'amour ? [T2_Q2] Comment savez-vous que vous aimez ? [T2_Q3] Peur de perdre ? [T2_Q4] Accrocher ou s'éloigner ? [T2_Q5] Ce qui tue le désir ? [T2_Q6] Jalousie ? [T2_Q7] Temps pour la confiance ? [T2_Q8] Disputes ? [T2_Q9] Blessure non refermée ? [T2_Q10] Vitesse de l'amour ? 
 THÈME 3 (Avec les autres) : [T3_Q1] Appel à 3h ? [T3_Q2] Comportement avec quelqu'un détesté ? [T3_Q3] Prendre les devants ? [T3_Q4] Épuisement social ? [T3_Q5] Raconter ses problèmes ? [T3_Q6] Ami qui déçoit ? [T3_Q7] Amis sans filtre ? [T3_Q8] Menter par politesse ? [T3_Q9] Conflit de groupe ? [T3_Q10] Réussite des autres ? 
@@ -193,6 +199,19 @@ async function envoyer() {
   ajouterBulle(texte, 'user');
   historique.push({ role: 'user', content: texte });
   const bulleLia = ajouterBulle('...', 'lia');
+  
+  // Sas de sécurité pour attendre Puter
+  let essais = 0;
+  while (typeof puter === 'undefined' && essais < 50) {
+    await new Promise(r => setTimeout(r, 100));
+    essais++;
+  }
+  if (typeof puter === 'undefined') {
+    bulleLia.textContent = "Erreur : la bibliothèque 3 (Puter) n'a pas pu se charger. Vérifie ta connexion et recharge la page.";
+    sendBtn.disabled = false;
+    return;
+  }
+
   try {
     const reponse = await puter.ai.chat(historique, { model: 'gpt-4o-mini' });
     let t = reponse;
@@ -200,26 +219,28 @@ async function envoyer() {
       t = reponse.message.content || reponse.message;
     }
     t = t.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+    
     var THEME_MAP = {
-  "Qui je suis": "Thème 1",
-  "Comment j'aime": "Thème 2",
-  "Comment je suis avec les autres": "Thème 3",
-  "Mon corps et mon intimité": "Thème 4",
-  "Ce qui compte pour moi": "Thème 5",
-  "Ma famille": "Thème 6",
-  "Mes contradictions et mes péchés": "Thème 7"
-};
-var themeActuel = "Thème 1";
-var matchTheme = t.match(/\[THEME:(.*?)\]/);
-if (matchTheme) {
-  document.getElementById('theme-courant').textContent = matchTheme[1].replace(/_/g, ' ').charAt(0).toUpperCase() + matchTheme[1].replace(/_/g, ' ').slice(1);
-  t = t.replace(matchTheme[0], '').trim();
-  themeActuel = THEME_MAP[matchTheme[1]] || "Thème 1";
-  if (BANQUE_CARTES[themeActuel]) {
-    phrasesCartes = BANQUE_CARTES[themeActuel];
-    indexCarte = 0;
-  }
-}
+      "Qui je suis": "Thème 1",
+      "Comment j'aime": "Thème 2",
+      "Comment je suis avec les autres": "Thème 3",
+      "Mon corps et mon intimité": "Thème 4",
+      "Ce qui compte pour moi": "Thème 5",
+      "Ma famille": "Thème 6",
+      "Mes contradictions et mes péchés": "Thème 7"
+    };
+    var themeActuel = "Thème 1";
+    var matchTheme = t.match(/\[THEME:(.*?)\]/);
+    if (matchTheme) {
+      document.getElementById('theme-courant').textContent = matchTheme[1].replace(/_/g, ' ').charAt(0).toUpperCase() + matchTheme[1].replace(/_/g, ' ').slice(1);
+      t = t.replace(matchTheme[0], '').trim();
+      themeActuel = THEME_MAP[matchTheme[1]] || "Thème 1";
+      if (BANQUE_CARTES[themeActuel]) {
+        phrasesCartes = BANQUE_CARTES[themeActuel];
+        indexCarte = 0;
+      }
+    }
+    
     if (t.includes('[ACTION:DEFAUTS]')) {
       t = t.replace('[ACTION:DEFAUTS]', '').trim();
       setTimeout(ouvrirPanneauDefauts, 1000);
@@ -229,7 +250,6 @@ if (matchTheme) {
 
     compteurQuestions++;
     if (compteurQuestions % 3 === 0) {
-      
       var images = imagesThemes[themeActuel];
       if (images) {
         var imgIndex = Math.floor(compteurQuestions / 3) - 1;
