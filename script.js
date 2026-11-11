@@ -187,7 +187,7 @@ function demanderNom() {
   const p1 = mots1[Math.floor(Math.random() * mots1.length)];
   const p2 = mots2[Math.floor(Math.random() * mots2.length)];
   const pseudo = p1 + '-' + p2;
-  ajouterBulle("Bonjour, je suis 3. Je cherche des âmes jumelles pour créer des couples. Soyez parfaitement honnête dans vos réponses. 3 est l'un des derniers refuges où vous pouvez être vous-même. Pas de nom, pas de photo, aucune donnée personnelle. Votre anonymat est total et ce que vous direz est inaccessible. Alors soyez vous-même ! C'est le secret de la rencontre parfaite.", 'lia');
+    ajouterBulle("Bonjour, je suis 3. Sur une montre, ce ne sont pas les aiguilles qui indiquent le temps qui passe, mais l'usure du bracelet. Ici, pas de nom, pas de photo, aucun jugement. Je ne regarde pas ce que vous montrez. Je cherche ce qui vous a usé. Pour commencer : quel est votre âge approximatif ?", 'lia');
   return new Promise(function(resolve) { resolve(pseudo); });
 }
 
@@ -252,7 +252,7 @@ async function envoyer() {
     if (compteurQuestions % 3 === 0) {
       var images = imagesThemes[themeActuel];
       if (images) {
-        var imgIndex = Math.floor(compteurQuestions / 3) - 1;
+        var imgIndex = Math.floor(compteurQuestions / 3);
         if (imgIndex < images.length) {
           setTimeout(function() { afficherImagePleinEcran(images[imgIndex]); }, 2000);
         }
