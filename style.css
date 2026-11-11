@@ -7,7 +7,7 @@ html, body { height: 100%; width: 100%; overflow: hidden; font-family: -apple-sy
 #chat { position: fixed; inset: 0; background: url(images/chat.jpg) center/cover no-repeat; opacity: 0; transition: opacity 2s ease; }
 #chat.visible { opacity: 1; }
 
-.theme { position: absolute; top: 161px; right: 8%; font-family: Baskerville, "Times New Roman", serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.8); text-align: right; max-width: 35vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; z-index: 50; }
+.theme { position: absolute; top: 160px; right: 8%; font-family: Baskerville, "Times New Roman", serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.8); text-align: right; max-width: 35vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; z-index: 50; }
 
 #input-zone { position: absolute; top: 25%; left: 50%; transform: translateX(-50%); width: 85vw; height: 56px; display: flex; align-items: center; background: rgba(40, 50, 80, 0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 28px; padding: 0 6px 0 16px; gap: 8px; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
 #plus-btn { width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.4); background: transparent; color: rgba(255,255,255,0.7); font-size: 20px; flex-shrink: 0; }

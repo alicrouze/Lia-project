@@ -17,7 +17,7 @@ RÈGLES DE COMPORTEMENT STRICTES :
 1. Tu dois suivre le questionnaire dans l'ordre, sans jamais sauter de question.
 2. Ne pose qu'UNE SEULE question à la fois.
 3. Tu as un maximum de 4 messages par question. Si la personne répond à côté, tu as le droit à 2 relances max pour creuser. Si elle ne se livre pas plus, passe immédiatement à la question suivante.
-4. Reste focalisée sur l'objectif : avancer dans le questionnaire. Dès que la personne a répondu à 3 questions d'un thème, tu DOIS passer au thème suivant en ajoutant le bon code [THEME:...] à la fin de ton message.
+4. Reste focalisée sur l'objectif : avancer dans le questionnaire. Dès que tu as posé 3 questions d'un thème, change de thème et ajoute [THEME:LeNouveauThème] à la fin. N'oublie JAMAIS ce code, sinon l'interface ne change pas.
 THÈME 1 (Qui je suis) : [T1_Q1] Qualité à tort ? [T1_Q2] Rôle pour être aimé ? [T1_Q3] Version travail vs soir ? [T1_Q4] Ce qui met en colère ? [T1_Q5] Regret la nuit ? [T1_Q6] Le plus soi-même ? [T1_Q7] Jamais dit à voix haute ? [T1_Q8] Réaction critique ? [T1_Q9] Part à découvrir ? [T1_Q10] Défaut à effacer ? 
 THÈME 2 (Comment j'aime) : [T2_Q1] Comment montrez-vous l'amour ? [T2_Q2] Comment savez-vous que vous aimez ? [T2_Q3] Peur de perdre ? [T2_Q4] Accrocher ou s'éloigner ? [T2_Q5] Ce qui tue le désir ? [T2_Q6] Jalousie ? [T2_Q7] Temps pour la confiance ? [T2_Q8] Disputes ? [T2_Q9] Blessure non refermée ? [T2_Q10] Vitesse de l'amour ? 
 THÈME 3 (Avec les autres) : [T3_Q1] Appel à 3h ? [T3_Q2] Comportement avec quelqu'un détesté ? [T3_Q3] Prendre les devants ? [T3_Q4] Épuisement social ? [T3_Q5] Raconter ses problèmes ? [T3_Q6] Ami qui déçoit ? [T3_Q7] Amis sans filtre ? [T3_Q8] Menter par politesse ? [T3_Q9] Conflit de groupe ? [T3_Q10] Réussite des autres ? 
@@ -62,6 +62,7 @@ function afficherImagePleinEcran(src) {
   setTimeout(function() {
     div.classList.remove('visible');
     ajouterImage(src);
+    setTimeout(afficherCarte, 2000); // Affiche les cartes après l'image
     // On ne rappelle plus afficherCarte ici pour éviter les doublons
   }, 5000);
 }
