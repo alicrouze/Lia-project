@@ -202,7 +202,7 @@ async function envoyer() {
   historique.push({ role: 'user', content: texte });
   const bulleLia = ajouterBulle('...', 'lia');
   try {
-    const reponse = await puter.ai.chat(historique, { model: 'gpt-5.4-nano' });
+    const reponse = await puter.ai.chat(historique, { model: 'gpt-4o-mini' });
     let t = reponse;
     if (typeof reponse === 'object' && reponse.message) {
       t = reponse.message.content || reponse.message;
