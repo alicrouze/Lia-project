@@ -187,7 +187,7 @@ function demanderNom() {
   const p1 = mots1[Math.floor(Math.random() * mots1.length)];
   const p2 = mots2[Math.floor(Math.random() * mots2.length)];
   const pseudo = p1 + '-' + p2;
-    ajouterBulle("Bonjour, je suis 3. Sur une montre, ce ne sont pas les aiguilles qui indiquent le temps qui passe, mais l'usure du bracelet. Ici, pas de nom, pas de photo, aucun jugement. Je ne regarde pas ce que vous montrez. Je cherche ce qui vous a usé. Pour commencer : quel est votre âge approximatif ?", 'lia');
+    ajouterBulle("Bonjour je m'appelle 3.\n\nSur une montre ce ne sont pas les aiguilles qui indiquent le temps qui passe mais l'usure du bracelet.", 'lia');
   return new Promise(function(resolve) { resolve(pseudo); });
 }
 
@@ -282,9 +282,14 @@ async function demarrer() {
 
 document.getElementById('accueil').addEventListener('click', function() {
   this.classList.add('hidden');
+  document.getElementById('ecran-intro').classList.add('visible');
+});
+
+function demarrerApp() {
+  document.getElementById('ecran-intro').classList.remove('visible');
   document.getElementById('chat').classList.add('visible');
   setTimeout(demarrer, 1000);
-});
+}
 
 document.getElementById('zone-logo').addEventListener('click', function(e) {
   e.stopPropagation();
