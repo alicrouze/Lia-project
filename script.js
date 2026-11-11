@@ -187,7 +187,7 @@ function demanderNom() {
   const p1 = mots1[Math.floor(Math.random() * mots1.length)];
   const p2 = mots2[Math.floor(Math.random() * mots2.length)];
   const pseudo = p1 + '-' + p2;
-    ajouterBulle("Bonjour je m'appelle 3.\n\nSur une montre ce ne sont pas les aiguilles qui indiquent le temps qui passe mais l'usure du bracelet.", 'lia');
+    ajouterBulle("Bonjour je m'appelle 3\n\n\"Sur une montre ce ne sont pas les aiguilles qui indiquent le temps qui passe mais l'usure du bracelet\"", 'lia');
   return new Promise(function(resolve) { resolve(pseudo); });
 }
 
