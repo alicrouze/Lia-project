@@ -238,6 +238,7 @@ async function envoyer() {
       if (BANQUE_CARTES[themeActuel]) {
         phrasesCartes = BANQUE_CARTES[themeActuel];
         indexCarte = 0;
+        setTimeout(afficherCarte, 1000); // Force l'affichage des nouvelles cartes
       }
     }
     
