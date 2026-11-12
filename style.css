@@ -1,10 +1,10 @@
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html, body { height: 100%; width: 100%; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+html, body { height: 100%; width: 100%; overflow: hidden; position: fixed; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
 
 #accueil { position: fixed; inset: 0; background: url(images/ecran-accueil.jpg) center/cover no-repeat; z-index: 9999; transition: opacity 2s ease; cursor: pointer; }
 #accueil.hidden { opacity: 0; pointer-events: none; }
 
-#chat { position: fixed; inset: 0; background: url(images/chat.jpg) center/cover no-repeat; opacity: 0; transition: opacity 2s ease; }
+#chat { position: fixed; inset: 0; height: 100dvh; background: url(images/chat.jpg) center/cover no-repeat; opacity: 0; transition: opacity 2s ease; }
 #chat.visible { opacity: 1; }
 
 .theme { position: absolute; top: 160px; right: 8%; font-family: Baskerville, "Times New Roman", serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.8); text-align: right; max-width: 35vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; z-index: 50; }
