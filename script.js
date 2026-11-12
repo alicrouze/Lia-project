@@ -18,7 +18,7 @@ STYLE : Parle un français impeccable, soutenu mais naturel. Évite les banalit�
 RÈGLE SUPPLÉMENTAIRE : Tu connais déjà le sexe de l'utilisateur et ce qu'il cherche (c'est dans ton historique). Ne lui pose JAMAIS cette question.
 
 RÈGLES STRICTES :
-1. L'utilisateur vient de voir ton message d'accueil lui demandant s'il est prêt. S'il répond "oui" ou équivalent, commence directement par la question 1 du Thème 1.
+1. L'utilisateur a dit "Oui" (ou équivalent) pour commencer. Lance directement la question 1 du Thème 1.
 2. Ne pose qu'UNE SEULE question à la fois.
 3. TU NE DOIS JAMAIS REPETER UNE QUESTION. Dès que l'utilisateur répond, tu DOIS passer à la question suivante.
 4. Dès que tu as posé 3 questions d'un thème, change de thème et ajoute le code [THEME:LeNouveauThème] à la fin de ton message.
@@ -236,18 +236,6 @@ function afficherCarte() {
   carteSwipe.classList.remove("cachee");
 }
 
-function swipeCarte(reponse) {
-  indexCarte++;
-  carteSwipe.classList.add("cachee");
-  setTimeout(afficherCarte, 400);
-  
-  // Si c'était la dernière carte, on débloque la conversation
-  if (indexCarte >= phrasesCartes.length && !cartesFaites) {
-    cartesFaites = true;
-    if (resolveCartes) resolveCartes(); // On signale qu'on a fini de swiper
-  }
-}
-
 function afficherCartes() {
   return new Promise(function(resolve) {
     resolveCartes = resolve;
@@ -255,6 +243,17 @@ function afficherCartes() {
     phrasesCartes = BANQUE_CARTES[currentTheme];
     afficherCarte();
   });
+}
+
+function swipeCarte(reponse) {
+  indexCarte++;
+  carteSwipe.classList.add("cachee");
+  setTimeout(afficherCarte, 400);
+  
+  if (indexCarte >= phrasesCartes.length && !cartesFaites) {
+    cartesFaites = true;
+    if (resolveCartes) resolveCartes(); 
+  }
 }
 
 var startY = 0;
@@ -314,7 +313,6 @@ async function envoyer() {
   ajouterBulle(texte, 'user');
   historique.push({ role: 'user', content: texte });
   
-  // Si c'est le premier message de l'utilisateur, on affiche les cartes et on attend qu'il ait fini
   if (!cartesFaites) {
     await afficherCartes();
   }
@@ -409,7 +407,7 @@ async function demarrer() {
     { role: 'system', content: "L'utilisateur est anonyme. L'utilisateur est " + sexeUser + " et cherche " + sexeCherche + ". Prends-en note pour le futur match." }
   ];
   
-  await new Promise(r => setTimeout(r, 3000));
+  await new Promise(r => setTimeout(r, 2000));
   await afficherImagePleinEcran(imagesThemes["Thème 1"][0]);
   
   input.placeholder = 'Écris-moi quelque chose...';
@@ -418,10 +416,8 @@ async function demarrer() {
     if (e.key === 'Enter') envoyer();
   });
 
-  // Message d'accueil statique (fiable et instantané)
   ajouterBulle("Bonjour, je suis 3.\n\n\"Sur une montre, ce ne sont pas les aiguilles qui indiquent le temps qui passe, mais l'usure du bracelet.\"\n\nEs-tu prêt(e) à commencer ?", 'lia');
   
-  // On prévient l'IA en arrière-plan que l'utilisateur a vu l'accueil
   historique.push({ role: 'assistant', content: "Bonjour, je suis 3. Es-tu prêt(e) à commencer ?" });
 }
 
@@ -431,9 +427,7 @@ document.getElementById('accueil').addEventListener('click', function() {
 });
 
 async function demarrerApp() {
-  if (typeof puter !== 'undefined' && puter.auth) {
-    await puter.auth.signIn();
-  }
+  // On ne force plus Puter à se connecter ici pour éviter qu'il ne zappe l'écran d'intro
   document.getElementById('ecran-intro').classList.remove('visible');
   document.getElementById('chat').classList.add('visible');
   setTimeout(demarrer, 1000);
