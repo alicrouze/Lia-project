@@ -146,22 +146,24 @@ function ajouterImage(src) {
 }
 
 function afficherImagePleinEcran(src) {
-  var div = document.getElementById('image-plein-ecran');
-  if (!div) {
-    div = document.createElement('div');
-    div.id = 'image-plein-ecran';
-    document.body.appendChild(div);
-  }
-  div.innerHTML = '<img src="' + src + '">';
-  div.classList.add('visible');
-  setTimeout(function() {
-    div.classList.remove('visible');
-    ajouterImage(src);
-    // Si on est au début du thème (aucune carte swipée), on affiche les cartes
-    if (indexCarte === 0) {
-      setTimeout(afficherCarte, 1000);
+  return new Promise(function(resolve) {
+    var div = document.getElementById('image-plein-ecran');
+    if (!div) {
+      div = document.createElement('div');
+      div.id = 'image-plein-ecran';
+      document.body.appendChild(div);
     }
-  }, 5000);
+    div.innerHTML = '<img src="' + src + '">';
+    div.classList.add('visible');
+    setTimeout(function() {
+      div.classList.remove('visible');
+      ajouterImage(src);
+      if (indexCarte === 0) {
+        setTimeout(afficherCarte, 1000);
+      }
+      resolve(); // On signale que l'image a fini de s'afficher
+    }, 5000);
+  });
 }
 
 const BANQUE_CARTES = {
@@ -302,7 +304,7 @@ async function envoyer() {
   if (images && compteurQuestions > 0 && compteurQuestions % 3 === 0) {
     var imgIndex = Math.floor(compteurQuestions / 3);
     if (imgIndex < images.length) {
-      afficherImagePleinEcran(images[imgIndex]);
+      await afficherImagePleinEcran(images[imgIndex]);
     }
   }
 
@@ -384,7 +386,7 @@ async function demarrer() {
     { role: 'system', content: "L'utilisateur est anonyme." }
   ];
   await new Promise(r => setTimeout(r, 8000));
-  afficherImagePleinEcran(imagesThemes["Thème 1"][0]);
+  await afficherImagePleinEcran(imagesThemes["Thème 1"][0]);
   setTimeout(afficherCarte, 6000); // Affiche les cartes après la première image
   input.placeholder = 'Écris-moi quelque chose...';
   sendBtn.addEventListener('click', envoyer);
