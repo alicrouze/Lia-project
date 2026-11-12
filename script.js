@@ -281,7 +281,7 @@ async function demarrer() {
     { role: 'system', content: LIA_PERSONA },
     { role: 'system', content: "L'utilisateur est anonyme." }
   ];
-  await new Promise(r => setTimeout(r, 16000));
+  await new Promise(r => setTimeout(r, 8000));
   afficherImagePleinEcran(imagesThemes["Thème 1"][0]);
   input.placeholder = 'Écris-moi quelque chose...';
   sendBtn.addEventListener('click', envoyer);

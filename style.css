@@ -87,7 +87,7 @@ html, body { height: 100%; width: 100%; overflow: hidden; font-family: -apple-sy
 .bulle .chiffre {
   animation: apparition 1.2s infinite;
   font-family: Baskerville, serif;
-  font-weight: bold;
+  font-weight: 300;
   font-size: 20px;
   color: #d4a960;
   opacity: 0;
