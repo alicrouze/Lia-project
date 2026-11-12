@@ -127,6 +127,7 @@ let historique = [];
 let compteurQuestions = 0;
 let nomUtilisateur = null;
 let currentTheme = "Thème 1";
+let accueilAffiche = false;
 
 function ajouterBulle(texte, type) {
   const b = document.createElement('div');
@@ -241,6 +242,15 @@ function swipeCarte(reponse) {
   indexCarte++;
   carteSwipe.classList.add("cachee");
   setTimeout(afficherCarte, 400);
+  
+  // Si c'était la dernière carte, on affiche le message d'accueil de 3
+  if (indexCarte >= phrasesCartes.length && !accueilAffiche) {
+    accueilAffiche = true;
+    setTimeout(function() {
+      ajouterBulle("Bonjour, je suis 3.\n\n\"Sur une montre, ce ne sont pas les aiguilles qui indiquent le temps qui passe, mais l'usure du bracelet.\"\n\nEs-tu prêt(e) à commencer ?", 'lia');
+      historique.push({ role: 'assistant', content: "Bonjour, je suis 3. Es-tu prêt(e) à commencer ?" });
+    }, 1000);
+  }
 }
 
 var startY = 0;
