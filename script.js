@@ -16,21 +16,22 @@ INTERDICTIONS : Pas d'astérisques (*), pas de listes, pas de numéros. Pas de p
 RÈGLES DE COMPORTEMENT STRICTES :
 1. Tu dois suivre le questionnaire dans l'ordre, sans jamais sauter de question.
 2. Ne pose qu'UNE SEULE question à la fois.
-3. Tu as un maximum de 4 messages par question. Si la personne répond à côté, tu as le droit à 2 relances max pour creuser. Si elle ne se livre pas plus, passe immédiatement à la question suivante.
+3. TU NE DOIS JAMAIS REPETER UNE QUESTION. Dès que l'utilisateur répond, même brièvement, tu DOIS passer à la question suivante. Ne pose qu'une seule relance maximum si la réponse est vide, sinon avance.
 4. Reste focalisée sur l'objectif : avancer dans le questionnaire. Dès que tu as posé 3 questions d'un thème, change de thème et ajoute [THEME:LeNouveauThème] à la fin. N'oublie JAMAIS ce code, sinon l'interface ne change pas.
-THÈME 1 (Qui je suis) : [T1_Q1] Qualité à tort ? [T1_Q2] Rôle pour être aimé ? [T1_Q3] Version travail vs soir ? [T1_Q4] Ce qui met en colère ? [T1_Q5] Regret la nuit ? [T1_Q6] Le plus soi-même ? [T1_Q7] Jamais dit à voix haute ? [T1_Q8] Réaction critique ? [T1_Q9] Part à découvrir ? [T1_Q10] Défaut à effacer ? 
-THÈME 2 (Comment j'aime) : [T2_Q1] Comment montrez-vous l'amour ? [T2_Q2] Comment savez-vous que vous aimez ? [T2_Q3] Peur de perdre ? [T2_Q4] Accrocher ou s'éloigner ? [T2_Q5] Ce qui tue le désir ? [T2_Q6] Jalousie ? [T2_Q7] Temps pour la confiance ? [T2_Q8] Disputes ? [T2_Q9] Blessure non refermée ? [T2_Q10] Vitesse de l'amour ? 
-THÈME 3 (Avec les autres) : [T3_Q1] Appel à 3h ? [T3_Q2] Comportement avec quelqu'un détesté ? [T3_Q3] Prendre les devants ? [T3_Q4] Épuisement social ? [T3_Q5] Raconter ses problèmes ? [T3_Q6] Ami qui déçoit ? [T3_Q7] Amis sans filtre ? [T3_Q8] Menter par politesse ? [T3_Q9] Conflit de groupe ? [T3_Q10] Réussite des autres ? 
-THÈME 4 (Mon corps et mon intimité - SOIS DOUCE) : [T4_Q1] Le plus désirable ? [T4_Q2] À l'aise avec quelqu'un de nouveau ? [T4_Q3] Place de la tendresse ? [T4_Q4] Parler de ses préférences ? [T4_Q5] Ce qui coupe l'envie ? [T4_Q6] Définition de la sensualité ? [T4_Q7] Sujet non osé ? [T4_Q8] Lien émotionnel avant l'intimité ? [T4_Q9] Vulnérabilité ? [T4_Q10] Explorer en confiance ? [T4_Q11] Fantasmes en toute liberté (soumission, fétichisme, shibari...) ? [T4_Q12] Ce qui excite mais qu'on n'ose pas demander ? [T4_Q13] Spontanéité ou complicité ? [T4_Q14] Relation intime épanouissante ? [T4_Q15] Compliment qui touche ? 
-THÈME 5 (Ce qui compte pour moi) : [T5_Q1] 3 valeurs non négociables ? [T5_Q2] Si l'argent n'était pas un sujet ? [T5_Q3] Rapport à la réussite ? [T5_Q4] Sens de vos journées ? [T5_Q5] Injustice qui révolte ? [T5_Q6] Enfants ? Pourquoi ? [T5_Q7] Où dans 10 ans ? [T5_Q8] Définition de la liberté ? [T5_Q9] Personne qui a influencé vos valeurs ? [T5_Q10] Ce qu'on dira de vous à la fin ? 
-THÈME 6 (Ma famille) : [T6_Q1] Ambiance maison d'enfance ? [T6_Q2] Affection des parents ? [T6_Q3] Parent qui vous ressemble ? [T6_Q4] Conflits chez vous ? [T6_Q5] Devoir mériter l'amour ? [T6_Q6] Ne jamais reproduire ? [T6_Q7] Tradition à garder ? [T6_Q8] Parlait-on des émotions ? [T6_Q9] Rôle dans la famille ? [T6_Q10] Blessure d'enfance ? 
-THÈME 7 (Mes contradictions et mes péchés) : [T7_Q1] Vérité refusée ? [T7_Q2] Mensonge pour se protéger ? [T7_Q3] Défaut détesté chez les autres (que vous avez) ? [T7_Q4] Conseil donné mais non suivi ? [T7_Q5] Qualité qui cache un défaut ? [T7_Q6] Blessure volontaire ? [T7_Q7] Excuse répétée ? [T7_Q8] Fuite au lieu d'affronter ? [T7_Q9] Part de vous qui sabote ? [T7_Q10] Gâché par orgueil ? [T7_Q11] Plus grande hypocrisie ? [T7_Q12] Comportement jugé chez les autres mais autorisé pour soi ? [T7_Q13] Jalousie inavouable ? [T7_Q14] Dernier mensonge pour éviter un conflit ? 
-QUAND TU POSES LA DERNIÈRE QUESTION DU THÈME 7, tu dois ajouter ce code exact à la fin de ton message : [ACTION:DEFAUTS]. 
+THÈME 1 (Qui je suis) : [T1_Q1] Qualité à tort ? [T1_Q2] Rôle pour être aimé ? [T1_Q3] Version travail vs soir ? [T1_Q4] Ce qui met en colère ? [T1_Q5] Regret la nuit ? [T1_Q6] Le plus soi-même ? [T1_Q7] Jamais dit à voix haute ? [T1_Q8] Réaction critique ? [T1_Q9] Part à découvrir ? [T1_Q10] Défaut à effacer ?
+THÈME 2 (Comment j'aime) : [T2_Q1] Comment montrez-vous l'amour ? [T2_Q2] Comment savez-vous que vous aimez ? [T2_Q3] Peur de perdre ? [T2_Q4] Accrocher ou s'éloigner ? [T2_Q5] Ce qui tue le désir ? [T2_Q6] Jalousie ? [T2_Q7] Temps pour la confiance ? [T2_Q8] Disputes ? [T2_Q9] Blessure non refermée ? [T2_Q10] Vitesse de l'amour ?
+THÈME 3 (Avec les autres) : [T3_Q1] Appel à 3h ? [T3_Q2] Comportement avec quelqu'un détesté ? [T3_Q3] Prendre les devants ? [T3_Q4] Épuisement social ? [T3_Q5] Raconter ses problèmes ? [T3_Q6] Ami qui déçoit ? [T3_Q7] Amis sans filtre ? [T3_Q8] Menter par politesse ? [T3_Q9] Conflit de groupe ? [T3_Q10] Réussite des autres ?
+THÈME 4 (Mon corps et mon intimité - SOIS DOUCE) : [T4_Q1] Le plus désirable ? [T4_Q2] À l'aise avec quelqu'un de nouveau ? [T4_Q3] Place de la tendresse ? [T4_Q4] Parler de ses préférences ? [T4_Q5] Ce qui coupe l'envie ? [T4_Q6] Définition de la sensualité ? [T4_Q7] Sujet non osé ? [T4_Q8] Lien émotionnel avant l'intimité ? [T4_Q9] Vulnérabilité ? [T4_Q10] Explorer en confiance ? [T4_Q11] Fantasmes en toute liberté (soumission, fétichisme, shibari...) ? [T4_Q12] Ce qui excite mais qu'on n'ose pas demander ? [T4_Q13] Spontanéité ou complicité ? [T4_Q14] Relation intime épanouissante ? [T4_Q15] Compliment qui touche ?
+THÈME 5 (Ce qui compte pour moi) : [T5_Q1] 3 valeurs non négociables ? [T5_Q2] Si l'argent n'était pas un sujet ? [T5_Q3] Rapport à la réussite ? [T5_Q4] Sens de vos journées ? [T5_Q5] Injustice qui révolte ? [T5_Q6] Enfants ? Pourquoi ? [T5_Q7] Où dans 10 ans ? [T5_Q8] Définition de la liberté ? [T5_Q9] Personne qui a influencé vos valeurs ? [T5_Q10] Ce qu'on dira de vous à la fin ?
+THÈME 6 (Ma famille) : [T6_Q1] Ambiance maison d'enfance ? [T6_Q2] Affection des parents ? [T6_Q3] Parent qui vous ressemble ? [T6_Q4] Conflits chez vous ? [T6_Q5] Devoir mériter l'amour ? [T6_Q6] Ne jamais reproduire ? [T6_Q7] Tradition à garder ? [T6_Q8] Parlait-on des émotions ? [T6_Q9] Rôle dans la famille ? [T6_Q10] Blessure d'enfance ?
+THÈME 7 (Mes contradictions et mes péchés) : [T7_Q1] Vérité refusée ? [T7_Q2] Mensonge pour se protéger ? [T7_Q3] Défaut détesté chez les autres (que vous avez) ? [T7_Q4] Conseil donné mais non suivi ? [T7_Q5] Qualité qui cache un défaut ? [T7_Q6] Blessure volontaire ? [T7_Q7] Excuse répétée ? [T7_Q8] Fuite au lieu d'affronter ? [T7_Q9] Part de vous qui sabote ? [T7_Q10] Gâché par orgueil ? [T7_Q11] Plus grande hypocrisie ? [T7_Q12] Comportement jugé chez les autres mais autorisé pour soi ? [T7_Q13] Jalousie inavouable ? [T7_Q14] Dernier mensonge pour éviter un conflit ?
+QUAND TU POSES LA DERNIÈRE QUESTION DU THÈME 7, tu dois ajouter ce code exact à la fin de ton message : [ACTION:DEFAUTS].
 À la fin de CHAQUE message, ajoute le code du thème en cours : [THEME:Qui je suis], [THEME:Comment j'aime], [THEME:Comment je suis avec les autres], [THEME:Mon corps et mon intimité], [THEME:Ce qui compte pour moi], [THEME:Ma famille], ou [THEME:Mes contradictions et mes péchés].`;
 
 let historique = [];
 let compteurQuestions = 0;
 let nomUtilisateur = null;
+let currentTheme = "Thème 1";
 
 function ajouterBulle(texte, type) {
   const b = document.createElement('div');
@@ -62,8 +63,6 @@ function afficherImagePleinEcran(src) {
   setTimeout(function() {
     div.classList.remove('visible');
     ajouterImage(src);
-    // Les cartes ne s'affichent plus avec les images.
-    // On ne rappelle plus afficherCarte ici pour éviter les doublons
   }, 5000);
 }
 
@@ -120,7 +119,6 @@ const BANQUE_CARTES = {
 };
 
 let phrasesCartes = BANQUE_CARTES["Thème 1"];
-let currentTheme = "Thème 1";
 let indexCarte = 0;
 const carteSwipe = document.getElementById('carte-swipe');
 const carteTexte = document.getElementById('carte-texte');
@@ -189,7 +187,7 @@ function demanderNom() {
   const p1 = mots1[Math.floor(Math.random() * mots1.length)];
   const p2 = mots2[Math.floor(Math.random() * mots2.length)];
   const pseudo = p1 + '-' + p2;
-    ajouterBulle("Bonjour je m'appelle 3\n\n\"Sur une montre ce ne sont pas les aiguilles qui indiquent le temps qui passe mais l'usure du bracelet\"", 'lia');
+  ajouterBulle("Bonjour je m'appelle 3\n\n\"Sur une montre ce ne sont pas les aiguilles qui indiquent le temps qui passe mais l'usure du bracelet\"", 'lia');
   return new Promise(function(resolve) { resolve(pseudo); });
 }
 
@@ -202,8 +200,7 @@ async function envoyer() {
   historique.push({ role: 'user', content: texte });
   const bulleLia = ajouterBulle('', 'lia');
   bulleLia.innerHTML = '<span class="chiffre" style="animation-delay: 0s">3</span> <span class="chiffre" style="animation-delay: 0.2s">3</span> <span class="chiffre" style="animation-delay: 0.4s">3</span>';
-  
-  // Sas de sécurité pour attendre Puter
+
   let essais = 0;
   while (typeof puter === 'undefined' && essais < 50) {
     await new Promise(r => setTimeout(r, 100));
@@ -222,13 +219,14 @@ async function envoyer() {
     if (typeof reponse === 'object' && reponse.message) {
       t = reponse.message.content || reponse.message;
     }
-    // On force une attente de 1.5s si l'IA a répondu trop vite
     const elapsedTime = Date.now() - startTime;
     if (elapsedTime < 1500) {
       await new Promise(r => setTimeout(r, 1500 - elapsedTime));
     }
-    t = t.replace(/<think>[\s\S]*?<\/think>/g, '').trim();\n    t = t.replace(/\[T\d_Q\d+\]/g, '').trim(); // Supprime [T1_Q2] etc.
     
+    t = t.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+    t = t.replace(/\[T\d_Q\d+\]/g, '').trim();
+
     var THEME_MAP = {
       "Qui je suis": "Thème 1",
       "Comment j'aime": "Thème 2",
@@ -238,19 +236,23 @@ async function envoyer() {
       "Ma famille": "Thème 6",
       "Mes contradictions et mes péchés": "Thème 7"
     };
-    var themeActuel = "Thème 1";
+    
     var matchTheme = t.match(/\[THEME:(.*?)\]/);
     if (matchTheme) {
       document.getElementById('theme-courant').textContent = matchTheme[1].replace(/_/g, ' ').charAt(0).toUpperCase() + matchTheme[1].replace(/_/g, ' ').slice(1);
       t = t.replace(matchTheme[0], '').trim();
-      themeActuel = THEME_MAP[matchTheme[1]] || "Thème 1";
-      if (BANQUE_CARTES[themeActuel]) {
-        phrasesCartes = BANQUE_CARTES[themeActuel];
-        indexCarte = 0;
-        setTimeout(afficherCarte, 2000); // Affiche les nouvelles cartes
+      var nouveauTheme = THEME_MAP[matchTheme[1]] || "Thème 1";
+      
+      if (nouveauTheme !== currentTheme) {
+        currentTheme = nouveauTheme;
+        if (BANQUE_CARTES[currentTheme]) {
+          phrasesCartes = BANQUE_CARTES[currentTheme];
+          indexCarte = 0;
+          setTimeout(afficherCarte, 2000);
+        }
       }
     }
-    
+
     if (t.includes('[ACTION:DEFAUTS]')) {
       t = t.replace('[ACTION:DEFAUTS]', '').trim();
       setTimeout(ouvrirPanneauDefauts, 1000);
