@@ -157,6 +157,10 @@ function afficherImagePleinEcran(src) {
   setTimeout(function() {
     div.classList.remove('visible');
     ajouterImage(src);
+    // Si on est au début du thème (aucune carte swipée), on affiche les cartes
+    if (indexCarte === 0) {
+      setTimeout(afficherCarte, 1000);
+    }
   }, 5000);
 }
 
@@ -292,6 +296,16 @@ async function envoyer() {
   sendBtn.disabled = true;
   ajouterBulle(texte, 'user');
   historique.push({ role: 'user', content: texte });
+  
+  // On gère l'affichage de l'image AVANT que 3 ne réponde
+  var images = imagesThemes[currentTheme];
+  if (images && compteurQuestions > 0 && compteurQuestions % 3 === 0) {
+    var imgIndex = Math.floor(compteurQuestions / 3);
+    if (imgIndex < images.length) {
+      afficherImagePleinEcran(images[imgIndex]);
+    }
+  }
+
   const bulleLia = ajouterBulle('', 'lia');
   bulleLia.innerHTML = '<span class="chiffre" style="animation-delay: 0s">3</span> <span class="chiffre" style="animation-delay: 0.2s">3</span> <span class="chiffre" style="animation-delay: 0.4s">3</span>';
 
@@ -356,15 +370,6 @@ async function envoyer() {
     historique.push({ role: 'assistant', content: t });
 
     compteurQuestions++;
-    if (compteurQuestions % 3 === 0) {
-      var images = imagesThemes[currentTheme];
-      if (images) {
-        var imgIndex = Math.floor(compteurQuestions / 3);
-        if (imgIndex < images.length) {
-          setTimeout(function() { afficherImagePleinEcran(images[imgIndex]); }, 2000);
-        }
-      }
-    }
   } catch (e) {
     bulleLia.textContent = 'Erreur : ' + e.message;
   }
