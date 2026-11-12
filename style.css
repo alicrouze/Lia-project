@@ -76,3 +76,16 @@ html, body { height: 100%; width: 100%; overflow: hidden; font-family: -apple-sy
 #ecran-intro h2 { color: #d4a960; font-family: Baskerville, serif; margin-bottom: 20px; font-size: 26px; }
 #ecran-intro p { font-size: 16px; line-height: 1.6; margin-bottom: 15px; color: rgba(255,255,255,0.85); max-width: 500px; }
 .btn-commencer { margin-top: 30px; padding: 12px 30px; border-radius: 25px; background: linear-gradient(135deg, #6a7bff 0%, #5a6bef 100%); color: white; border: none; font-size: 16px; font-weight: bold; cursor: pointer; }
+
+/* Animation pour le texte de chargement de 3 */
+@keyframes clignotement {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+.bulle.clignote {
+  animation: clignotement 1s infinite;
+  font-family: Baskerville, serif;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: #d4a960;
+}

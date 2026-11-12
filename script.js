@@ -200,7 +200,8 @@ async function envoyer() {
   sendBtn.disabled = true;
   ajouterBulle(texte, 'user');
   historique.push({ role: 'user', content: texte });
-  const bulleLia = ajouterBulle('...', 'lia');
+  const bulleLia = ajouterBulle('333', 'lia');
+  bulleLia.classList.add('clignote');
   
   // Sas de sécurité pour attendre Puter
   let essais = 0;
@@ -209,6 +210,7 @@ async function envoyer() {
     essais++;
   }
   if (typeof puter === 'undefined') {
+    bulleLia.classList.remove('clignote');
     bulleLia.textContent = "Erreur : la bibliothèque 3 (Puter) n'a pas pu se charger. Vérifie ta connexion et recharge la page.";
     sendBtn.disabled = false;
     return;
@@ -248,6 +250,7 @@ async function envoyer() {
       t = t.replace('[ACTION:DEFAUTS]', '').trim();
       setTimeout(ouvrirPanneauDefauts, 1000);
     }
+    bulleLia.classList.remove('clignote');
     bulleLia.textContent = t;
     historique.push({ role: 'assistant', content: t });
 
@@ -262,6 +265,7 @@ async function envoyer() {
       }
     }
   } catch (e) {
+    bulleLia.classList.remove('clignote');
     bulleLia.textContent = 'Erreur : ' + e.message;
   }
   sendBtn.disabled = false;
