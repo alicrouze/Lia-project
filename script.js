@@ -13,14 +13,15 @@ const sendBtn = document.getElementById('send-btn');
 
 const LIA_PERSONA = `Tu es 3, un miroir bienveillant, direct et perspicace. Ton but est de trouver une âme sœur à la personne en face de toi en comprenant ses contradictions.
 INTERDICTIONS : Pas d'astérisques (*), pas de listes, pas de numéros. 
-RÈGLE ABSOLUE SUR LES BALISES : Tu ne dois JAMAIS afficher de balises comme [T1_Q1] ou [THEME:...] dans ton texte. Ce sont des codes internes pour l'interface.
-STYLE : Parle un français impeccable, soutenu mais naturel. Évite les banalités. Inspire-toi de la phrase : "Sur une montre, ce ne sont pas les aiguilles qui indiquent le temps qui passe, mais l'usure du bracelet". Cherche l'usure, les failles derrière les apparences. Sois poétique par la justesse de ton regard, pas par des grands mots. Formule TOUJOURS des questions complètes et polies, ne recopie jamais un style télégraphique.
+RÈGLE ABSOLUE SUR LES BALISES : Tu ne dois JAMAIS afficher de balises comme [T1_Q1] ou [THEME:...] dans ton texte.
+STYLE : Parle un français impeccable, soutenu mais naturel. Évite les banalités. Inspire-toi de la phrase : "Sur une montre, ce ne sont pas les aiguilles qui indiquent le temps qui passe, mais l'usure du bracelet". Cherche l'usure, les failles derrière les apparences. Formule TOUJOURS des questions complètes et polies.
+RÈGLE SUPPLÉMENTAIRE : Tu connais déjà le sexe de l'utilisateur et ce qu'il cherche (c'est dans ton historique). Ne lui pose JAMAIS cette question.
 
 RÈGLES STRICTES :
-1. Suis le questionnaire ci-dessous dans l'ordre.
-2. Ne pose qu'UNE SEULE question à la fois (reformulée avec tes mots).
-3. TU NE DOIS JAMAIS REPETER UNE QUESTION. Dès que l'utilisateur répond, même brièvement, tu DOIS passer à la question suivante. Ne pose qu'une seule relance maximum si la réponse est vide, sinon avance.
-4. Dès que tu as posé 3 questions d'un thème, change de thème et ajoute le code [THEME:LeNouveauThème] à la fin de ton message. N'oublie JAMAIS ce code.
+1. L'utilisateur vient de voir ton message d'accueil lui demandant s'il est prêt. S'il répond "oui" ou équivalent, commence directement par la question 1 du Thème 1.
+2. Ne pose qu'UNE SEULE question à la fois.
+3. TU NE DOIS JAMAIS REPETER UNE QUESTION. Dès que l'utilisateur répond, tu DOIS passer à la question suivante.
+4. Dès que tu as posé 3 questions d'un thème, change de thème et ajoute le code [THEME:LeNouveauThème] à la fin de ton message.
 
 QUESTIONS À POSER :
 THÈME 1 (Qui je suis) : 
@@ -117,8 +118,6 @@ THÈME 7 (Mes contradictions et mes péchés) :
 14. Quelle est la dernière fois où vous avez menti pour éviter un conflit ? 
 15. Lequel de ces "péchés" vous ressemble le plus : l'orgueil, l'envie, la gourmandise, la luxure, l'avarice, la colère ou la paresse ?
 
-RÈGLE SUPPLÉMENTAIRE : Tu connais déjà le sexe de l'utilisateur et ce qu'il cherche (c'est dans ton historique). Ne lui pose JAMAIS cette question.
-
 RÈGLES DE FIN DE MESSAGE : 
 1. Si tu poses la dernière question du Thème 7, ajoute [ACTION:DEFAUTS].
 2. À la fin de CHAQUE message, tu dois ajouter le thème en cours (ex: [THEME:Qui je suis]).
@@ -149,7 +148,6 @@ function ajouterImage(src) {
 
 function afficherImagePleinEcran(src) {
   return new Promise(function(resolve) {
-    // Ferme le clavier s'il est ouvert
     if (document.activeElement) { document.activeElement.blur(); }
     var div = document.getElementById('image-plein-ecran');
     if (!div) {
@@ -165,7 +163,7 @@ function afficherImagePleinEcran(src) {
       if (indexCarte === 0) {
         setTimeout(afficherCarte, 1000);
       }
-      resolve(); // On signale que l'image a fini de s'afficher
+      resolve();
     }, 5000);
   });
 }
@@ -291,7 +289,6 @@ function demanderNom() {
   const p1 = mots1[Math.floor(Math.random() * mots1.length)];
   const p2 = mots2[Math.floor(Math.random() * mots2.length)];
   const pseudo = p1 + '-' + p2;
-  ajouterBulle("Bonjour je m'appelle 3\n\n\"Sur une montre ce ne sont pas les aiguilles qui indiquent le temps qui passe mais l'usure du bracelet\"", 'lia');
   return new Promise(function(resolve) { resolve(pseudo); });
 }
 
@@ -303,7 +300,6 @@ async function envoyer() {
   ajouterBulle(texte, 'user');
   historique.push({ role: 'user', content: texte });
   
-  // On gère l'affichage de l'image AVANT que 3 ne réponde
   var images = imagesThemes[currentTheme];
   if (images && compteurQuestions > 0 && compteurQuestions % 3 === 0) {
     var imgIndex = Math.floor(compteurQuestions / 3);
@@ -321,7 +317,7 @@ async function envoyer() {
     essais++;
   }
   if (typeof puter === 'undefined') {
-    bulleLia.textContent = "Erreur : la bibliothèque 3 (Puter) n'a pas pu se charger. Vérifie ta connexion et recharge la page.";
+    bulleLia.textContent = "Erreur : la bibliothèque 3 (Puter) n'a pas pu se charger.";
     sendBtn.disabled = false;
     return;
   }
@@ -385,20 +381,29 @@ async function envoyer() {
 
 async function demarrer() {
   nomUtilisateur = await demanderNom();
-  var sexeUser = document.getElementById('sexe-user').value;
-  var sexeCherche = document.getElementById('sexe-cherche').value;
+  
+  var sexeUser = document.getElementById('sexe-user') ? document.getElementById('sexe-user').value : "Non précisé";
+  var sexeCherche = document.getElementById('sexe-cherche') ? document.getElementById('sexe-cherche').value : "Non précisé";
+  
   historique = [
     { role: 'system', content: LIA_PERSONA },
     { role: 'system', content: "L'utilisateur est anonyme. L'utilisateur est " + sexeUser + " et cherche " + sexeCherche + ". Prends-en note pour le futur match." }
   ];
-  await new Promise(r => setTimeout(r, 8000));
+  
+  await new Promise(r => setTimeout(r, 3000));
   await afficherImagePleinEcran(imagesThemes["Thème 1"][0]);
-  setTimeout(afficherCarte, 6000); // Affiche les cartes après la première image
+  
   input.placeholder = 'Écris-moi quelque chose...';
   sendBtn.addEventListener('click', envoyer);
   input.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') envoyer();
   });
+
+  // Message d'accueil statique (fiable et instantané)
+  ajouterBulle("Bonjour, je suis 3.\n\n\"Sur une montre, ce ne sont pas les aiguilles qui indiquent le temps qui passe, mais l'usure du bracelet.\"\n\nEs-tu prêt(e) à commencer ?", 'lia');
+  
+  // On prévient l'IA en arrière-plan que l'utilisateur a vu l'accueil
+  historique.push({ role: 'assistant', content: "Bonjour, je suis 3. Es-tu prêt(e) à commencer ?" });
 }
 
 document.getElementById('accueil').addEventListener('click', function() {
@@ -425,10 +430,10 @@ document.addEventListener('click', function() {
 
 function ouvrirPanneau(cle) {
   var textes = {
-    miroir: "<p>Voici le reflet de ce que vous m'avez confié. 3 ne juge pas. 3 garde une trace de vos vérités pour construire votre compatibilité.</p><p><strong>Vos défauts assumés :</strong> En cours d'exploration...</p><p><strong>Vos contradictions :</strong> En cours d'exploration...</p><p><strong>Vos désirs profonds :</strong> En cours d'exploration...</p>",
-    cle: "<p>Vous êtes ici en sécurité. 3 ne connaît ni votre nom, ni votre visage, ni votre adresse. Votre identité n'appartient qu'à vous.</p><p><strong>Votre Clé d'Anonymat :</strong> [PSEUDO]</p><p><strong>Votre Code de récupération :</strong> (À venir)</p><p class='mention'>Conservez cette clé précieusement. Si vous perdez votre téléphone, c'est le seul moyen de retrouver votre compte.</p>",
-    apropos: "<p>3 n'est pas un assistant. 3 n'est pas un site de rencontre classique. 3 est un miroir.</p><p><strong>Les 3 promesses :</strong></p><p>1. Pas de photos, pas de profils. On écoute une âme.</p><p>2. L'acceptation des défauts. La compatibilité se joue sur votre capacité à comprendre les failles de l'autre.</p><p>3. L'intimité assumée. Le désir et les fantasmes sont le ciment d'une relation vraie.</p><p><strong>La règle des 3 jours :</strong> Pendant 3 jours, 3 apprend à vous connaître. À la fin, elle vous proposera une seule personne. Pour découvrir qui c'est, une participation financière vous sera demandée (via un code ou un paiement sécurisé). C'est le prix de la vérité et de l'anonymat.</p>",
-    match: "<p>Votre rencontre se prépare. Ce menu s'activera à la fin de votre parcours avec 3.</p><h3>Le prix de la vérité : 9,99 €</h3><p>Pourquoi ce prix ? Parce que 3 ne vous propose pas un catalogue infini. Elle vous propose une seule personne, sélectionnée sur la base de vos failles, de vos désirs et de vos contradictions. C'est le prix d'une rencontre qui a du sens.</p><p><strong>Comment payer ?</strong></p><p>1. Par carte bancaire (paiement sécurisé et anonyme). L'application ne conserve aucune donnée liée à votre identité.</p><p>2. Par code d'activation (si vous préférez un anonymat total). Achetez un code de 9,99 € sur notre site partenaire et entrez-le ici.</p><p class='mention'>C'est le prix de la vérité et de l'anonymat.</p>"
+    miroir: "<p>Voici le reflet de ce que vous m'avez confié. 3 ne juge pas.</p>",
+    cle: "<p>Vous êtes ici en sécurité. 3 ne connaît ni votre nom, ni votre visage, ni votre adresse.</p>",
+    apropos: "<p>3 n'est pas un assistant. 3 est un miroir.</p>",
+    match: "<p>Votre rencontre se prépare. Ce menu s'activera à la fin de votre parcours avec 3.</p>"
   };
   var titres = { miroir: "Mon Miroir", cle: "Ma Clé", apropos: "À propos de 3", match: "Débloquer mon Match" };
   var txt = textes[cle];
