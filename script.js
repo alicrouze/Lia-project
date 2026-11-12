@@ -127,7 +127,8 @@ let historique = [];
 let compteurQuestions = 0;
 let nomUtilisateur = null;
 let currentTheme = "Thème 1";
-let accueilAffiche = false;
+let cartesFaites = false;
+let resolveCartes = null;
 
 function ajouterBulle(texte, type) {
   const b = document.createElement('div');
@@ -161,9 +162,6 @@ function afficherImagePleinEcran(src) {
     setTimeout(function() {
       div.classList.remove('visible');
       ajouterImage(src);
-      if (indexCarte === 0) {
-        setTimeout(afficherCarte, 1000);
-      }
       resolve();
     }, 5000);
   });
@@ -243,14 +241,20 @@ function swipeCarte(reponse) {
   carteSwipe.classList.add("cachee");
   setTimeout(afficherCarte, 400);
   
-  // Si c'était la dernière carte, on affiche le message d'accueil de 3
-  if (indexCarte >= phrasesCartes.length && !accueilAffiche) {
-    accueilAffiche = true;
-    setTimeout(function() {
-      ajouterBulle("Bonjour, je suis 3.\n\n\"Sur une montre, ce ne sont pas les aiguilles qui indiquent le temps qui passe, mais l'usure du bracelet.\"\n\nEs-tu prêt(e) à commencer ?", 'lia');
-      historique.push({ role: 'assistant', content: "Bonjour, je suis 3. Es-tu prêt(e) à commencer ?" });
-    }, 1000);
+  // Si c'était la dernière carte, on débloque la conversation
+  if (indexCarte >= phrasesCartes.length && !cartesFaites) {
+    cartesFaites = true;
+    if (resolveCartes) resolveCartes(); // On signale qu'on a fini de swiper
   }
+}
+
+function afficherCartes() {
+  return new Promise(function(resolve) {
+    resolveCartes = resolve;
+    indexCarte = 0;
+    phrasesCartes = BANQUE_CARTES[currentTheme];
+    afficherCarte();
+  });
 }
 
 var startY = 0;
@@ -310,6 +314,11 @@ async function envoyer() {
   ajouterBulle(texte, 'user');
   historique.push({ role: 'user', content: texte });
   
+  // Si c'est le premier message de l'utilisateur, on affiche les cartes et on attend qu'il ait fini
+  if (!cartesFaites) {
+    await afficherCartes();
+  }
+
   var images = imagesThemes[currentTheme];
   if (images && compteurQuestions > 0 && compteurQuestions % 3 === 0) {
     var imgIndex = Math.floor(compteurQuestions / 3);
