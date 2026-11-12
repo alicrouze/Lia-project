@@ -427,7 +427,6 @@ document.getElementById('accueil').addEventListener('click', function() {
 });
 
 async function demarrerApp() {
-  // On ne force plus Puter à se connecter ici pour éviter qu'il ne zappe l'écran d'intro
   document.getElementById('ecran-intro').classList.remove('visible');
   document.getElementById('chat').classList.add('visible');
   setTimeout(demarrer, 1000);
