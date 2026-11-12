@@ -320,6 +320,7 @@ async function envoyer() {
     
     t = t.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
     t = t.replace(/\[T\d_Q\d+\]/g, '').trim();
+    t = t.replace(/\[Q:.*?\]/g, '').trim();
 
     var THEME_MAP = {
       "Qui je suis": "Thème 1",
