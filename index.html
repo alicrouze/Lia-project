@@ -11,10 +11,18 @@
 
 <div id="accueil"><div id="halo-flamme"></div><div id="etoile-filante"></div></div>
 
+<div id="ecran-intro">
+  <h2>Avant d'entrer</h2>
+  <p>3 n'est pas un site de rencontre classique. Pas de photos, pas de profils à swiper. Juste une conversation.</p>
+  <p><strong>Votre anonymat est total.</strong> Nous ne demandons ni nom, ni email. Vos réponses sont chiffrées et ne seront jamais partagées. Seule la personne que 3 vous proposera saura que vous existez.</p>
+  <p>Pendant 3 jours, 3 va apprendre à vous connaître en profondeur. À la fin, elle vous proposera <strong>une seule personne</strong>.</p>
+  <button class="btn-commencer" onclick="demarrerApp()">Commencer</button>
+</div>
+
 <div id="chat">
   <div id="zone-logo" style="position: absolute; top: 18vh; left: 6vw; width: 15vw; height: 15vw; cursor: pointer; z-index: 999;"></div>
   <span class="theme" id="theme-courant"></span>
-  
+
   <div id="menu-deroulant">
     <a href="#" onclick="ouvrirPanneau('miroir')">Mon Miroir</a>
     <a href="#" onclick="ouvrirPanneau('cle')">Ma Clé</a>
@@ -27,9 +35,9 @@
     <input type="text" id="user-input" placeholder="Écris-moi quelque chose..." autocomplete="off">
     <button id="send-btn">→</button>
   </div>
-  
+
   <div id="bulles"></div>
-  
+
   <div id="carte-swipe" class="cachee">
     <div id="carte-texte" style="pointer-events: none;"></div>
     <div id="carte-touch" style="position: absolute; inset: 0; z-index: 10; touch-action: none;"></div>
@@ -40,19 +48,6 @@
 <div id="image-plein-ecran"></div>
 
 <div id="panneau"><div id="panneau-contenu"></div><div id="fermer-panneau" onclick="document.getElementById('panneau').classList.remove('visible')">✕</div></div>
-
-
-<div id="ecran-intro">
-  <h2>Avant d'entrer</h2>
-  <p>3 n'est pas un site de rencontre classique. Pas de photos, pas de profils à swiper. Juste une conversation.</p>
-  <p><strong>Votre anonymat est total.</strong> Nous ne demandons ni nom, ni email. Vos réponses sont chiffrées et ne seront jamais partagées. Seule la personne que 3 vous proposera saura que vous existez.</p>
-  <p>Pendant 3 jours, 3 va apprendre à vous connaître en profondeur. À la fin, elle vous proposera <strong>une seule personne</strong>.</p>
-  <button class="btn-commencer" onclick="demarrerApp()">Commencer</button>
-</div>
-
-<script src="script.js"></script>
-</body>
-</html>
 
 <div id="panneau-defauts" class="cachee">
   <div class="contenu-defauts">
@@ -67,5 +62,6 @@
   </div>
 </div>
 
+<script src="script.js"></script>
 </body>
 </html>
