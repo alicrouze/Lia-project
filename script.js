@@ -380,6 +380,7 @@ async function demarrer() {
   ];
   await new Promise(r => setTimeout(r, 8000));
   afficherImagePleinEcran(imagesThemes["Thème 1"][0]);
+  setTimeout(afficherCarte, 6000); // Affiche les cartes après la première image
   input.placeholder = 'Écris-moi quelque chose...';
   sendBtn.addEventListener('click', envoyer);
   input.addEventListener('keypress', function(e) {
