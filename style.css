@@ -82,10 +82,17 @@ html, body { height: 100%; width: 100%; overflow: hidden; font-family: -apple-sy
   0%, 100% { opacity: 1; }
   50% { opacity: 0.2; }
 }
-.bulle.clignote {
-  animation: clignotement 1s infinite;
+
+
+.bulle .chiffre {
+  animation: apparition 1.2s infinite;
   font-family: Baskerville, serif;
   font-weight: bold;
-  letter-spacing: 3px;
+  font-size: 20px;
   color: #d4a960;
+  opacity: 0;
+}
+@keyframes apparition {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
 }
