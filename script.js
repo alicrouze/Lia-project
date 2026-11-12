@@ -117,6 +117,8 @@ THÈME 7 (Mes contradictions et mes péchés) :
 14. Quelle est la dernière fois où vous avez menti pour éviter un conflit ? 
 15. Lequel de ces "péchés" vous ressemble le plus : l'orgueil, l'envie, la gourmandise, la luxure, l'avarice, la colère ou la paresse ?
 
+RÈGLE SUPPLÉMENTAIRE : Tu connais déjà le sexe de l'utilisateur et ce qu'il cherche (c'est dans ton historique). Ne lui pose JAMAIS cette question.
+
 RÈGLES DE FIN DE MESSAGE : 
 1. Si tu poses la dernière question du Thème 7, ajoute [ACTION:DEFAUTS].
 2. À la fin de CHAQUE message, tu dois ajouter le thème en cours (ex: [THEME:Qui je suis]).
@@ -383,9 +385,11 @@ async function envoyer() {
 
 async function demarrer() {
   nomUtilisateur = await demanderNom();
+  var sexeUser = document.getElementById('sexe-user').value;
+  var sexeCherche = document.getElementById('sexe-cherche').value;
   historique = [
     { role: 'system', content: LIA_PERSONA },
-    { role: 'system', content: "L'utilisateur est anonyme." }
+    { role: 'system', content: "L'utilisateur est anonyme. L'utilisateur est " + sexeUser + " et cherche " + sexeCherche + ". Prends-en note pour le futur match." }
   ];
   await new Promise(r => setTimeout(r, 8000));
   await afficherImagePleinEcran(imagesThemes["Thème 1"][0]);
