@@ -147,6 +147,8 @@ function ajouterImage(src) {
 
 function afficherImagePleinEcran(src) {
   return new Promise(function(resolve) {
+    // Ferme le clavier s'il est ouvert
+    if (document.activeElement) { document.activeElement.blur(); }
     var div = document.getElementById('image-plein-ecran');
     if (!div) {
       div = document.createElement('div');
