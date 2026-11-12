@@ -62,7 +62,7 @@ function afficherImagePleinEcran(src) {
   setTimeout(function() {
     div.classList.remove('visible');
     ajouterImage(src);
-    setTimeout(afficherCarte, 2000); // Affiche les cartes après l'image
+    // Les cartes ne s'affichent plus avec les images.
     // On ne rappelle plus afficherCarte ici pour éviter les doublons
   }, 5000);
 }
@@ -216,11 +216,17 @@ async function envoyer() {
     return;
   }
 
+  const startTime = Date.now();
   try {
     const reponse = await puter.ai.chat(historique, { model: 'gpt-4o-mini' });
     let t = reponse;
     if (typeof reponse === 'object' && reponse.message) {
       t = reponse.message.content || reponse.message;
+    }
+    // On force une attente de 1.5s si l'IA a répondu trop vite
+    const elapsedTime = Date.now() - startTime;
+    if (elapsedTime < 1500) {
+      await new Promise(r => setTimeout(r, 1500 - elapsedTime));
     }
     t = t.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
     
