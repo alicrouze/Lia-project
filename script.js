@@ -227,7 +227,7 @@ async function envoyer() {
     if (elapsedTime < 1500) {
       await new Promise(r => setTimeout(r, 1500 - elapsedTime));
     }
-    t = t.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+    t = t.replace(/<think>[\s\S]*?<\/think>/g, '').trim();\n    t = t.replace(/\[T\d_Q\d+\]/g, '').trim(); // Supprime [T1_Q2] etc.
     
     var THEME_MAP = {
       "Qui je suis": "Thème 1",

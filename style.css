@@ -18,7 +18,7 @@ html, body { height: 100%; width: 100%; overflow: hidden; font-family: -apple-sy
 
 #bulles { position: absolute; top: 33%; left: 0; right: 0; bottom: 0; display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; align-items: flex-start; padding-top: 20px; }
 #bulles::-webkit-scrollbar { display: none; }
-.bulle { min-width: 85vw; width: 85vw; margin: 0 7.5vw; scroll-snap-align: center; flex-shrink: 0; padding: 20px 24px; background: rgba(255, 255, 255, 0.10); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.20); border-radius: 24px; color: #fff; font-size: 16px; line-height: 1.45; display: block; max-height: 60%; overflow-y: auto; }
+.bulle { white-space: pre-wrap; min-width: 85vw; width: 85vw; margin: 0 7.5vw; scroll-snap-align: center; flex-shrink: 0; padding: 20px 24px; background: rgba(255, 255, 255, 0.10); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.20); border-radius: 24px; color: #fff; font-size: 16px; line-height: 1.45; display: block; max-height: 60%; overflow-y: auto; }
 .bulle.user { background: rgba(100, 130, 200, 0.25); }
 .bulle.image { display: flex; align-items: center; justify-content: center; padding: 10px; }
 .bulle.image img { max-width: 100%; max-height: 250px; border-radius: 16px; object-fit: cover; }
