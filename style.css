@@ -4,19 +4,30 @@ html, body { height: 100%; width: 100%; overflow: hidden; position: fixed; font-
 #accueil { position: fixed; inset: 0; background: url(images/ecran-accueil.jpg) center/cover no-repeat; z-index: 9999; transition: opacity 2s ease; cursor: pointer; }
 #accueil.hidden { opacity: 0; pointer-events: none; }
 
+#ecran-intro {
+  position: fixed; inset: 0; background: rgba(10, 15, 30, 0.95); backdrop-filter: blur(20px);
+  z-index: 9998; display: flex; flex-direction: column; justify-content: flex-start; align-items: center;
+  padding: 30px 15px 20px 15px; color: #fff; text-align: center; opacity: 0; pointer-events: none; transition: opacity 1s ease;
+  overflow-y: auto; height: 100dvh;
+}
+#ecran-intro.visible { opacity: 1; pointer-events: auto; }
+#ecran-intro h2 { color: #d4a960; font-family: Baskerville, serif; margin-bottom: 15px; font-size: 22px; }
+#ecran-intro p { font-size: 13px; line-height: 1.4; margin-bottom: 10px; color: rgba(255,255,255,0.85); max-width: 95%; }
+.btn-commencer { margin-top: 15px; padding: 10px 25px; border-radius: 25px; background: linear-gradient(135deg, #6a7bff 0%, #5a6bef 100%); color: white; border: none; font-size: 15px; font-weight: bold; cursor: pointer; flex-shrink: 0; }
+
 #chat { position: fixed; inset: 0; height: 100dvh; background: url(images/chat.jpg) center/cover no-repeat; opacity: 0; transition: opacity 2s ease; }
 #chat.visible { opacity: 1; }
 
 .theme { position: absolute; top: 160px; right: 8%; font-family: Baskerville, "Times New Roman", serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.8); text-align: right; max-width: 35vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; z-index: 50; }
 
-#input-zone { position: absolute; top: 25%; left: 50%; transform: translateX(-50%); width: 85vw; height: 56px; display: flex; align-items: center; background: rgba(40, 50, 80, 0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 28px; padding: 0 6px 0 16px; gap: 8px; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+#input-zone { position: absolute; top: 25vh; left: 50%; transform: translateX(-50%); width: 85vw; height: 56px; display: flex; align-items: center; background: rgba(40, 50, 80, 0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 28px; padding: 0 6px 0 16px; gap: 8px; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
 #plus-btn { width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.4); background: transparent; color: rgba(255,255,255,0.7); font-size: 20px; flex-shrink: 0; }
 #user-input { flex: 1; height: 44px; margin-right: 50px; border: none; background: transparent; color: #fff; font-size: 15px; outline: none; padding: 0 8px; }
 #user-input::placeholder { color: rgba(255, 255, 255, 0.45); }
 #send-btn { position: absolute; right: 6px; width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #6a7bff 0%, #5a6bef 100%); color: #fff; border: none; font-size: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
 #send-btn:disabled { opacity: 0.5; }
 
-#bulles { position: absolute; top: 33%; left: 0; right: 0; bottom: 0; display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; align-items: flex-start; padding-top: 20px; }
+#bulles { position: absolute; top: 33vh; left: 0; right: 0; bottom: 0; display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; align-items: flex-start; padding-top: 20px; }
 #bulles::-webkit-scrollbar { display: none; }
 .bulle { white-space: pre-wrap; min-width: 85vw; width: 85vw; margin: 0 7.5vw; scroll-snap-align: center; flex-shrink: 0; padding: 20px 24px; background: rgba(255, 255, 255, 0.10); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.20); border-radius: 24px; color: #fff; font-size: 16px; line-height: 1.45; display: block; max-height: 60%; overflow-y: auto; }
 .bulle.user { background: rgba(100, 130, 200, 0.25); }
@@ -63,16 +74,6 @@ html, body { height: 100%; width: 100%; overflow: hidden; position: fixed; font-
 .defaut-item.selectionne { opacity: 0.3; pointer-events: none; }
 #valider-defauts { background: #d4a960; color: #000; border: none; padding: 12px; border-radius: 10px; font-weight: bold; font-size: 15px; cursor: pointer; margin-top: 10px; }
 #valider-defauts:disabled { opacity: 0.5; }
-
-#ecran-intro {
-  position: fixed; inset: 0; background: rgba(10, 15, 30, 0.95); backdrop-filter: blur(20px);
-  z-index: 9998; display: flex; flex-direction: column; justify-content: center; align-items: center;
-  padding: 30px; color: #fff; text-align: center; opacity: 0; pointer-events: none; transition: opacity 1s ease;
-}
-#ecran-intro.visible { opacity: 1; pointer-events: auto; }
-#ecran-intro h2 { color: #d4a960; font-family: Baskerville, serif; margin-bottom: 20px; font-size: 26px; }
-#ecran-intro p { font-size: 16px; line-height: 1.6; margin-bottom: 15px; color: rgba(255,255,255,0.85); max-width: 500px; }
-.btn-commencer { margin-top: 30px; padding: 12px 30px; border-radius: 25px; background: linear-gradient(135deg, #6a7bff 0%, #5a6bef 100%); color: white; border: none; font-size: 16px; font-weight: bold; cursor: pointer; }
 
 .bulle .chiffre {
   animation: apparition 1.2s infinite;
