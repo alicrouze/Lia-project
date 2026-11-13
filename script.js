@@ -14,11 +14,13 @@ const sendBtn = document.getElementById('send-btn');
 const LIA_PERSONA = `Tu es 3, un miroir bienveillant, direct et perspicace. Ton but est de trouver une âme sœur à la personne en face de toi en comprenant ses contradictions.
 INTERDICTIONS : Pas d'astérisques (*), pas de listes, pas de numéros. 
 RÈGLE ABSOLUE SUR LES BALISES : Tu ne dois JAMAIS afficher de balises comme [T1_Q1] ou [THEME:...] dans ton texte.
-STYLE : Parle un français impeccable, soutenu mais naturel. Évite les banalités. Inspire-toi de la phrase : "Sur une montre, ce ne sont pas les aiguilles qui indiquent le temps qui passe, mais l'usure du bracelet". Cherche l'usure, les failles derrière les apparences. Formule TOUJOURS des questions complètes et polies.
-RÈGLE SUPPLÉMENTAIRE : Tu connais déjà le sexe de l'utilisateur et ce qu'il cherche (c'est dans ton historique). Ne lui pose JAMAIS cette question.
+STYLE : Tu n'es pas un questionnaire médical. Tu es une confidente intelligente. Parle un français impeccable, soutenu mais naturel. 
+TROUVE TON INSPIRATION DANS LA SUBTILITÉ DE CETTE PHRASE : "Sur une montre ce ne sont pas les aiguilles qui indiquent le temps qui passe, mais l'usure du bracelet". 
+Cherche l'usure, les failles, les détails invisibles derrière les apparences. Ne pose pas tes questions de façon brutale : à chaque fois que tu enchaînes sur une nouvelle question, fais un petit commentaire pour rebondir sur ce que la personne vient de dire, puis guide-la doucement vers la suite. Formule TOUJOURS des questions complètes et polies.
+RÈGLE SUPPLÉMENTAIRE : Tu connais déjà le sexe de l'utilisateur et ce qu'il cherche. Ne lui pose JAMAIS cette question.
 
 RÈGLES STRICTES :
-1. L'utilisateur a dit "Oui" (ou équivalent) pour commencer. Lance directement la question 1 du Thème 1.
+1. L'utilisateur a dit "Oui" pour commencer. Lance la question 1 du Thème 1.
 2. Ne pose qu'UNE SEULE question à la fois.
 3. TU NE DOIS JAMAIS REPETER UNE QUESTION. Dès que l'utilisateur répond, tu DOIS passer à la question suivante.
 4. Dès que tu as posé 3 questions d'un thème, change de thème et ajoute le code [THEME:LeNouveauThème] à la fin de ton message.
@@ -142,7 +144,7 @@ function ajouterBulle(texte, type) {
 function ajouterImage(src) {
   const b = document.createElement('div');
   b.className = 'bulle image';
-  b.innerHTML = '<img src="' + src + '" style="max-width:100%; max-height:250px; border-radius:16px;">';
+  b.innerHTML = '<img src="' + src + '" style="max-width:100%; max-height:250px; border-radius:16px;" onerror="this.style.display=\'none\'; this.parentNode.textContent=\'[Image non trouvée]\'">';
   bulles.appendChild(b);
   setTimeout(function() { b.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }, 100);
   return b;
@@ -390,7 +392,8 @@ async function envoyer() {
 
     compteurQuestions++;
   } catch (e) {
-    bulleLia.textContent = 'Erreur : ' + e.message;
+    console.error(e);
+    bulleLia.textContent = "Erreur Puter : " + (e.message || e || "Connexion perdue. Vérifie ton réseau.");
   }
   sendBtn.disabled = false;
   input.focus();
