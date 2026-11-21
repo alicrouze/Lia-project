@@ -59,10 +59,17 @@
 
   <div id="bulles"></div>
 
+  <!-- LA CARTE MODIFIÉE AVEC LES 5 BOUTONS -->
   <div id="carte-swipe" class="cachee">
     <div id="carte-texte" style="pointer-events: none;"></div>
-    <div id="carte-touch" style="position: absolute; inset: 0; z-index: 10; touch-action: none;"></div>
-    <div id="carte-aide" style="font-size: 11px; color: rgba(255,255,255,0.4); text-align: center; margin-top: 10px;">Glissez vers le haut pour Oui, vers le bas pour Non</div>
+    <div id="boutons-note">
+      <button class="btn-note" onclick="swipeCarte(1)">1</button>
+      <button class="btn-note" onclick="swipeCarte(2)">2</button>
+      <button class="btn-note" onclick="swipeCarte(3)">3</button>
+      <button class="btn-note" onclick="swipeCarte(4)">4</button>
+      <button class="btn-note" onclick="swipeCarte(5)">5</button>
+    </div>
+    <div id="carte-aide" style="font-size: 11px; color: rgba(255,255,255,0.4); text-align: center; margin-top: 5px;">1 = Pas du tout, 5 = Tout à fait</div>
   </div>
 </div>
 
