@@ -131,6 +131,7 @@ let nomUtilisateur = null;
 let currentTheme = "Thème 1";
 let cartesFaites = false;
 let resolveCartes = null;
+let animationEnCours = false; 
 
 function ajouterBulle(texte, type) {
   const b = document.createElement('div');
@@ -238,10 +239,12 @@ function afficherCarte() {
   carteTitre.textContent = carte.titre;
   carteTexte.textContent = carte.texte;
   
+  // On remet la transition lente pour les prochaines montées/descentes
+  carteSwipe.style.transition = "opacity 2s cubic-bezier(0.25, 1, 0.5, 1), transform 2s cubic-bezier(0.25, 1, 0.5, 1), background 0.5s ease";
   carteSwipe.style.transform = "translate(-50%, -50%)";
   carteSwipe.style.opacity = "1";
   carteSwipe.style.background = "rgba(15, 23, 42, 0.95)";
-  
+
   var divNote = document.getElementById('boutons-note');
   var divPeches = document.getElementById('boutons-peches');
   var divAide = document.getElementById('carte-aide');
@@ -256,6 +259,7 @@ function afficherCarte() {
     divAide.textContent = "1 = Pas du tout, 5 = Tout à fait";
   }
   
+  animationEnCours = false; 
   carteSwipe.classList.remove("cachee");
 }
 
@@ -269,34 +273,36 @@ function afficherCartes() {
 }
 
 function swipeCarte(note) {
-  if (indexCarte >= phrasesCartes.length) return;
+  if (indexCarte >= phrasesCartes.length || animationEnCours) return;
+  animationEnCours = true; 
 
   if (note >= 4) {
     carteSwipe.style.background = "rgba(80, 255, 120, 0.4)";
     carteSwipe.style.transform = "translate(-50%, -130%)";
     carteSwipe.style.opacity = "0";
-    // 2000 ms d'attente pour la montée lente
     setTimeout(passerCarteSuivante, 2000);
   } else if (note <= 2) {
     carteSwipe.style.background = "rgba(255, 80, 80, 0.4)";
     carteSwipe.style.transform = "translate(-50%, 130%)";
     carteSwipe.style.opacity = "0";
-    // 2000 ms d'attente pour la descente lente
     setTimeout(passerCarteSuivante, 2000);
   } else {
-    // Note 3 : le centre ne bouge pas, on garde 800ms
-    carteSwipe.style.background = "rgba(255, 165, 0, 0.6)";
-    setTimeout(function() {
-      passerCarteSuivante();
-    }, 800);
+    // CORRECTION ICI : Orange transparent et transition RAPIDE
+    carteSwipe.style.transition = "all 0.4s ease"; 
+    carteSwipe.style.background = "rgba(255, 165, 0, 0.4)"; // Opacité réduite à 0.4
+    carteSwipe.style.opacity = "0";
+    setTimeout(passerCarteSuivante, 400);
   }
 }
 
 function choisirPeche(peche) {
+  if (animationEnCours) return;
+  animationEnCours = true;
+  carteSwipe.style.transition = "all 0.4s ease";
   carteSwipe.style.background = "rgba(212, 169, 96, 0.5)";
   carteSwipe.style.transform = "scale(1.05)";
   carteSwipe.style.opacity = "0";
-  setTimeout(passerCarteSuivante, 600);
+  setTimeout(passerCarteSuivante, 400);
 }
 
 function passerCarteSuivante() {
