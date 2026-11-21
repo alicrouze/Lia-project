@@ -286,10 +286,14 @@ function swipeCarte(note) {
     carteSwipe.style.opacity = "0";
     setTimeout(passerCarteSuivante, 2000);
   } else {
-    carteSwipe.style.transition = "all 0.4s ease"; 
+    // CORRECTION ICI : L'orange s'affiche, la carte reste au centre, puis disparaît
+    carteSwipe.style.transition = "background 0.4s ease"; 
     carteSwipe.style.background = "rgba(255, 165, 0, 0.4)";
-    carteSwipe.style.opacity = "0";
-    setTimeout(passerCarteSuivante, 400);
+    setTimeout(function() {
+      carteSwipe.style.transition = "opacity 0.4s ease"; 
+      carteSwipe.style.opacity = "0";
+      setTimeout(passerCarteSuivante, 400);
+    }, 800); // L'orange reste visible pendant 800ms
   }
 }
 
