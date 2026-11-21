@@ -169,55 +169,53 @@ function afficherImagePleinEcran(src) {
   });
 }
 
+// NOUVELLE BANQUE DE CARTES (40 questions Jungiennes)
 const BANQUE_CARTES = {
   "Thème 1": [
-    { texte: "Je prefere avoir raison plutot que d etre heureux.", type: "defaut" },
-    { texte: "Je montre une version de moi qui n est pas totalement vraie.", type: "defaut" },
-    { texte: "J ai peur du jugement des autres.", type: "defaut" },
-    { texte: "Je fuis quand on s approche trop de moi.", type: "defaut" },
-    { texte: "Je remets a demain ce qui pourrait me faire avancer aujourd hui.", type: "defaut" }
-  ],
-  "Thème 2": [
-    { texte: "Je deviens possessif(ve) quand j ai peur de perdre l autre.", type: "defaut" },
-    { texte: "Je fuis quand on s approche trop de moi.", type: "defaut" },
-    { texte: "Je peux etre jaloux(se) maladif(ve).", type: "defaut" },
-    { texte: "Je suis incapable de rester seul(e) longtemps.", type: "defaut" },
-    { texte: "Je prefere etre seul(e) plutot que mal accompagne(e).", type: "defaut" }
-  ],
-  "Thème 3": [
-    { texte: "J ai du mal a dire non, meme quand je devrais.", type: "defaut" },
-    { texte: "Je change de personnalite selon les personnes avec qui je suis.", type: "defaut" },
-    { texte: "Je me sens souvent seul(e), meme quand je suis entoure(e).", type: "defaut" },
-    { texte: "Je me victimise pour attirer l attention.", type: "defaut" },
-    { texte: "J ai du mal a etre heureux(se) quand quelqu un reussit mieux que moi.", type: "defaut" }
-  ],
-  "Thème 4": [
-    { texte: "J ai besoin d etre rassure(e) avant l intimite.", type: "defaut" },
-    { texte: "J ai envie d etre domine(e), mais je n ose pas le dire.", type: "defaut" },
-    { texte: "J ai peur que mon corps ne plaise pas.", type: "defaut" },
-    { texte: "J ai des fantasmes que je n ai jamais avoues a personne.", type: "defaut" },
-    { texte: "Le sexe est pour moi un besoin vital, pas un bonus.", type: "defaut" }
-  ],
-  "Thème 5": [
-    { texte: "Je sacrifie tout pour ma reussite professionnelle.", type: "defaut" },
-    { texte: "L argent est plus important que l amour pour vivre.", type: "defaut" },
-    { texte: "Je n ai pas de reve precis, je vis au jour le jour.", type: "defaut" },
-    { texte: "Je veux des enfants, c est non negociable.", type: "defaut" },
-    { texte: "Je prefere la securite a l aventure.", type: "defaut" }
-  ],
-  "Thème 6": [
-    { texte: "J ai peur de repeter les erreurs de mes parents.", type: "defaut" },
-    { texte: "J ai une rancune tenace envers un membre de ma famille.", type: "defaut" },
-    { texte: "Je coupe facilement les ponts avec les gens qui me blessent.", type: "defaut" },
-    { texte: "Ma famille passe avant tout, meme si elle est toxique.", type: "defaut" },
-    { texte: "Je me sens coupable de ne pas etre assez present(e) pour eux.", type: "defaut" }
-  ],
-  "Thème 7": [
-    { texte: "Je critique les autres pour des defauts que j ai moi-meme.", type: "defaut" },
-    { texte: "Je suis obsede(e) par le regard des autres.", type: "defaut" },
-    { texte: "Je remets tout au lendemain.", type: "defaut" },
-    { texte: "Je peux etre cruel(le) avec les gens quand je suis blesse(e).", type: "defaut" },
-    { texte: "Je ne suis pas toujours honnete sur mes intentions.", type: "defaut" }
+    { texte: "1. Après une soirée animée, je me sens plein·e d'énergie.", type: "jung" },
+    { texte: "2. Je pense mieux en parlant qu'en restant silencieux·se.", type: "jung" },
+    { texte: "3. Après une journée avec du monde, j'ai envie de me retirer dans ma grotte.", type: "jung" },
+    { texte: "4. Je vis beaucoup dans ma tête : j'y ai tout un théâtre d'images et de pensées.", type: "jung" },
+    { texte: "5. Quand un ami a un problème, je cherche d'abord la solution la plus logique.", type: "jung" },
+    { texte: "6. Je préfère avoir raison que faire plaisir.", type: "jung" },
+    { texte: "7. Je suis un détective : j'adore trouver l'erreur dans un raisonnement.", type: "jung" },
+    { texte: "8. En entrant dans une pièce, je sens tout de suite si l'ambiance est chaude ou tendue.", type: "jung" },
+    { texte: "9. Avant de choisir, je me demande ce que mon cœur et ceux que j'aime en pensent.", type: "jung" },
+    { texte: "10. Je préfère céder plutôt que blesser quelqu'un.", type: "jung" },
+    { texte: "11. Je remarque l'odeur du café, la lumière du matin, le grain d'un tissu.", type: "jung" },
+    { texte: "12. Je crois ce que je vois et touche plus que les grandes théories.", type: "jung" },
+    { texte: "13. J'aime plonger dans l'instant : manger, danser, bouger.", type: "jung" },
+    { texte: "14. Devant un nuage ou un tableau, j'imagine tout de suite une histoire ou un sens caché.", type: "jung" },
+    { texte: "15. J'ai souvent l'impression de savoir ce qui va arriver, sans pouvoir l'expliquer.", type: "jung" },
+    { texte: "16. La routine m'étouffe : j'ai envie d'ouvrir des chemins neufs.", type: "jung" },
+    { texte: "17. Je porte un costume différent au travail, en famille, entre amis, comme au théâtre.", type: "jung" },
+    { texte: "18. J'ai peur qu'on voie ce qu'il y a derrière mon masque.", type: "jung" },
+    { texte: "19. Je soigne mon image : ce que les autres pensent de moi compte beaucoup.", type: "jung" },
+    { texte: "20. Sans mon métier ou mon rôle, je ne saurais plus qui je suis.", type: "jung" },
+    { texte: "21. Ce qui m'agace chez quelqu'un, je le retrouve parfois en moi, comme dans un miroir.", type: "jung" },
+    { texte: "22. Il y a en moi une part sombre (colère, jalousie, envie de vengeance) que je cache.", type: "jung" },
+    { texte: "23. Il m'arrive de dire ou faire quelque chose que je regrette, comme si quelqu'un d'autre l'avait fait à ma place.", type: "jung" },
+    { texte: "24. J'admire ou j'envie ceux qui osent ce que je m'interdis.", type: "jung" },
+    { texte: "25. Je suis tombé·e amoureux·se d'une personne « parfaite », puis elle m'a paru ordinaire.", type: "jung" },
+    { texte: "26. Une silhouette mystérieuse revient dans mes rêves ou mes pensées et me fascine.", type: "jung" },
+    { texte: "27. J'ai en moi une part très tendre ou très forte que je laisse rarement voir.", type: "jung" },
+    { texte: "28. Une voix intérieure me dicte ce que je dois penser, ou m'envahit d'humeurs sans raison.", type: "jung" },
+    { texte: "29. Un mot ou un sujet précis, et je m'enflamme ou me ferme, comme si on appuyait sur un bouton.", type: "jung" },
+    { texte: "30. Dans certaines situations, je redeviens un enfant ou je deviens quelqu'un d'autre.", type: "jung" },
+    { texte: "31. Je retombe toujours dans les mêmes histoires (même type de partenaire, même dispute).", type: "jung" },
+    { texte: "32. Quand on touche mon point sensible, je bégaie ou j'ai un trou de mémoire.", type: "jung" },
+    { texte: "33. Parfois je sens que tout est relié, comme une vague dans l'océan.", type: "jung" },
+    { texte: "34. Je garde mes rêves : ils semblent venir d'un sage intérieur.", type: "jung" },
+    { texte: "35. Le cercle, l'arbre, le feu ou l'eau me touchent profondément.", type: "jung" },
+    { texte: "36. Une coïncidence troublante m'a déjà marqué·e, comme un clin d'œil du destin.", type: "jung" },
+    { texte: "37. Je me demande souvent : que veut devenir ma vie ?", type: "jung" },
+    { texte: "38. J'apprends à accepter mes contradictions : fort·e et fragile à la fois.", type: "jung" },
+    { texte: "39. J'ai traversé une épreuve qui a fait mourir une ancienne version de moi.", type: "jung" },
+    { texte: "40. J'ai déjà quitté le chemin que tout le monde attendait, pour suivre le mien.", type: "jung" },
+    { texte: "41. Lorsque quelqu'un me fait du mal, j'ai envie de lui faire ressentir la même souffrance, voire davantage.", type: "jung" },
+    { texte: "42. Lorsque je suis contrarié ou en colère, je peux devenir verbalement ou physiquement agressif.", type: "jung" },
+    { texte: "43. J'ai tendance à me considérer comme victime des autres ou des circonstances, et à minimiser ma part de responsabilité dans les problèmes.", type: "jung" },
+    { texte: "44. Il m'arrive de prendre des décisions qui me font du mal, même lorsque je sais qu'elles risquent de détruire ce que j'ai construit ou ce qui compte pour moi.", type: "jung" }
   ]
 };
 
@@ -231,8 +229,9 @@ function afficherCarte() {
     carteSwipe.classList.add("cachee");
     return;
   }
-  carteSwipe.style.transform = "";
-  carteSwipe.style.opacity = "";
+  // Reset de la carte
+  carteSwipe.style.transform = "translate(-50%, -50%)";
+  carteSwipe.style.opacity = "1";
   carteSwipe.style.background = "rgba(20, 30, 50, 0.95)";
   carteTexte.textContent = phrasesCartes[indexCarte].texte;
   carteSwipe.classList.remove("cachee");
@@ -247,56 +246,45 @@ function afficherCartes() {
   });
 }
 
-function swipeCarte(reponse) {
-  indexCarte++;
-  carteSwipe.classList.add("cachee");
-  setTimeout(afficherCarte, 400);
-  
-  if (indexCarte >= phrasesCartes.length && !cartesFaites) {
-    cartesFaites = true;
-    if (resolveCartes) resolveCartes(); 
-  }
-}
+function swipeCarte(note) {
+  if (indexCarte >= phrasesCartes.length) return;
 
-var startY = 0;
-var isSwiping = false;
-document.getElementById("carte-touch").addEventListener("touchstart", function(e) {
-  if (carteSwipe.classList.contains("cachee")) return;
-  startY = e.touches[0].clientY;
-  isSwiping = true;
-  carteSwipe.classList.add("glisse");
-});
-document.getElementById("carte-touch").addEventListener("touchmove", function(e) {
-  if (!isSwiping) return;
-  e.preventDefault();
-  var deltaY = e.touches[0].clientY - startY;
-  carteSwipe.style.transform = "translate(-50%, calc(-50% + " + deltaY + "px)) ";
-  carteSwipe.style.opacity = 1 - Math.abs(deltaY) / 300;
-  if (deltaY < 0) {
-    carteSwipe.style.background = "rgba(80, 255, 120, " + (Math.min(Math.abs(deltaY) / 150, 0.4)) + ")";
-  } else {
-    carteSwipe.style.background = "rgba(255, 80, 80, " + (Math.min(Math.abs(deltaY) / 150, 0.4)) + ")";
-  }
-});
-document.getElementById("carte-touch").addEventListener("touchend", function(e) {
-  if (!isSwiping) return;
-  isSwiping = false;
-  var deltaY = e.changedTouches[0].clientY - startY;
-  carteSwipe.classList.remove("glisse");
-  if (deltaY < -50) {
+  // Animation selon la note
+  if (note >= 4) {
+    carteSwipe.style.background = "rgba(80, 255, 120, 0.4)";
     carteSwipe.style.transform = "translate(-50%, -150%)";
     carteSwipe.style.opacity = "0";
-    swipeCarte(true);
-  } else if (deltaY > 50) {
+  } else if (note <= 2) {
+    carteSwipe.style.background = "rgba(255, 80, 80, 0.4)";
     carteSwipe.style.transform = "translate(-50%, 150%)";
     carteSwipe.style.opacity = "0";
-    swipeCarte(false);
   } else {
-    carteSwipe.style.transform = "";
-    carteSwipe.style.opacity = "";
-    carteSwipe.style.background = "rgba(20, 30, 50, 0.95)";
+    // Note 3 : fond orange, on ne bouge pas la carte
+    carteSwipe.style.background = "rgba(255, 165, 0, 0.6)";
+    // On attend un petit peu avant de passer à la suivante
+    setTimeout(function() {
+      indexCarte++;
+      carteSwipe.classList.add("cachee");
+      setTimeout(afficherCarte, 400);
+      if (indexCarte >= phrasesCartes.length && !cartesFaites) {
+        cartesFaites = true;
+        if (resolveCartes) resolveCartes();
+      }
+    }, 600);
+    return; // On arrête là pour le 3
   }
-});
+
+  // Pour 1,2,4,5 on attend la fin de l'animation
+  setTimeout(function() {
+    indexCarte++;
+    carteSwipe.classList.add("cachee");
+    setTimeout(afficherCarte, 400);
+    if (indexCarte >= phrasesCartes.length && !cartesFaites) {
+      cartesFaites = true;
+      if (resolveCartes) resolveCartes();
+    }
+  }, 400);
+}
 
 function demanderNom() {
   const mots1 = ['Lune', 'Ombre', 'Braise', 'Écho', 'Sable', 'Océan', 'Nuage', 'Soleil'];
