@@ -169,53 +169,57 @@ function afficherImagePleinEcran(src) {
   });
 }
 
-// NOUVELLE BANQUE DE CARTES (40 questions Jungiennes)
+// LES 35 DÉFAUTS + QUESTION FINALE
 const BANQUE_CARTES = {
   "Thème 1": [
-    { texte: "1. Après une soirée animée, je me sens plein·e d'énergie.", type: "jung" },
-    { texte: "2. Je pense mieux en parlant qu'en restant silencieux·se.", type: "jung" },
-    { texte: "3. Après une journée avec du monde, j'ai envie de me retirer dans ma grotte.", type: "jung" },
-    { texte: "4. Je vis beaucoup dans ma tête : j'y ai tout un théâtre d'images et de pensées.", type: "jung" },
-    { texte: "5. Quand un ami a un problème, je cherche d'abord la solution la plus logique.", type: "jung" },
-    { texte: "6. Je préfère avoir raison que faire plaisir.", type: "jung" },
-    { texte: "7. Je suis un détective : j'adore trouver l'erreur dans un raisonnement.", type: "jung" },
-    { texte: "8. En entrant dans une pièce, je sens tout de suite si l'ambiance est chaude ou tendue.", type: "jung" },
-    { texte: "9. Avant de choisir, je me demande ce que mon cœur et ceux que j'aime en pensent.", type: "jung" },
-    { texte: "10. Je préfère céder plutôt que blesser quelqu'un.", type: "jung" },
-    { texte: "11. Je remarque l'odeur du café, la lumière du matin, le grain d'un tissu.", type: "jung" },
-    { texte: "12. Je crois ce que je vois et touche plus que les grandes théories.", type: "jung" },
-    { texte: "13. J'aime plonger dans l'instant : manger, danser, bouger.", type: "jung" },
-    { texte: "14. Devant un nuage ou un tableau, j'imagine tout de suite une histoire ou un sens caché.", type: "jung" },
-    { texte: "15. J'ai souvent l'impression de savoir ce qui va arriver, sans pouvoir l'expliquer.", type: "jung" },
-    { texte: "16. La routine m'étouffe : j'ai envie d'ouvrir des chemins neufs.", type: "jung" },
-    { texte: "17. Je porte un costume différent au travail, en famille, entre amis, comme au théâtre.", type: "jung" },
-    { texte: "18. J'ai peur qu'on voie ce qu'il y a derrière mon masque.", type: "jung" },
-    { texte: "19. Je soigne mon image : ce que les autres pensent de moi compte beaucoup.", type: "jung" },
-    { texte: "20. Sans mon métier ou mon rôle, je ne saurais plus qui je suis.", type: "jung" },
-    { texte: "21. Ce qui m'agace chez quelqu'un, je le retrouve parfois en moi, comme dans un miroir.", type: "jung" },
-    { texte: "22. Il y a en moi une part sombre (colère, jalousie, envie de vengeance) que je cache.", type: "jung" },
-    { texte: "23. Il m'arrive de dire ou faire quelque chose que je regrette, comme si quelqu'un d'autre l'avait fait à ma place.", type: "jung" },
-    { texte: "24. J'admire ou j'envie ceux qui osent ce que je m'interdis.", type: "jung" },
-    { texte: "25. Je suis tombé·e amoureux·se d'une personne « parfaite », puis elle m'a paru ordinaire.", type: "jung" },
-    { texte: "26. Une silhouette mystérieuse revient dans mes rêves ou mes pensées et me fascine.", type: "jung" },
-    { texte: "27. J'ai en moi une part très tendre ou très forte que je laisse rarement voir.", type: "jung" },
-    { texte: "28. Une voix intérieure me dicte ce que je dois penser, ou m'envahit d'humeurs sans raison.", type: "jung" },
-    { texte: "29. Un mot ou un sujet précis, et je m'enflamme ou me ferme, comme si on appuyait sur un bouton.", type: "jung" },
-    { texte: "30. Dans certaines situations, je redeviens un enfant ou je deviens quelqu'un d'autre.", type: "jung" },
-    { texte: "31. Je retombe toujours dans les mêmes histoires (même type de partenaire, même dispute).", type: "jung" },
-    { texte: "32. Quand on touche mon point sensible, je bégaie ou j'ai un trou de mémoire.", type: "jung" },
-    { texte: "33. Parfois je sens que tout est relié, comme une vague dans l'océan.", type: "jung" },
-    { texte: "34. Je garde mes rêves : ils semblent venir d'un sage intérieur.", type: "jung" },
-    { texte: "35. Le cercle, l'arbre, le feu ou l'eau me touchent profondément.", type: "jung" },
-    { texte: "36. Une coïncidence troublante m'a déjà marqué·e, comme un clin d'œil du destin.", type: "jung" },
-    { texte: "37. Je me demande souvent : que veut devenir ma vie ?", type: "jung" },
-    { texte: "38. J'apprends à accepter mes contradictions : fort·e et fragile à la fois.", type: "jung" },
-    { texte: "39. J'ai traversé une épreuve qui a fait mourir une ancienne version de moi.", type: "jung" },
-    { texte: "40. J'ai déjà quitté le chemin que tout le monde attendait, pour suivre le mien.", type: "jung" },
-    { texte: "41. Lorsque quelqu'un me fait du mal, j'ai envie de lui faire ressentir la même souffrance, voire davantage.", type: "jung" },
-    { texte: "42. Lorsque je suis contrarié ou en colère, je peux devenir verbalement ou physiquement agressif.", type: "jung" },
-    { texte: "43. J'ai tendance à me considérer comme victime des autres ou des circonstances, et à minimiser ma part de responsabilité dans les problèmes.", type: "jung" },
-    { texte: "44. Il m'arrive de prendre des décisions qui me font du mal, même lorsque je sais qu'elles risquent de détruire ce que j'ai construit ou ce qui compte pour moi.", type: "jung" }
+    { titre: "1. Orgueil", texte: "J'ai du mal à reconnaître mes torts, même lorsque je sais que j'ai fait une erreur.", type: "defaut" },
+    { titre: "2. Arrogance", texte: "Je pense souvent être plus intelligent, plus compétent ou plus lucide que les autres.", type: "defaut" },
+    { titre: "3. Vanité", texte: "J'aime être admiré, complimenté et remarqué.", type: "defaut" },
+    { titre: "4. Narcissisme", texte: "J'aime que l'on s'intéresse à moi et que je sois au centre de l'attention.", type: "defaut" },
+    { titre: "5. Mépris", texte: "Il m'arrive de considérer certaines personnes comme inférieures à moi.", type: "defaut" }
+  ],
+  "Thème 2": [
+    { titre: "6. Égoïsme", texte: "Lorsque mes intérêts sont en jeu, je privilégie souvent ce qui m'arrange, même si cela pénalise quelqu'un.", type: "defaut" },
+    { titre: "7. Égocentrisme", texte: "J'ai tendance à ramener les conversations ou les situations à moi.", type: "defaut" },
+    { titre: "8. Avarice", texte: "J'ai du mal à partager mon argent, mes affaires ou ce que je possède.", type: "defaut" },
+    { titre: "9. Opportunisme", texte: "Je profite parfois des personnes ou des situations lorsque cela peut m'apporter quelque chose.", type: "defaut" },
+    { titre: "10. Ingratitude", texte: "J'oublie facilement ce que les autres ont fait pour moi lorsque je n'en ai plus besoin.", type: "defaut" }
+  ],
+  "Thème 3": [
+    { titre: "11. Jalousie", texte: "Je supporte difficilement que la personne que j'aime donne de l'attention à quelqu'un d'autre.", type: "defaut" },
+    { titre: "12. Possessivité", texte: "J'ai besoin de savoir ce que fait la personne que j'aime et j'ai du mal à lui laisser sa liberté.", type: "defaut" },
+    { titre: "13. Rancune", texte: "J'ai du mal à oublier les blessures que les autres m'ont infligées.", type: "defaut" },
+    { titre: "14. Susceptibilité", texte: "Je me sens facilement blessé par les remarques ou les attitudes des autres.", type: "defaut" },
+    { titre: "15. Impulsivité", texte: "Je réagis parfois sans réfléchir et je regrette ensuite mes paroles ou mes actes.", type: "defaut" }
+  ],
+  "Thème 4": [
+    { titre: "16. Autoritarisme", texte: "J'aime imposer ma façon de faire plutôt que de laisser les autres décider.", type: "defaut" },
+    { titre: "17. Domination", texte: "J'aime avoir le contrôle dans mes relations et je supporte mal de le perdre.", type: "defaut" },
+    { titre: "18. Manipulation", texte: "Il m'arrive d'utiliser la culpabilité ou les émotions des autres pour obtenir ce que je veux.", type: "defaut" },
+    { titre: "19. Intimidation", texte: "Lorsque je suis en colère, je peux chercher à faire peur ou à mettre la pression pour obtenir gain de cause.", type: "defaut" },
+    { titre: "20. Intrusion", texte: "J'ai du mal à respecter les limites ou la vie privée des autres lorsque quelque chose me préoccupe.", type: "defaut" }
+  ],
+  "Thème 5": [
+    { titre: "21. Hypocrisie", texte: "Je ne respecte pas toujours les principes que je défends devant les autres.", type: "defaut" },
+    { titre: "22. Mauvaise foi", texte: "Lorsque j'ai tort, je cherche parfois des excuses plutôt que de le reconnaître.", type: "defaut" },
+    { titre: "23. Mensonge", texte: "Je mens parfois pour protéger mon image, éviter des problèmes ou obtenir ce que je veux.", type: "defaut" },
+    { titre: "24. Lâcheté", texte: "J'évite parfois de faire ce qui est juste lorsque cela risque de me coûter quelque chose.", type: "defaut" },
+    { titre: "25. Déloyauté", texte: "Je peux abandonner ou trahir quelqu'un lorsque lui rester fidèle devient trop difficile ou désavantageux.", type: "defaut" }
+  ],
+  "Thème 6": [
+    { titre: "26. Intolérance", texte: "J'ai du mal à accepter les personnes qui pensent ou vivent très différemment de moi.", type: "defaut" },
+    { titre: "27. Fermeture d'esprit", texte: "J'ai du mal à changer d'avis, même lorsque de nouveaux arguments me sont présentés.", type: "defaut" },
+    { titre: "28. Préjugés", texte: "Je juge parfois une personne avant de la connaître réellement.", type: "defaut" },
+    { titre: "29. Critique", texte: "Je remarque facilement les défauts des autres et j'ai tendance à les souligner.", type: "defaut" },
+    { titre: "30. Malhonnêteté intellectuelle", texte: "Lorsque je défends mon opinion, j'ignore parfois les arguments qui pourraient me donner tort.", type: "defaut" }
+  ],
+  "Thème 7": [
+    { titre: "31. Cruauté", texte: "Il m'arrive de faire volontairement du mal à quelqu'un en utilisant ce que je sais de ses faiblesses.", type: "defaut" },
+    { titre: "32. Vengeance", texte: "Lorsque quelqu'un me fait du mal, j'ai envie de lui faire subir la même chose.", type: "defaut" },
+    { titre: "33. Agressivité", texte: "Lorsque je suis en colère, je peux devenir violent dans mes paroles ou mes gestes.", type: "defaut" },
+    { titre: "34. Victimisation", texte: "J'ai tendance à rejeter la faute sur les autres et à me considérer comme une victime des circonstances.", type: "defaut" },
+    { titre: "35. Autodestruction", texte: "Il m'arrive de saboter moi-même mes relations, mon bonheur ou mes projets, même lorsque je sais que je risque de tout perdre.", type: "defaut" },
+    { titre: "36. Les 7 péchés", texte: "Parmi les sept péchés capitaux, lequel te correspond le plus ?", type: "peches" }
   ]
 };
 
@@ -223,17 +227,38 @@ let phrasesCartes = BANQUE_CARTES["Thème 1"];
 let indexCarte = 0;
 const carteSwipe = document.getElementById('carte-swipe');
 const carteTexte = document.getElementById('carte-texte');
+const carteTitre = document.getElementById('carte-titre');
 
 function afficherCarte() {
   if (indexCarte >= phrasesCartes.length) {
     carteSwipe.classList.add("cachee");
     return;
   }
-  // Reset de la carte
+  
+  var carte = phrasesCartes[indexCarte];
+  carteTitre.textContent = carte.titre;
+  carteTexte.textContent = carte.texte;
+  
+  // Reset design
   carteSwipe.style.transform = "translate(-50%, -50%)";
   carteSwipe.style.opacity = "1";
-  carteSwipe.style.background = "rgba(20, 30, 50, 0.95)";
-  carteTexte.textContent = phrasesCartes[indexCarte].texte;
+  carteSwipe.style.background = "rgba(15, 23, 42, 0.95)";
+  
+  // Gestion de l'affichage des boutons (Péchés vs 1-5)
+  var divNote = document.getElementById('boutons-note');
+  var divPeches = document.getElementById('boutons-peches');
+  var divAide = document.getElementById('carte-aide');
+  
+  if (carte.type === 'peches') {
+    divNote.style.display = 'none';
+    divPeches.style.display = 'flex';
+    divAide.textContent = "Choisis ton péché dominant";
+  } else {
+    divNote.style.display = 'flex';
+    divPeches.style.display = 'none';
+    divAide.textContent = "1 = Pas du tout, 5 = Tout à fait";
+  }
+  
   carteSwipe.classList.remove("cachee");
 }
 
@@ -249,7 +274,6 @@ function afficherCartes() {
 function swipeCarte(note) {
   if (indexCarte >= phrasesCartes.length) return;
 
-  // Animation selon la note
   if (note >= 4) {
     carteSwipe.style.background = "rgba(80, 255, 120, 0.4)";
     carteSwipe.style.transform = "translate(-50%, -150%)";
@@ -259,31 +283,31 @@ function swipeCarte(note) {
     carteSwipe.style.transform = "translate(-50%, 150%)";
     carteSwipe.style.opacity = "0";
   } else {
-    // Note 3 : fond orange, on ne bouge pas la carte
     carteSwipe.style.background = "rgba(255, 165, 0, 0.6)";
-    // On attend un petit peu avant de passer à la suivante
     setTimeout(function() {
-      indexCarte++;
-      carteSwipe.classList.add("cachee");
-      setTimeout(afficherCarte, 400);
-      if (indexCarte >= phrasesCartes.length && !cartesFaites) {
-        cartesFaites = true;
-        if (resolveCartes) resolveCartes();
-      }
+      passerCarteSuivante();
     }, 600);
-    return; // On arrête là pour le 3
+    return;
   }
 
-  // Pour 1,2,4,5 on attend la fin de l'animation
-  setTimeout(function() {
-    indexCarte++;
-    carteSwipe.classList.add("cachee");
-    setTimeout(afficherCarte, 400);
-    if (indexCarte >= phrasesCartes.length && !cartesFaites) {
-      cartesFaites = true;
-      if (resolveCartes) resolveCartes();
-    }
-  }, 400);
+  setTimeout(passerCarteSuivante, 400);
+}
+
+function choisirPeche(peche) {
+  carteSwipe.style.background = "rgba(212, 169, 96, 0.5)";
+  carteSwipe.style.transform = "scale(1.05)";
+  carteSwipe.style.opacity = "0";
+  setTimeout(passerCarteSuivante, 400);
+}
+
+function passerCarteSuivante() {
+  indexCarte++;
+  carteSwipe.classList.add("cachee");
+  setTimeout(afficherCarte, 400);
+  if (indexCarte >= phrasesCartes.length && !cartesFaites) {
+    cartesFaites = true;
+    if (resolveCartes) resolveCartes();
+  }
 }
 
 function demanderNom() {
@@ -371,10 +395,6 @@ async function envoyer() {
       }
     }
 
-    if (t.includes('[ACTION:DEFAUTS]')) {
-      t = t.replace('[ACTION:DEFAUTS]', '').trim();
-      setTimeout(ouvrirPanneauDefauts, 1000);
-    }
     bulleLia.textContent = t;
     historique.push({ role: 'assistant', content: t });
 
@@ -443,59 +463,4 @@ function ouvrirPanneau(cle) {
   if (cle === 'cle') txt = txt.replace('[PSEUDO]', nomUtilisateur);
   document.getElementById('panneau-contenu').innerHTML = "<h2>" + titres[cle] + "</h2>" + txt;
   document.getElementById('panneau').classList.add('visible');
-}
-
-const listeDefauts = {
-  "Graves": ["Mensonge, hypocrisie", "Déloyauté, ingratitude", "Manque d'empathie", "Mépris, arrogance", "Irresponsabilité", "Lâcheté morale", "Cupidité", "Addictions", "Jalousie, envie, rancune"],
-  "Modérés": ["Égoïsme, narcissisme", "Colère, impulsivité", "Intolérance", "Médisance", "Flagornerie, victimisation", "Avarice, matérialisme", "Imprudence, négligence"],
-  "Mineurs": ["Paresse, procrastination", "Impatience, indécision", "Désorganisation", "Crédulité, naïveté", "Gourmandise", "Susceptibilité, anxiété", "Perfectionnisme", "Impolitesse"]
-};
-
-let defautsSelectionnes = [];
-
-function ouvrirPanneauDefauts() {
-  const listeContainer = document.getElementById('liste-defauts');
-  listeContainer.innerHTML = '';
-  for (const [categorie, defauts] of Object.entries(listeDefauts)) {
-    const titre = document.createElement('div');
-    titre.className = 'categorie-defaut';
-    titre.textContent = categorie;
-    listeContainer.appendChild(titre);
-    defauts.forEach(defaut => {
-      const item = document.createElement('div');
-      item.className = 'defaut-item';
-      item.textContent = defaut;
-      item.onclick = () => selectionnerDefaut(defaut, item);
-      listeContainer.appendChild(item);
-    });
-  }
-  defautsSelectionnes = [];
-  document.getElementById('slot-1').textContent = "1er choix";
-  document.getElementById('slot-1').classList.remove('rempli');
-  document.getElementById('slot-2').textContent = "2ème choix";
-  document.getElementById('slot-2').classList.remove('rempli');
-  document.getElementById('slot-3').textContent = "3ème choix";
-  document.getElementById('slot-3').classList.remove('rempli');
-  document.getElementById('valider-defauts').disabled = true;
-  document.getElementById('panneau-defauts').classList.remove('cachee');
-}
-
-function selectionnerDefaut(defaut, element) {
-  if (defautsSelectionnes.length >= 3) return;
-  defautsSelectionnes.push(defaut);
-  element.classList.add('selectionne');
-  const slotIndex = defautsSelectionnes.length;
-  const slot = document.getElementById('slot-' + slotIndex);
-  slot.textContent = defaut;
-  slot.classList.add('rempli');
-  if (defautsSelectionnes.length === 3) {
-    document.getElementById('valider-defauts').disabled = false;
-  }
-}
-
-function validerDefauts() {
-  document.getElementById('panneau-defauts').classList.add('cachee');
-  const message = "Mes 3 pires défauts sont : 1. " + defautsSelectionnes[0] + ", 2. " + defautsSelectionnes[1] + ", 3. " + defautsSelectionnes[2] + ".";
-  input.value = message;
-  envoyer();
 }
