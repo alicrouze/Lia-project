@@ -56,14 +56,14 @@ html, body { height: 100%; width: 100%; overflow: hidden; position: fixed; font-
 #panneau-contenu .mention { font-size: 13px; color: rgba(255,255,255,0.5); font-style: italic; margin-top: 30px; }
 #fermer-panneau { position: absolute; top: 20px; right: 20px; font-size: 24px; color: #fff; cursor: pointer; }
 
-/* CARTE SWIPE DESIGN PREMIUM - ANIMATION RALENTIE */
+/* CARTE SWIPE - ANIMATION DE 2 SECONDES */
 #carte-swipe { 
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 88vw; 
   background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); 
   border: 1px solid rgba(212, 169, 96, 0.5); border-radius: 24px; padding: 25px 20px; z-index: 200; 
   display: flex; flex-direction: column; align-items: center; gap: 15px; box-shadow: 0 15px 50px rgba(0,0,0,0.8); 
-  /* Animation de 0.8s avec un effet de courbe plus naturel */
-  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), background 0.5s ease; 
+  /* 2s pour monter et descendre */
+  transition: opacity 2s cubic-bezier(0.25, 1, 0.5, 1), transform 2s cubic-bezier(0.25, 1, 0.5, 1), background 0.5s ease; 
 }
 #carte-swipe.cachee { opacity: 0; pointer-events: none; transform: translate(-50%, -40%); }
 #carte-texte { color: #fff; font-size: 18px; font-style: italic; text-align: center; line-height: 1.4; font-family: Baskerville, serif; }
