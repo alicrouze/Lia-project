@@ -239,7 +239,6 @@ function afficherCarte() {
   carteTitre.textContent = carte.titre;
   carteTexte.textContent = carte.texte;
   
-  // On remet la transition lente pour les prochaines montées/descentes
   carteSwipe.style.transition = "opacity 2s cubic-bezier(0.25, 1, 0.5, 1), transform 2s cubic-bezier(0.25, 1, 0.5, 1), background 0.5s ease";
   carteSwipe.style.transform = "translate(-50%, -50%)";
   carteSwipe.style.opacity = "1";
@@ -287,9 +286,8 @@ function swipeCarte(note) {
     carteSwipe.style.opacity = "0";
     setTimeout(passerCarteSuivante, 2000);
   } else {
-    // CORRECTION ICI : Orange transparent et transition RAPIDE
     carteSwipe.style.transition = "all 0.4s ease"; 
-    carteSwipe.style.background = "rgba(255, 165, 0, 0.4)"; // Opacité réduite à 0.4
+    carteSwipe.style.background = "rgba(255, 165, 0, 0.4)";
     carteSwipe.style.opacity = "0";
     setTimeout(passerCarteSuivante, 400);
   }
