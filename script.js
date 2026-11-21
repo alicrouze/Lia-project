@@ -169,7 +169,6 @@ function afficherImagePleinEcran(src) {
   });
 }
 
-// LES 35 DÉFAUTS + QUESTION FINALE
 const BANQUE_CARTES = {
   "Thème 1": [
     { titre: "1. Orgueil", texte: "J'ai du mal à reconnaître mes torts, même lorsque je sais que j'ai fait une erreur.", type: "defaut" },
@@ -239,12 +238,10 @@ function afficherCarte() {
   carteTitre.textContent = carte.titre;
   carteTexte.textContent = carte.texte;
   
-  // Reset design
   carteSwipe.style.transform = "translate(-50%, -50%)";
   carteSwipe.style.opacity = "1";
   carteSwipe.style.background = "rgba(15, 23, 42, 0.95)";
   
-  // Gestion de l'affichage des boutons (Péchés vs 1-5)
   var divNote = document.getElementById('boutons-note');
   var divPeches = document.getElementById('boutons-peches');
   var divAide = document.getElementById('carte-aide');
@@ -276,34 +273,35 @@ function swipeCarte(note) {
 
   if (note >= 4) {
     carteSwipe.style.background = "rgba(80, 255, 120, 0.4)";
-    carteSwipe.style.transform = "translate(-50%, -150%)";
+    carteSwipe.style.transform = "translate(-50%, -130%)";
     carteSwipe.style.opacity = "0";
   } else if (note <= 2) {
     carteSwipe.style.background = "rgba(255, 80, 80, 0.4)";
-    carteSwipe.style.transform = "translate(-50%, 150%)";
+    carteSwipe.style.transform = "translate(-50%, 130%)";
     carteSwipe.style.opacity = "0";
   } else {
     carteSwipe.style.background = "rgba(255, 165, 0, 0.6)";
     setTimeout(function() {
       passerCarteSuivante();
-    }, 600);
+    }, 800);
     return;
   }
-
-  setTimeout(passerCarteSuivante, 400);
+  
+  // On attend 800ms (le temps de l'animation) avant de passer à la suite
+  setTimeout(passerCarteSuivante, 800);
 }
 
 function choisirPeche(peche) {
   carteSwipe.style.background = "rgba(212, 169, 96, 0.5)";
   carteSwipe.style.transform = "scale(1.05)";
   carteSwipe.style.opacity = "0";
-  setTimeout(passerCarteSuivante, 400);
+  setTimeout(passerCarteSuivante, 600);
 }
 
 function passerCarteSuivante() {
   indexCarte++;
   carteSwipe.classList.add("cachee");
-  setTimeout(afficherCarte, 400);
+  setTimeout(afficherCarte, 500);
   if (indexCarte >= phrasesCartes.length && !cartesFaites) {
     cartesFaites = true;
     if (resolveCartes) resolveCartes();
