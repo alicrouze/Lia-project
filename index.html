@@ -59,9 +59,10 @@
 
   <div id="bulles"></div>
 
-  <!-- LA CARTE MODIFIÉE AVEC LES 5 BOUTONS -->
   <div id="carte-swipe" class="cachee">
+    <div id="carte-titre" style="color:#d4a960; font-size:14px; text-transform:uppercase; letter-spacing:1px; margin-bottom:5px; font-weight:bold;"></div>
     <div id="carte-texte" style="pointer-events: none;"></div>
+    
     <div id="boutons-note">
       <button class="btn-note" onclick="swipeCarte(1)">1</button>
       <button class="btn-note" onclick="swipeCarte(2)">2</button>
@@ -69,26 +70,23 @@
       <button class="btn-note" onclick="swipeCarte(4)">4</button>
       <button class="btn-note" onclick="swipeCarte(5)">5</button>
     </div>
+    
+    <div id="boutons-peches" style="display:none; flex-wrap:wrap; gap:5px; justify-content:center;">
+      <button class="btn-peche" onclick="choisirPeche('Orgueil')">Orgueil</button>
+      <button class="btn-peche" onclick="choisirPeche('Avarice')">Avarice</button>
+      <button class="btn-peche" onclick="choisirPeche('Luxure')">Luxure</button>
+      <button class="btn-peche" onclick="choisirPeche('Envie')">Envie</button>
+      <button class="btn-peche" onclick="choisirPeche('Gourmandise')">Gourmandise</button>
+      <button class="btn-peche" onclick="choisirPeche('Colère')">Colère</button>
+      <button class="btn-peche" onclick="choisirPeche('Paresse')">Paresse</button>
+    </div>
+
     <div id="carte-aide" style="font-size: 11px; color: rgba(255,255,255,0.4); text-align: center; margin-top: 5px;">1 = Pas du tout, 5 = Tout à fait</div>
   </div>
 </div>
 
 <div id="image-plein-ecran"></div>
-
 <div id="panneau"><div id="panneau-contenu"></div><div id="fermer-panneau" onclick="document.getElementById('panneau').classList.remove('visible')">✕</div></div>
-
-<div id="panneau-defauts" class="cachee">
-  <div class="contenu-defauts">
-    <h3>Choisis tes 3 pires défauts</h3>
-    <div id="slots-defauts">
-      <div class="slot" id="slot-1">1er choix</div>
-      <div class="slot" id="slot-2">2ème choix</div>
-      <div class="slot" id="slot-3">3ème choix</div>
-    </div>
-    <div id="liste-defauts"></div>
-    <button id="valider-defauts" disabled onclick="validerDefauts()">Valider mes défauts</button>
-  </div>
-</div>
 
 <script src="script.js"></script>
 </body>
