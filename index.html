@@ -51,7 +51,6 @@
     <a href="#" onclick="ouvrirPanneau('match')">Débloquer mon Match</a>
   </div>
 
-  <!-- L'input sans le bouton + -->
   <div id="input-zone">
     <input type="text" id="user-input" placeholder="Écris-moi quelque chose..." autocomplete="off">
     <button id="send-btn">➤</button>
@@ -71,6 +70,16 @@
       <button class="btn-note" onclick="swipeCarte(5)">5</button>
     </div>
 
+    <div id="boutons-peches" style="display:none; flex-wrap:wrap; gap:5px; justify-content:center;">
+      <button class="btn-peche" onclick="choisirPeche('Orgueil')">Orgueil</button>
+      <button class="btn-peche" onclick="choisirPeche('Avarice')">Avarice</button>
+      <button class="btn-peche" onclick="choisirPeche('Luxure')">Luxure</button>
+      <button class="btn-peche" onclick="choisirPeche('Envie')">Envie</button>
+      <button class="btn-peche" onclick="choisirPeche('Gourmandise')">Gourmandise</button>
+      <button class="btn-peche" onclick="choisirPeche('Colère')">Colère</button>
+      <button class="btn-peche" onclick="choisirPeche('Paresse')">Paresse</button>
+    </div>
+
     <div id="carte-aide" style="font-size: 11px; color: rgba(255,255,255,0.4); text-align: center; margin-top: 5px;">1 = Pas du tout, 5 = Tout à fait</div>
   </div>
 </div>
@@ -78,6 +87,7 @@
 <div id="image-plein-ecran"></div>
 <div id="panneau"><div id="panneau-contenu"></div><div id="fermer-panneau" onclick="document.getElementById('panneau').classList.remove('visible')">✕</div></div>
 
-<script src="script.js"></script>
+<!-- On charge script2.js pour contourner le cache du téléphone -->
+<script src="script2.js"></script>
 </body>
 </html>
