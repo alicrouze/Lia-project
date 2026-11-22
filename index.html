@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>3</title>
 
-<!-- Code pour transformer le site en App -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0a0f1e">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -13,8 +13,93 @@
 
 <script src="https://js.puter.com/v2/"></script>
 <link rel="stylesheet" href="style.css">
+
+<style>
+#installation-obligatoire {
+  position: fixed;
+  inset: 0;
+  z-index: 1000000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(65,75,110,.35), transparent 55%),
+    #0a0f1e;
+  color: white;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+#installation-obligatoire.visible {
+  display: flex;
+}
+.installation-contenu {
+  width: 100%;
+  max-width: 360px;
+}
+.installation-logo {
+  color: #d4a960;
+  font-family: Baskerville, serif;
+  font-size: 100px;
+  line-height: 1.2;
+  text-shadow: 0 0 25px rgba(212,169,96,.35);
+  margin-bottom: 20px;
+}
+.installation-titre {
+  color: #d4a960;
+  font-family: Baskerville, serif;
+  font-size: 25px;
+  margin-bottom: 18px;
+}
+.installation-texte {
+  color: rgba(255,255,255,.82);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+#bouton-installer {
+  width: 100%;
+  padding: 16px 20px;
+  border: 1px solid rgba(212,169,96,.7);
+  border-radius: 30px;
+  background: linear-gradient(135deg,#d4a960,#a77b39);
+  color: #101522;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#instructions-installation {
+  margin-top: 20px;
+  color: rgba(255,255,255,.65);
+  font-size: 13px;
+  line-height: 1.6;
+}
+</style>
 </head>
+
 <body>
+
+<!-- ÉCRAN OBLIGATOIRE D'INSTALLATION -->
+<div id="installation-obligatoire">
+  <div class="installation-contenu">
+    <div class="installation-logo">3</div>
+    <div class="installation-titre">Une expérience à part.</div>
+
+    <p class="installation-texte">
+      Pour accéder à 3, vous devez d'abord installer
+      l'application sur l'écran d'accueil de votre téléphone.
+      Vous pourrez ensuite ouvrir 3 directement depuis son icône.
+    </p>
+
+    <button id="bouton-installer">
+      Installer 3
+    </button>
+
+    <div id="instructions-installation">
+      Préparation de l'installation...
+    </div>
+  </div>
+</div>
 
 <div id="accueil">
   <div id="halo-lanterne"></div>
@@ -23,21 +108,21 @@
 <div id="ecran-intro">
   <h2>Avant d'entrer</h2>
   <p>3 n'est pas un site de rencontre classique. Pas de photos, pas de profils à swiper. Juste une conversation.</p>
-  
+
   <p><strong>Votre anonymat est total.</strong> Nous ne demandons ni nom, ni email, ni numéro de téléphone, ni adresse. Vos réponses sont chiffrées. Personne d'autre que 3 ne les lira, et elles ne seront jamais revendues.</p>
-  
+
   <p><strong>Un paiement 100 % anonyme.</strong> Pour débloquer votre match, 3 ne prend pas de carte bancaire. Pourquoi ? Parce que nous ne voulons aucune trace de votre identité. Le paiement se fait uniquement par <strong>ticket prépayé</strong> (ou code d'activation). Vous l'achetez en espèces, vous entrez le code ici, et c'est tout. Aucune donnée bancaire ne transite par nos serveurs.</p>
-  
+
   <p>Pendant 3 jours, 3 va apprendre à vous connaître en profondeur. Répondez le plus honnêtement possible, soyez vous-même. À la fin, elle vous proposera <strong>une seule personne</strong>.</p>
 
-  <div style="margin-top:15px; text-align:left; width: 85%; max-width: 300px; margin-left:auto; margin-right:auto; margin-bottom:15px;">
+  <div style="margin-top:15px; text-align:left; width:85%; max-width:300px; margin-left:auto; margin-right:auto; margin-bottom:15px;">
     <label style="display:block; margin-bottom:3px; color:#d4a960; font-size:13px;">Je suis :</label>
     <select id="sexe-user" style="width:100%; padding:8px; border-radius:8px; background:rgba(40,50,80,0.8); color:white; border:1px solid #d4a960; margin-bottom:10px; font-size:14px;">
       <option value="un homme">Un homme</option>
       <option value="une femme">Une femme</option>
       <option value="autre">Autre</option>
     </select>
-    
+
     <label style="display:block; margin-bottom:3px; color:#d4a960; font-size:13px;">Je cherche :</label>
     <select id="sexe-cherche" style="width:100%; padding:8px; border-radius:8px; background:rgba(40,50,80,0.8); color:white; border:1px solid #d4a960; font-size:14px;">
       <option value="un homme">Un homme</option>
@@ -45,14 +130,13 @@
       <option value="peu importe">Peu importe</option>
     </select>
   </div>
-  
+
   <button class="btn-commencer" onclick="demarrerApp()">Commencer</button>
 </div>
 
 <div id="chat">
-  <!-- Le GRAND 3 pour le menu -->
   <div id="zone-logo">3</div>
-  
+
   <span class="theme" id="theme-courant"></span>
 
   <div id="menu-deroulant">
@@ -71,8 +155,8 @@
 
   <div id="carte-swipe" class="cachee">
     <div id="carte-titre" style="color:#d4a960; font-size:14px; text-transform:uppercase; letter-spacing:1px; margin-bottom:5px; font-weight:bold; text-align:center;"></div>
-    <div id="carte-texte" style="pointer-events: none;"></div>
-    
+    <div id="carte-texte" style="pointer-events:none;"></div>
+
     <div id="boutons-note">
       <button class="btn-note" onclick="swipeCarte(1)">1</button>
       <button class="btn-note" onclick="swipeCarte(2)">2</button>
@@ -91,13 +175,104 @@
       <button class="btn-peche" onclick="choisirPeche('Paresse')">Paresse</button>
     </div>
 
-    <div id="carte-aide" style="font-size: 11px; color: rgba(255,255,255,0.4); text-align: center; margin-top: 5px;">1 = Pas du tout, 5 = Tout à fait</div>
+    <div id="carte-aide" style="font-size:11px; color:rgba(255,255,255,0.4); text-align:center; margin-top:5px;">1 = Pas du tout, 5 = Tout à fait</div>
   </div>
 </div>
 
 <div id="image-plein-ecran"></div>
-<div id="panneau"><div id="panneau-contenu"></div><div id="fermer-panneau" onclick="document.getElementById('panneau').classList.remove('visible')">✕</div></div>
+<div id="panneau">
+  <div id="panneau-contenu"></div>
+  <div id="fermer-panneau" onclick="document.getElementById('panneau').classList.remove('visible')">✕</div>
+</div>
 
 <script src="script.js"></script>
+
+<script>
+(function () {
+  const ecran = document.getElementById("installation-obligatoire");
+  const bouton = document.getElementById("bouton-installer");
+  const instructions = document.getElementById("instructions-installation");
+
+  let evenementInstallation = null;
+
+  function estInstallee() {
+    return window.matchMedia("(display-mode: standalone)").matches ||
+           window.matchMedia("(display-mode: fullscreen)").matches ||
+           window.navigator.standalone === true;
+  }
+
+  function afficherBlocage() {
+    if (!estInstallee()) {
+      ecran.classList.add("visible");
+      document.body.style.overflow = "hidden";
+    } else {
+      ecran.classList.remove("visible");
+      document.body.style.overflow = "";
+    }
+  }
+
+  window.addEventListener("beforeinstallprompt", function (event) {
+    event.preventDefault();
+    evenementInstallation = event;
+    instructions.textContent = "Appuyez sur le bouton pour installer 3 sur votre téléphone.";
+  });
+
+  bouton.addEventListener("click", async function () {
+    if (estInstallee()) {
+      afficherBlocage();
+      return;
+    }
+
+    if (evenementInstallation) {
+      evenementInstallation.prompt();
+      const resultat = await evenementInstallation.userChoice;
+      evenementInstallation = null;
+
+      if (resultat.outcome === "accepted") {
+        instructions.textContent =
+          "Installation lancée. Une fois terminée, ouvrez 3 depuis son icône sur votre écran d'accueil.";
+        bouton.textContent = "En attente de l'installation";
+        bouton.disabled = true;
+      } else {
+        instructions.textContent =
+          "L'installation est nécessaire pour accéder à 3. Vous pourrez réessayer quand vous le souhaitez.";
+      }
+      return;
+    }
+
+    const ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
+
+    if (ios) {
+      instructions.innerHTML =
+        "Sur votre iPhone : appuyez sur <strong>Partager</strong>, puis sur <strong>Sur l'écran d'accueil</strong>, et enfin sur <strong>Ajouter</strong>.";
+    } else {
+      instructions.innerHTML =
+        "Dans Chrome : ouvrez le menu <strong>⋮</strong>, choisissez <strong>Installer l'application</strong> ou <strong>Ajouter à l'écran d'accueil</strong>, puis confirmez.";
+    }
+  });
+
+  window.addEventListener("appinstalled", function () {
+    instructions.textContent =
+      "3 est installée. Fermez cette page et ouvrez l'application depuis son icône.";
+  });
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("./service-worker.js")
+        .catch(function (erreur) {
+          console.error("Service worker :", erreur);
+        });
+    });
+  }
+
+  afficherBlocage();
+
+  window.addEventListener("pageshow", afficherBlocage);
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) afficherBlocage();
+  });
+})();
+</script>
+
 </body>
 </html>
