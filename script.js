@@ -471,14 +471,8 @@ document.getElementById('accueil').addEventListener('click', function() {
   document.getElementById('ecran-intro').classList.add('visible');
 });
 
-async function demarrerApp() {
-  var elem = document.documentElement;
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen().catch(err => { console.log("Erreur plein écran : ", err); });
-  } else if (elem.webkitRequestFullscreen) { 
-    elem.webkitRequestFullscreen();
-  }
-
+function demarrerApp() {
+  // Affichage du chat immédiat, sans plein écran forcé qui bloque
   document.getElementById('ecran-intro').classList.remove('visible');
   document.getElementById('chat').classList.add('visible');
   setTimeout(demarrer, 1000);
