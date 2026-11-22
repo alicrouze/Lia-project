@@ -131,7 +131,6 @@ let nomUtilisateur = null;
 let currentTheme = "Thème 1";
 let cartesFaites = false;
 let resolveCartes = null;
-let animationEnCours = false; 
 
 function ajouterBulle(texte, type) {
   const b = document.createElement('div');
@@ -293,7 +292,6 @@ function afficherCarte() {
     divAide.textContent = "1 = Pas du tout, 5 = Tout à fait";
   }
   
-  animationEnCours = false; 
   carteSwipe.classList.remove("cachee");
 }
 
@@ -307,8 +305,7 @@ function afficherCartes() {
 }
 
 function swipeCarte(note) {
-  if (indexCarte >= phrasesCartes.length || animationEnCours) return;
-  animationEnCours = true; 
+  if (carteSwipe.classList.contains("cachee")) return;
 
   if (note >= 4) {
     carteSwipe.style.background = "rgba(80, 255, 120, 0.4)";
@@ -321,19 +318,15 @@ function swipeCarte(note) {
     carteSwipe.style.opacity = "0";
     setTimeout(passerCarteSuivante, 2000);
   } else {
-    carteSwipe.style.transition = "background 0.4s ease"; 
+    carteSwipe.style.transition = "all 0.4s ease"; 
     carteSwipe.style.background = "rgba(255, 165, 0, 0.4)";
-    setTimeout(function() {
-      carteSwipe.style.transition = "opacity 0.4s ease"; 
-      carteSwipe.style.opacity = "0";
-      setTimeout(passerCarteSuivante, 400);
-    }, 800);
+    carteSwipe.style.opacity = "0";
+    setTimeout(passerCarteSuivante, 400);
   }
 }
 
 function choisirPeche(peche) {
-  if (animationEnCours) return;
-  animationEnCours = true;
+  if (carteSwipe.classList.contains("cachee")) return;
   carteSwipe.style.transition = "all 0.4s ease";
   carteSwipe.style.background = "rgba(212, 169, 96, 0.5)";
   carteSwipe.style.transform = "scale(1.05)";
