@@ -472,9 +472,15 @@ document.getElementById('accueil').addEventListener('click', function() {
 });
 
 function demarrerApp() {
-  // Affichage du chat immédiat, sans plein écran forcé qui bloque
   document.getElementById('ecran-intro').classList.remove('visible');
   document.getElementById('chat').classList.add('visible');
+  
+  // Astuce pour cacher les barres du navigateur sur mobile
+  setTimeout(function() {
+    window.scrollTo(0, 1);
+    document.body.style.height = window.innerHeight + 'px';
+  }, 100);
+
   setTimeout(demarrer, 1000);
 }
 
