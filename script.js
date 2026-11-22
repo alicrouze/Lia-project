@@ -479,11 +479,10 @@ document.getElementById('accueil').addEventListener('click', function() {
 });
 
 async function demarrerApp() {
-  // On demande au navigateur de passer en plein écran
   var elem = document.documentElement;
   if (elem.requestFullscreen) {
     elem.requestFullscreen().catch(err => { console.log("Erreur plein écran : ", err); });
-  } else if (elem.webkitRequestFullscreen) { // Pour Safari
+  } else if (elem.webkitRequestFullscreen) { 
     elem.webkitRequestFullscreen();
   }
 
