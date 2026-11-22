@@ -1,36 +1,32 @@
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { height: 100%; width: 100%; overflow: hidden; position: fixed; background-color: #000; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
 
-#accueil { position: fixed; inset: 0; background: url(images/ecran-accueil.jpg) center/cover no-repeat; z-index: 9999; transition: opacity 2s ease; cursor: pointer; }
+#accueil { position: fixed; inset: 0; background: url(images/ecran-accueil.jpg) center/cover no-repeat; z-index: 9999; transition: opacity 2s ease; cursor: pointer; width: 100vw; height: 100dvh; }
 #accueil.hidden { opacity: 0; pointer-events: none; }
 
 #ecran-intro {
   position: fixed; inset: 0; background: rgba(10, 15, 30, 0.95); backdrop-filter: blur(20px);
   z-index: 9998; display: flex; flex-direction: column; justify-content: flex-start; align-items: center;
   padding: 30px 15px 20px 15px; color: #fff; text-align: center; opacity: 0; pointer-events: none; transition: opacity 1s ease;
-  overflow-y: auto; height: 100dvh;
+  overflow-y: auto; height: 100dvh; width: 100vw;
 }
 #ecran-intro.visible { opacity: 1; pointer-events: auto; }
 #ecran-intro h2 { color: #d4a960; font-family: Baskerville, serif; margin-bottom: 15px; font-size: 22px; }
 #ecran-intro p { font-size: 13px; line-height: 1.4; margin-bottom: 10px; color: rgba(255,255,255,0.85); max-width: 95%; }
 .btn-commencer { margin-top: 15px; padding: 10px 25px; border-radius: 25px; background: linear-gradient(135deg, #6a7bff 0%, #5a6bef 100%); color: white; border: none; font-size: 15px; font-weight: bold; cursor: pointer; flex-shrink: 0; }
 
-#chat { position: fixed; inset: 0; height: 100dvh; background: url(images/chat.jpg) center/cover no-repeat; opacity: 0; transition: opacity 2s ease; }
+#chat { position: fixed; inset: 0; height: 100dvh; width: 100vw; background: url(images/chat.jpg) center/cover no-repeat; opacity: 0; transition: opacity 2s ease; }
 #chat.visible { opacity: 1; }
 
 .theme { position: absolute; top: 160px; right: 8%; font-family: Baskerville, "Times New Roman", serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.8); text-align: right; max-width: 35vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; z-index: 50; }
 
-/* INPUT PLUS BAS (28dvh au lieu de 25dvh) ET PLUS PROPRE */
 #input-zone { position: absolute; top: 28dvh; left: 50%; transform: translateX(-50%); width: 90vw; height: 56px; display: flex; align-items: center; background: rgba(40, 50, 80, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 28px; padding: 0 8px 0 20px; gap: 8px; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
 #user-input { flex: 1; height: 44px; border: none; background: transparent; color: #fff; font-size: 15px; outline: none; padding: 0; }
 #user-input::placeholder { color: rgba(255, 255, 255, 0.45); }
-
-/* NOUVELLE FLÈCHE PLUS BELLE */
 #send-btn { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #7b8cff 0%, #5a6bef 100%); color: #fff; border: none; font-size: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(90, 107, 239, 0.4); transition: transform 0.2s ease; }
 #send-btn:active { transform: scale(0.92); }
 #send-btn:disabled { opacity: 0.5; box-shadow: none; }
 
-/* LE CHAT RESTE EXACTEMENT LÀ OÙ IL EST */
 #bulles { position: absolute; top: 33dvh; left: 0; right: 0; bottom: 0; display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; align-items: flex-start; padding-top: 20px; }
 #bulles::-webkit-scrollbar { display: none; }
 .bulle { white-space: pre-wrap; min-width: 85vw; width: 85vw; margin: 0 7.5vw; scroll-snap-align: center; flex-shrink: 0; padding: 20px 24px; background: rgba(255, 255, 255, 0.10); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.20); border-radius: 24px; color: #fff; font-size: 16px; line-height: 1.45; display: block; max-height: 60%; overflow-y: auto; }
@@ -43,10 +39,10 @@ html, body { height: 100%; width: 100%; overflow: hidden; position: fixed; backg
 #etoile-filante { position: absolute; width: 1px; height: 1px; background: #fff; border-radius: 50%; box-shadow: 0 0 6px 2px rgba(255,255,255,0.8); pointer-events: none; z-index: 2; animation: filante 0.75s linear 1 forwards; }
 @keyframes filante { 0% { transform: translate(-100vw, 10vh); opacity: 0; } 5% { opacity: 1; } 95% { transform: translate(100vw, 40vh); opacity: 1; } 100% { transform: translate(100vw, 40vh); opacity: 0; } }
 
-/* IMAGE PLEIN ÉCRAN SANS BORDURE NI BANDE NOIRE */
-#image-plein-ecran { position: fixed; inset: 0; background: #000; display: flex; align-items: center; justify-content: center; z-index: 99999; opacity: 0; transition: opacity 1s ease; pointer-events: none; }
+/* IMAGE PLEIN ÉCRAN SANS BANDE NOIRE */
+#image-plein-ecran { position: fixed; inset: 0; background: #000; display: flex; align-items: center; justify-content: center; z-index: 99999; opacity: 0; transition: opacity 1s ease; pointer-events: none; width: 100vw; height: 100dvh; }
 #image-plein-ecran.visible { opacity: 1; pointer-events: auto; }
-#image-plein-ecran img { width: 100vw; height: 100vh; object-fit: cover; border: none; border-radius: 0; box-shadow: none; }
+#image-plein-ecran img { width: 100vw; height: 100dvh; object-fit: cover; border-radius: 0; }
 
 #menu-deroulant { position: absolute; top: 150px; left: 5%; background: rgba(40,50,80,0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; display: none; flex-direction: column; z-index: 101; width: 200px; overflow: hidden; }
 #menu-deroulant a { color: #fff; text-decoration: none; font-size: 15px; padding: 15px 20px; display: block; width: 100%; box-sizing: border-box; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
@@ -75,9 +71,6 @@ html, body { height: 100%; width: 100%; overflow: hidden; position: fixed; backg
 #boutons-note { display: flex; gap: 8px; justify-content: center; width: 100%; margin-top: 10px; }
 .btn-note { flex: 1; height: 55px; border-radius: 12px; border: 1px solid rgba(212, 169, 96, 0.4); background: linear-gradient(180deg, rgba(212, 169, 96, 0.2) 0%, rgba(212, 169, 96, 0.05) 100%); color: #d4a960; font-size: 22px; font-weight: bold; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
 .btn-note:active { transform: scale(0.9); background: rgba(212, 169, 96, 0.6); color: #fff; box-shadow: 0 0 15px rgba(212, 169, 96, 0.5); }
-
-.btn-peche { padding: 8px 12px; border-radius: 20px; border: 1px solid rgba(212, 169, 96, 0.6); background: rgba(15, 23, 42, 0.8); color: #d4a960; font-size: 13px; cursor: pointer; }
-.btn-peche:active { background: #d4a960; color: #000; }
 
 .bulle .chiffre {
   animation: apparition 1.2s infinite;
