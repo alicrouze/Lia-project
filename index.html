@@ -51,16 +51,16 @@
     <a href="#" onclick="ouvrirPanneau('match')">Débloquer mon Match</a>
   </div>
 
+  <!-- L'input sans le bouton + -->
   <div id="input-zone">
-    <button id="plus-btn">+</button>
     <input type="text" id="user-input" placeholder="Écris-moi quelque chose..." autocomplete="off">
-    <button id="send-btn">→</button>
+    <button id="send-btn">➤</button>
   </div>
 
   <div id="bulles"></div>
 
   <div id="carte-swipe" class="cachee">
-    <div id="carte-titre" style="color:#d4a960; font-size:14px; text-transform:uppercase; letter-spacing:1px; margin-bottom:5px; font-weight:bold;"></div>
+    <div id="carte-titre" style="color:#d4a960; font-size:14px; text-transform:uppercase; letter-spacing:1px; margin-bottom:5px; font-weight:bold; text-align:center;"></div>
     <div id="carte-texte" style="pointer-events: none;"></div>
     
     <div id="boutons-note">
@@ -69,16 +69,6 @@
       <button class="btn-note" onclick="swipeCarte(3)">3</button>
       <button class="btn-note" onclick="swipeCarte(4)">4</button>
       <button class="btn-note" onclick="swipeCarte(5)">5</button>
-    </div>
-    
-    <div id="boutons-peches" style="display:none; flex-wrap:wrap; gap:5px; justify-content:center;">
-      <button class="btn-peche" onclick="choisirPeche('Orgueil')">Orgueil</button>
-      <button class="btn-peche" onclick="choisirPeche('Avarice')">Avarice</button>
-      <button class="btn-peche" onclick="choisirPeche('Luxure')">Luxure</button>
-      <button class="btn-peche" onclick="choisirPeche('Envie')">Envie</button>
-      <button class="btn-peche" onclick="choisirPeche('Gourmandise')">Gourmandise</button>
-      <button class="btn-peche" onclick="choisirPeche('Colère')">Colère</button>
-      <button class="btn-peche" onclick="choisirPeche('Paresse')">Paresse</button>
     </div>
 
     <div id="carte-aide" style="font-size: 11px; color: rgba(255,255,255,0.4); text-align: center; margin-top: 5px;">1 = Pas du tout, 5 = Tout à fait</div>
