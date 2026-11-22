@@ -15,11 +15,13 @@ html, body { height: 100%; width: 100%; overflow: hidden; position: fixed; backg
 #ecran-intro p { font-size: 13px; line-height: 1.4; margin-bottom: 10px; color: rgba(255,255,255,0.85); max-width: 95%; }
 .btn-commencer { margin-top: 15px; padding: 10px 25px; border-radius: 25px; background: linear-gradient(135deg, #6a7bff 0%, #5a6bef 100%); color: white; border: none; font-size: 15px; font-weight: bold; cursor: pointer; flex-shrink: 0; }
 
+/* L'image de fond prend tout l'écran sans bandes */
 #chat { position: fixed; inset: 0; height: 100dvh; width: 100vw; background: url(images/chat.jpg) center/cover no-repeat; opacity: 0; transition: opacity 2s ease; }
 #chat.visible { opacity: 1; }
 
 .theme { position: absolute; top: 160px; right: 8%; font-family: Baskerville, "Times New Roman", serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.8); text-align: right; max-width: 35vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; z-index: 50; }
 
+/* L'input est baissé pour ne pas gêner le logo */
 #input-zone { position: absolute; top: 28dvh; left: 50%; transform: translateX(-50%); width: 90vw; height: 56px; display: flex; align-items: center; background: rgba(40, 50, 80, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 28px; padding: 0 8px 0 20px; gap: 8px; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
 #user-input { flex: 1; height: 44px; border: none; background: transparent; color: #fff; font-size: 15px; outline: none; padding: 0; }
 #user-input::placeholder { color: rgba(255, 255, 255, 0.45); }
@@ -39,10 +41,10 @@ html, body { height: 100%; width: 100%; overflow: hidden; position: fixed; backg
 #etoile-filante { position: absolute; width: 1px; height: 1px; background: #fff; border-radius: 50%; box-shadow: 0 0 6px 2px rgba(255,255,255,0.8); pointer-events: none; z-index: 2; animation: filante 0.75s linear 1 forwards; }
 @keyframes filante { 0% { transform: translate(-100vw, 10vh); opacity: 0; } 5% { opacity: 1; } 95% { transform: translate(100vw, 40vh); opacity: 1; } 100% { transform: translate(100vw, 40vh); opacity: 0; } }
 
-/* IMAGE PLEIN ÉCRAN SANS BANDE NOIRE */
+/* L'image plein écran prend TOUT l'écran, sans cadre blanc */
 #image-plein-ecran { position: fixed; inset: 0; background: #000; display: flex; align-items: center; justify-content: center; z-index: 99999; opacity: 0; transition: opacity 1s ease; pointer-events: none; width: 100vw; height: 100dvh; }
 #image-plein-ecran.visible { opacity: 1; pointer-events: auto; }
-#image-plein-ecran img { width: 100vw; height: 100dvh; object-fit: cover; border-radius: 0; }
+#image-plein-ecran img { width: 100vw; height: 100dvh; object-fit: cover; border-radius: 0; border: none; }
 
 #menu-deroulant { position: absolute; top: 150px; left: 5%; background: rgba(40,50,80,0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; display: none; flex-direction: column; z-index: 101; width: 200px; overflow: hidden; }
 #menu-deroulant a { color: #fff; text-decoration: none; font-size: 15px; padding: 15px 20px; display: block; width: 100%; box-sizing: border-box; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
