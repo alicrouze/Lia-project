@@ -14,7 +14,7 @@ body { min-height: 100dvh; }
 #halo-lanterne {
   position: absolute;
   bottom: calc(8% - 8px);
-  left: calc(7% - 17px);
+  left: calc(7% - 19px);
   width: 38px;
   height: 38px;
   border-radius: 50%;
