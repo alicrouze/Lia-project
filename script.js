@@ -235,4 +235,286 @@ const BANQUE_CARTES = {
     { titre: "27. Fermeture d'esprit", texte: "J'ai du mal à changer d'avis, même lorsque de nouveaux arguments me sont présentés.", type: "defaut" },
     { titre: "28. Préjugés", texte: "Je juge parfois une personne avant de la connaître réellement.", type: "defaut" },
     { titre: "29. Critique", texte: "Je remarque facilement les défauts des autres et j'ai tendance à les souligner.", type: "defaut" },
-    { titre: "30. Malhonnêteté intellectuelle", texte: "Lorsque je
+    { titre: "30. Malhonnêteté intellectuelle", texte: "Lorsque je défends mon opinion, j'ignore parfois les arguments qui pourraient me donner tort.", type: "defaut" },
+    { titre: "26. Amour", texte: "Est-ce que tu sais aimer quelqu'un pour ce qu'il est, et pas seulement pour ce qu'il t'apporte ?", type: "qualite" },
+    { titre: "27. Indépendance affective", texte: "Est-ce que tu sais laisser de la liberté aux personnes que tu aimes sans avoir peur de les perdre ?", type: "qualite" },
+    { titre: "28. Dévouement", texte: "Est-ce que tu sais être présent pour quelqu'un lorsque cette personne a réellement besoin de toi ?", type: "qualite" },
+    { titre: "29. Tendresse", texte: "Est-ce que tu exprimes facilement ton affection, ta douceur et tes sentiments aux personnes que tu aimes ?", type: "qualite" },
+    { titre: "30. Gratitude", texte: "Est-ce que tu sais apprécier ce que les autres font pour toi sans considérer cela comme acquis ?", type: "qualite" }
+  ],
+  "Thème 7": [
+    { titre: "31. Cruauté", texte: "Il m'arrive de faire volontairement du mal à quelqu'un en utilisant ce que je sais de ses faiblesses.", type: "defaut" },
+    { titre: "32. Vengeance", texte: "Lorsque quelqu'un me fait du mal, j'ai envie de lui faire subir la même chose.", type: "defaut" },
+    { titre: "33. Agressivité", texte: "Lorsque je suis en colère, je peux devenir violent dans mes paroles ou mes gestes.", type: "defaut" },
+    { titre: "34. Victimisation", texte: "J'ai tendance à rejeter la faute sur les autres et à me considérer comme une victime des circonstances.", type: "defaut" },
+    { titre: "35. Autodestruction", texte: "Il m'arrive de saboter moi-même mes relations, mon bonheur ou mes projets, même lorsque je sais que je risque de tout perdre.", type: "defaut" },
+    { titre: "31. Initiative", texte: "Est-ce que tu prends spontanément des initiatives sans attendre que quelqu'un te dise quoi faire ?", type: "qualite" },
+    { titre: "32. Discipline", texte: "Est-ce que tu sais faire ce que tu dois faire même lorsque tu n'en as pas envie ?", type: "qualite" },
+    { titre: "33. Coopération", texte: "Est-ce que tu sais travailler avec les autres sans chercher à imposer systématiquement ta manière de faire ?", type: "qualite" },
+    { titre: "34. Créativité", texte: "Est-ce que tu sais trouver des idées, des solutions ou des façons différentes de faire face à un problème ?", type: "qualite" },
+    { titre: "35. Dépassement de soi", texte: "Est-ce que tu cherches à devenir une meilleure personne, même lorsque cela t'oblige à remettre en question certains aspects de toi-même ?", type: "qualite" },
+    { titre: "36. Les 7 péchés", texte: "Parmi les sept péchés capitaux, lequel te correspond le plus ?", type: "peches" }
+  ]
+};
+
+let phrasesCartes = BANQUE_CARTES["Thème 1"];
+let indexCarte = 0;
+const carteSwipe = document.getElementById('carte-swipe');
+const carteTexte = document.getElementById('carte-texte');
+const carteTitre = document.getElementById('carte-titre');
+
+function afficherCarte() {
+  if (indexCarte >= phrasesCartes.length) {
+    carteSwipe.classList.add("cachee");
+    return;
+  }
+
+  var carte = phrasesCartes[indexCarte];
+  carteTitre.textContent = carte.titre;
+  carteTexte.textContent = carte.texte;
+
+  carteSwipe.style.transition = "opacity 2s cubic-bezier(0.25, 1, 0.5, 1), transform 2s cubic-bezier(0.25, 1, 0.5, 1), background 0.5s ease";
+  carteSwipe.style.transform = "translate(-50%, -50%)";
+  carteSwipe.style.opacity = "1";
+  carteSwipe.style.background = "rgba(15, 23, 42, 0.95)";
+
+  var divNote = document.getElementById('boutons-note');
+  var divPeches = document.getElementById('boutons-peches');
+  var divAide = document.getElementById('carte-aide');
+
+  if (carte.type === 'peches') {
+    divNote.style.display = 'none';
+    divPeches.style.display = 'flex';
+    divAide.textContent = "Choisis ton péché dominant";
+  } else {
+    divNote.style.display = 'flex';
+    divPeches.style.display = 'none';
+    divAide.textContent = "1 = Pas du tout, 5 = Tout à fait";
+  }
+
+  carteSwipe.classList.remove("cachee");
+}
+
+function afficherCartes() {
+  return new Promise(function(resolve) {
+    resolveCartes = resolve;
+    indexCarte = 0;
+    phrasesCartes = BANQUE_CARTES[currentTheme];
+    afficherCarte();
+  });
+}
+
+function swipeCarte(note) {
+  if (carteSwipe.classList.contains("cachee")) return;
+
+  if (note >= 4) {
+    carteSwipe.style.background = "rgba(80, 255, 120, 0.4)";
+    carteSwipe.style.transform = "translate(-50%, -130%)";
+    carteSwipe.style.opacity = "0";
+    setTimeout(passerCarteSuivante, 2000);
+  } else if (note <= 2) {
+    carteSwipe.style.background = "rgba(255, 80, 80, 0.4)";
+    carteSwipe.style.transform = "translate(-50%, 130%)";
+    carteSwipe.style.opacity = "0";
+    setTimeout(passerCarteSuivante, 2000);
+  } else {
+    carteSwipe.style.transition = "all 0.4s ease";
+    carteSwipe.style.background = "rgba(255, 165, 0, 0.4)";
+    carteSwipe.style.opacity = "0";
+    setTimeout(passerCarteSuivante, 400);
+  }
+}
+
+function choisirPeche(peche) {
+  if (carteSwipe.classList.contains("cachee")) return;
+  carteSwipe.style.transition = "all 0.4s ease";
+  carteSwipe.style.background = "rgba(212, 169, 96, 0.5)";
+  carteSwipe.style.transform = "scale(1.05)";
+  carteSwipe.style.opacity = "0";
+  setTimeout(passerCarteSuivante, 400);
+}
+
+function passerCarteSuivante() {
+  indexCarte++;
+  carteSwipe.classList.add("cachee");
+  setTimeout(afficherCarte, 500);
+  if (indexCarte >= phrasesCartes.length && !cartesFaites) {
+    cartesFaites = true;
+    if (resolveCartes) resolveCartes();
+  }
+}
+
+function demanderNom() {
+  const mots1 = ['Lune', 'Ombre', 'Braise', 'Écho', 'Sable', 'Océan', 'Nuage', 'Soleil'];
+  const mots2 = ['Douce', 'Sauvage', 'Secrète', 'Perdue', 'Profonde', 'Silencieuse', 'Étoilée', 'Nue'];
+  const p1 = mots1[Math.floor(Math.random() * mots1.length)];
+  const p2 = mots2[Math.floor(Math.random() * mots2.length)];
+  const pseudo = p1 + '-' + p2;
+  return new Promise(function(resolve) { resolve(pseudo); });
+}
+
+async function envoyer() {
+  const texte = input.value.trim();
+  if (!texte) return;
+  input.value = '';
+  sendBtn.disabled = true;
+  ajouterBulle(texte, 'user');
+  historique.push({ role: 'user', content: texte });
+
+  if (!cartesFaites) {
+    await afficherCartes();
+  }
+
+  var images = imagesThemes[currentTheme];
+  if (images && compteurQuestions > 0 && compteurQuestions % 3 === 0) {
+    var imgIndex = Math.floor(compteurQuestions / 3);
+    if (imgIndex < images.length) {
+      await afficherImagePleinEcran(images[imgIndex]);
+    }
+  }
+
+  const bulleLia = ajouterBulle('', 'lia');
+  bulleLia.innerHTML = '<span class="chiffre" style="animation-delay: 0s">3</span> <span class="chiffre" style="animation-delay: 0.2s">3</span> <span class="chiffre" style="animation-delay: 0.4s">3</span>';
+
+  let essais = 0;
+  while (typeof puter === 'undefined' && essais < 50) {
+    await new Promise(r => setTimeout(r, 100));
+    essais++;
+  }
+  if (typeof puter === 'undefined') {
+    bulleLia.textContent = "Erreur : la bibliothèque 3 (Puter) n'a pas pu se charger.";
+    sendBtn.disabled = false;
+    return;
+  }
+
+  const startTime = Date.now();
+  try {
+    const reponse = await puter.ai.chat(historique, { model: 'gpt-4o-mini' });
+    let t = reponse;
+    if (typeof reponse === 'object' && reponse.message) {
+      t = reponse.message.content || reponse.message;
+    }
+    const elapsedTime = Date.now() - startTime;
+    if (elapsedTime < 1500) {
+      await new Promise(r => setTimeout(r, 1500 - elapsedTime));
+    }
+
+    t = t.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+    t = t.replace(/\[T\d_Q\d+\]/g, '').trim();
+    t = t.replace(/\[Q:.*?\]/g, '').trim();
+
+    var THEME_MAP = {
+      "Qui je suis": "Thème 1",
+      "Comment j'aime": "Thème 2",
+      "Comment je suis avec les autres": "Thème 3",
+      "Mon corps et mon intimité": "Thème 4",
+      "Ce qui compte pour moi": "Thème 5",
+      "Ma famille": "Thème 6",
+      "Mes contradictions et mes péchés": "Thème 7"
+    };
+
+    var matchTheme = t.match(/\[THEME:(.*?)\]/);
+    if (matchTheme) {
+      document.getElementById('theme-courant').textContent = matchTheme[1].replace(/_/g, ' ').charAt(0).toUpperCase() + matchTheme[1].replace(/_/g, ' ').slice(1);
+      t = t.replace(matchTheme[0], '').trim();
+      var nouveauTheme = THEME_MAP[matchTheme[1]] || "Thème 1";
+
+      if (nouveauTheme !== currentTheme) {
+        currentTheme = nouveauTheme;
+        if (BANQUE_CARTES[currentTheme]) {
+          phrasesCartes = BANQUE_CARTES[currentTheme];
+          indexCarte = 0;
+          setTimeout(afficherCarte, 2000);
+        }
+      }
+    }
+
+    bulleLia.textContent = t;
+    historique.push({ role: 'assistant', content: t });
+
+    compteurQuestions++;
+  } catch (e) {
+    console.error(e);
+    bulleLia.textContent = "Erreur Puter : " + (e.message || e || "Connexion perdue. Vérifie ton réseau.");
+  }
+  sendBtn.disabled = false;
+  input.focus();
+}
+
+async function demarrer() {
+  nomUtilisateur = await demanderNom();
+
+  var sexeUser = document.getElementById('sexe-user') ? document.getElementById('sexe-user').value : "Non précisé";
+  var sexeCherche = document.getElementById('sexe-cherche') ? document.getElementById('sexe-cherche').value : "Non précisé";
+
+  historique = [
+    { role: 'system', content: LIA_PERSONA },
+    { role: 'system', content: "L'utilisateur est anonyme. L'utilisateur est " + sexeUser + " et cherche " + sexeCherche + ". Prends-en note pour le futur match." }
+  ];
+
+  await new Promise(r => setTimeout(r, 2000));
+  await afficherImagePleinEcran(imagesThemes["Thème 1"][0]);
+
+  input.placeholder = 'Écris-moi quelque chose...';
+  sendBtn.addEventListener('click', envoyer);
+  input.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') envoyer();
+  });
+
+  ajouterBulle("Bonjour, je suis 3.\n\n\"Sur une montre, ce ne sont pas les aiguilles qui indiquent le temps qui passe, mais l'usure du bracelet.\"\n\nEs-tu prêt(e) à commencer ?", 'lia');
+
+  historique.push({ role: 'assistant', content: "Bonjour, je suis 3. Es-tu prêt(e) à commencer ?" });
+}
+
+document.getElementById('accueil').addEventListener('click', function() {
+  this.classList.add('hidden');
+  document.getElementById('ecran-intro').classList.add('visible');
+});
+
+function demarrerApp() {
+  document.getElementById('ecran-intro').classList.remove('visible');
+  document.getElementById('chat').classList.add('visible');
+
+  setTimeout(function() {
+    window.scrollTo(0, 1);
+    document.body.style.height = window.innerHeight + 'px';
+  }, 100);
+
+  setTimeout(demarrer, 1000);
+}
+
+document.getElementById('zone-logo').addEventListener('click', function(e) {
+  e.stopPropagation();
+  document.getElementById('menu-deroulant').classList.toggle('visible');
+});
+document.addEventListener('click', function() {
+  document.getElementById('menu-deroulant').classList.remove('visible');
+});
+
+function ouvrirPanneau(cle) {
+  var textes = {
+    miroir: "<p>Voici le reflet de ce que vous m'avez confié. 3 ne juge pas. 3 garde une trace de vos vérités pour construire votre compatibilité.</p><p><strong>Vos défauts assumés :</strong> En cours d'exploration...</p><p><strong>Vos contradictions :</strong> En cours d'exploration...</p><p><strong>Vos désirs profonds :</strong> En cours d'exploration...</p>",
+    cle: "<p>Vous êtes ici en sécurité. 3 ne connaît ni votre nom, ni votre visage, ni votre adresse. Votre identité n'appartient qu'à vous.</p><p><strong>Votre Clé d'Anonymat :</strong> [PSEUDO]</p><p><strong>Votre Code de récupération :</strong> (À venir)</p><p class='mention'>Conservez cette clé précieusement. Si vous perdez votre téléphone, c'est le seul moyen de retrouver votre compte.</p>",
+    apropos: "<p>3 n'est pas un assistant. 3 n'est pas un site de rencontre classique. 3 est un miroir.</p><p><strong>Les 3 promesses :</strong></p><p>1. Pas de photos, pas de profils. On écoute une âme.</p><p>2. L'acceptation des défauts. La compatibilité se joue sur votre capacité à comprendre les failles de l'autre.</p><p>3. L'intimité assumée. Le désir et les fantasmes sont le ciment d'une relation vraie.</p><p><strong>La règle des 3 jours :</strong> Pendant 3 jours, 3 apprend à vous connaître. À la fin, elle vous proposera une seule personne. Pour découvrir qui c'est, une participation financière vous sera demandée (via un code ou un paiement sécurisé). C'est le prix de la vérité et de l'anonymat.</p>",
+    match: "<p>Votre rencontre se prépare. Ce menu s'activera à la fin de votre parcours avec 3.</p><h3>Le prix de la vérité : 9,99 €</h3><p>Pourquoi ce prix ? Parce que 3 ne vous propose pas un catalogue infini. Elle vous propose une seule personne, sélectionnée sur la base de vos failles, de vos désirs et de vos contradictions. C'est le prix d'une rencontre qui a du sens.</p><p><strong>Comment payer ?</strong></p><p>1. Par carte bancaire (paiement sécurisé et anonyme). L'application ne conserve aucune donnée liée à votre identité.</p><p>2. Par code d'activation (si vous préférez un anonymat total). Achetez un code de 9,99 € sur notre site partenaire et entrez-le ici.</p><p class='mention'>C'est le prix de la vérité et de l'anonymat.</p>"
+  };
+  var titres = { miroir: "Mon Miroir", cle: "Ma Clé", apropos: "À propos de 3", match: "Débloquer mon Match" };
+  var txt = textes[cle];
+  if (cle === 'cle') txt = txt.replace('[PSEUDO]', nomUtilisateur);
+  document.getElementById('panneau-contenu').innerHTML = "<h2>" + titres[cle] + "</h2>" + txt;
+  document.getElementById('panneau').classList.add('visible');
+}
+
+// --- ÉTOILE FILANTE (UNE SEULE FOIS) ---
+function lancerEtoileFilante() {
+  var etoile = document.getElementById('etoile-filante');
+  if (!etoile) return;
+  etoile.style.opacity = '0';
+  etoile.style.animation = 'none';
+  void etoile.offsetWidth;
+  etoile.style.animation = 'filante 1.5s linear 1 forwards';
+}
+
+window.addEventListener('load', function() {
+  setTimeout(lancerEtoileFilante, 1000);
+});
