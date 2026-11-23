@@ -131,7 +131,7 @@ body { min-height: 100dvh; }
     transform: translate(100vw, 35vh);
     opacity: 0;
   }
-} }
+}
 
 /* IMAGE PLEIN ÉCRAN */
 #image-plein-ecran { position: fixed; inset: 0; background: #000; display: flex; align-items: center; justify-content: center; z-index: 99999; opacity: 0; transition: opacity 1s ease; pointer-events: none; width: 100vw; height: 100dvh; }
