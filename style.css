@@ -115,7 +115,23 @@ body { min-height: 100dvh; }
 
 /* ÉTOILE FILANTE */
 #etoile-filante { position: absolute; width: 1px; height: 1px; background: #fff; border-radius: 50%; box-shadow: 0 0 6px 2px rgba(255,255,255,0.8); pointer-events: none; z-index: 2; animation: filante 1.5s linear 1 forwards; }
-@keyframes filante { 0% { transform: translate(-100vw, calc(10vh + 288px)); opacity: 0; } 5% { opacity: 1; } 95% { transform: translate(100vw, calc(40vh + 288px)); opacity: 1; } 100% { transform: translate(100vw, calc(40vh + 288px)); opacity: 0; } }
+@keyframes filante {
+  0% {
+    transform: translate(-100vw, 15vh);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    transform: translate(100vw, 35vh);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100vw, 35vh);
+    opacity: 0;
+  }
+} }
 
 /* IMAGE PLEIN ÉCRAN */
 #image-plein-ecran { position: fixed; inset: 0; background: #000; display: flex; align-items: center; justify-content: center; z-index: 99999; opacity: 0; transition: opacity 1s ease; pointer-events: none; width: 100vw; height: 100dvh; }
