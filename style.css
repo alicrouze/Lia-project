@@ -4,12 +4,15 @@
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { width: 100%; height: 100%; height: 100dvh; overflow: hidden; position: fixed; background: #000; font-family: -apple-system, BlinkMacSystemFont, sans-serif; overscroll-behavior: none; }
 body { min-height: 100dvh; }
+
 /* ÉCRAN D'ACCUEIL */
 #accueil { position: fixed; inset: 0; width: 100vw; height: 100dvh; background: url(images/ecran-accueil.jpg) center/cover no-repeat; z-index: 9999; transition: opacity 2s ease; cursor: pointer; }
 #accueil.hidden { opacity: 0; pointer-events: none; }
+
 /* HALO BLANC DE LA LANTERNE */
 #halo-lanterne { position: absolute; bottom: 8%; left: 7%; width: 38px; height: 38px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.5) 30%, rgba(255,255,255,0.12) 55%, transparent 75%); filter: blur(5px); animation: haloflamme 3s ease-in-out infinite; pointer-events: none; z-index: 1; }
 @keyframes haloflamme { 0% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.35); opacity: 1; } 100% { transform: scale(1); opacity: 0.6; } }
+
 /* ÉCRAN INTRO */
 #ecran-intro { position: fixed; inset: 0; width: 100vw; height: 100dvh; background: rgba(10, 15, 30, 0.96); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 9998; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: calc(25px + env(safe-area-inset-top)) 18px calc(20px + env(safe-area-inset-bottom)); color: #fff; text-align: center; opacity: 0; pointer-events: none; transition: opacity 1s ease; overflow-y: auto; }
 #ecran-intro.visible { opacity: 1; pointer-events: auto; }
@@ -17,43 +20,98 @@ body { min-height: 100dvh; }
 #ecran-intro p { font-size: 14px; line-height: 1.55; margin-bottom: 12px; color: rgba(255,255,255,0.85); max-width: 500px; }
 #ecran-intro select { appearance: auto; -webkit-appearance: auto; }
 .btn-commencer { margin-top: 15px; margin-bottom: 15px; padding: 12px 30px; border-radius: 25px; background: linear-gradient(135deg, #6a7bff 0%, #5a6bef 100%); color: white; border: none; font-size: 16px; font-weight: bold; cursor: pointer; flex-shrink: 0; }
+
 /* CHAT PLEIN ÉCRAN */
-#chat { position: fixed; inset: 0; width: 100vw; height: 100dvh; background: url(images/chat.jpg) center/cover no-repeat; opacity: 0; transition: opacity 2s ease; overflow: hidden; }
+#chat {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  background-image: url(images/chat.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center calc(50% + 45px);
+  opacity: 0;
+  transition: opacity 2s ease;
+  overflow: hidden;
+}
 #chat.visible { opacity: 1; }
-/* LOGO */
-#zone-logo { position: absolute; top: calc(3vh + env(safe-area-inset-top)); left: 6vw; width: 58px; height: 58px; background: url("logo.png") center/contain no-repeat; font-size: 0; color: transparent; cursor: pointer; z-index: 999; }
+
+/* LOGO DU MENU : ROND */
+#zone-logo {
+  position: absolute;
+  top: calc(3vh + env(safe-area-inset-top));
+  left: 6vw;
+  width: 58px;
+  height: 58px;
+  background: url("logo.png") center/cover no-repeat;
+  border-radius: 50%;
+  overflow: hidden;
+  clip-path: circle(50%);
+  font-size: 0;
+  color: transparent;
+  cursor: pointer;
+  z-index: 999;
+}
+
 /* THÈME */
 .theme { position: absolute; top: calc(100px + env(safe-area-inset-top)); right: 7%; font-family: Baskerville, "Times New Roman", serif; font-style: italic; font-size: 13px; color: rgba(255,255,255,0.8); text-align: right; max-width: 55vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; z-index: 50; }
-/* ZONE DE SAISIE */
-#input-zone { position: absolute; bottom: calc(15px + env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); width: 92vw; height: 58px; display: flex; align-items: center; background: rgba(25, 35, 65, 0.72); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.2); border-radius: 32px; padding: 0 8px 0 20px; gap: 8px; z-index: 100; box-shadow: 0 4px 25px rgba(0,0,0,0.4); }
+
+/* ZONE DE SAISIE : AU-DESSUS DES BULLES */
+#input-zone {
+  position: absolute;
+  top: calc(145px + env(safe-area-inset-top));
+  bottom: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92vw;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  background: rgba(25, 35, 65, 0.72);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 32px;
+  padding: 0 8px 0 20px;
+  gap: 8px;
+  z-index: 100;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+}
 #user-input { flex: 1; width: 0; height: 48px; border: none; background: transparent; color: #fff; font-size: 16px; outline: none; padding: 0; min-width: 0; }
 #user-input::placeholder { color: rgba(255,255,255,0.45); }
 #send-btn { width: 46px; height: 46px; border-radius: 50%; background: linear-gradient(135deg, #7b8cff 0%, #5a6bef 100%); color: #fff; border: none; font-size: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(90, 107, 239, 0.4); transition: transform 0.2s ease; }
 #send-btn:active { transform: scale(0.92); }
 #send-btn:disabled { opacity: 0.5; box-shadow: none; }
-/* BULLES DE CONVERSATION */
-#bulles { position: absolute; top: calc(160px + env(safe-area-inset-top)); left: 0; right: 0; bottom: calc(90px + env(safe-area-inset-bottom)); display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; align-items: flex-start; padding-top: 15px; }
+
+/* BULLES DE CONVERSATION : SOUS L'INPUT */
+#bulles { position: absolute; top: calc(220px + env(safe-area-inset-top)); left: 0; right: 0; bottom: calc(90px + env(safe-area-inset-bottom)); display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; align-items: flex-start; padding-top: 15px; }
 #bulles::-webkit-scrollbar { display: none; }
 .bulle { white-space: pre-wrap; min-width: 86vw; width: 86vw; margin: 0 7vw; scroll-snap-align: center; flex-shrink: 0; padding: 22px; background: rgba(255,255,255,0.10); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.20); border-radius: 24px; color: #fff; font-size: 16px; line-height: 1.6; display: block; max-height: 100%; overflow-y: auto; overscroll-behavior: contain; }
 .bulle.user { background: rgba(100,130,200,0.25); }
 .bulle.image { display: flex; align-items: center; justify-content: center; padding: 10px; }
 .bulle.image img { max-width: 100%; max-height: 250px; border-radius: 16px; object-fit: cover; }
+
 /* ANIMATION DES 3 */
 .bulle .chiffre { animation: apparition 1.2s infinite; font-family: Baskerville, serif; font-weight: 300; font-size: 22px; color: #d4a960; opacity: 0; display: inline-block; }
 @keyframes apparition { 0%, 100% { opacity: 0; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.1); } }
+
 /* ÉTOILE FILANTE */
 #etoile-filante { position: absolute; width: 1px; height: 1px; background: #fff; border-radius: 50%; box-shadow: 0 0 6px 2px rgba(255,255,255,0.8); pointer-events: none; z-index: 2; animation: filante 0.75s linear 1 forwards; }
 @keyframes filante { 0% { transform: translate(-100vw, 10vh); opacity: 0; } 5% { opacity: 1; } 95% { transform: translate(100vw, 40vh); opacity: 1; } 100% { transform: translate(100vw, 40vh); opacity: 0; } }
+
 /* IMAGE PLEIN ÉCRAN */
 #image-plein-ecran { position: fixed; inset: 0; background: #000; display: flex; align-items: center; justify-content: center; z-index: 99999; opacity: 0; transition: opacity 1s ease; pointer-events: none; width: 100vw; height: 100dvh; }
 #image-plein-ecran.visible { opacity: 1; pointer-events: auto; }
 #image-plein-ecran img { width: 100vw; height: 100dvh; object-fit: cover; border-radius: 0; }
+
 /* MENU DÉROULANT */
 #menu-deroulant { position: absolute; top: calc(100px + env(safe-area-inset-top)); left: 5%; background: rgba(25,35,65,0.96); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; display: none; flex-direction: column; z-index: 101; width: 210px; overflow: hidden; }
 #menu-deroulant a { color: #fff; text-decoration: none; font-size: 15px; padding: 16px 20px; display: block; width: 100%; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
 #menu-deroulant a:last-child { border-bottom: none; }
 #menu-deroulant a:active { background: rgba(255,255,255,0.15); }
 #menu-deroulant.visible { display: flex; }
+
 /* PANNEAU */
 #panneau { position: fixed; inset: 0; background: rgba(10,15,30,0.96); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 9999; display: none; flex-direction: column; padding: calc(40px + env(safe-area-inset-top)) 20px calc(30px + env(safe-area-inset-bottom)); color: #fff; font-family: -apple-system, sans-serif; overflow-y: auto; }
 #panneau.visible { display: flex; }
@@ -62,22 +120,39 @@ body { min-height: 100dvh; }
 #panneau-contenu p { font-size: 16px; line-height: 1.6; margin-bottom: 15px; color: rgba(255,255,255,0.85); }
 #panneau-contenu .mention { font-size: 13px; color: rgba(255,255,255,0.5); font-style: italic; margin-top: 30px; }
 #fermer-panneau { position: absolute; top: calc(20px + env(safe-area-inset-top)); right: 20px; font-size: 24px; color: #fff; cursor: pointer; }
+
 /* CARTE SWIPE */
 #carte-swipe { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 88vw; max-height: 80dvh; overflow-y: auto; background: rgba(15,23,42,0.96); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(212,169,96,0.5); border-radius: 24px; padding: 25px 20px; z-index: 200; display: flex; flex-direction: column; align-items: center; gap: 15px; box-shadow: 0 15px 50px rgba(0,0,0,0.8); transition: opacity 2s cubic-bezier(0.25, 1, 0.5, 1), transform 2s cubic-bezier(0.25, 1, 0.5, 1), background 0.5s ease; }
 #carte-swipe.cachee { opacity: 0; pointer-events: none; transform: translate(-50%, -40%); }
 #carte-texte { color: #fff; font-size: 18px; font-style: italic; text-align: center; line-height: 1.5; font-family: Baskerville, serif; }
+
 /* BOUTONS DE NOTES */
 #boutons-note { display: flex; gap: 8px; justify-content: center; width: 100%; margin-top: 10px; }
 .btn-note { flex: 1; height: 55px; border-radius: 12px; border: 1px solid rgba(212,169,96,0.4); background: linear-gradient(180deg, rgba(212,169,96,0.2) 0%, rgba(212,169,96,0.05) 100%); color: #d4a960; font-size: 22px; font-weight: bold; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
 .btn-note:active { transform: scale(0.9); background: rgba(212,169,96,0.6); color: #fff; box-shadow: 0 0 15px rgba(212,169,96,0.5); }
+
 /* BOUTONS PÉCHÉS */
 .btn-peche { padding: 10px 14px; border-radius: 20px; border: 1px solid rgba(212,169,96,0.6); background: rgba(15,23,42,0.8); color: #d4a960; font-size: 13px; cursor: pointer; }
 .btn-peche:active { background: #d4a960; color: #000; }
-/* LOGO SUR ÉCRAN INSTALLATION : logo carré original */
-#installation-obligatoire .installation-logo { width: 112px; height: 112px; margin: 0 auto 20px; background: url("logo.png") center/contain no-repeat; font-size: 0; color: transparent; text-shadow: none; }
+
+/* LOGO DE L'ÉCRAN D'INSTALLATION : ROND */
+#installation-obligatoire .installation-logo {
+  width: 112px;
+  height: 112px;
+  margin: 0 auto 20px;
+  background: url("logo.png") center/cover no-repeat;
+  border-radius: 50%;
+  overflow: hidden;
+  clip-path: circle(50%);
+  font-size: 0;
+  color: transparent;
+  text-shadow: none;
+}
+
 /* PETITS ÉCRANS */
 @media screen and (max-height: 700px) {
-  #bulles { top: calc(130px + env(safe-area-inset-top)); bottom: calc(85px + env(safe-area-inset-bottom)); }
+  #input-zone { top: calc(125px + env(safe-area-inset-top)); }
+  #bulles { top: calc(195px + env(safe-area-inset-top)); bottom: calc(85px + env(safe-area-inset-bottom)); }
   #carte-swipe { max-height: 85dvh; padding: 18px 15px; gap: 10px; }
   .btn-note { height: 48px; }
   #ecran-intro { padding-top: calc(15px + env(safe-area-inset-top)); }
