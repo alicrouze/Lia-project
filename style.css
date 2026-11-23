@@ -40,7 +40,7 @@ body { min-height: 100dvh; }
 /* LOGO DU MENU : ROND */
 #zone-logo {
   position: absolute;
-  top: calc(3vh + env(safe-area-inset-top));
+  top: calc(3vh + 10px + env(safe-area-inset-top));
   left: 6vw;
   width: 58px;
   height: 58px;
@@ -60,7 +60,7 @@ body { min-height: 100dvh; }
 /* ZONE DE SAISIE : AU-DESSUS DES BULLES */
 #input-zone {
   position: absolute;
-  top: calc(145px + env(safe-area-inset-top));
+  top: calc(155px + env(safe-area-inset-top));
   bottom: auto;
   left: 50%;
   transform: translateX(-50%);
@@ -151,7 +151,7 @@ body { min-height: 100dvh; }
 
 /* PETITS ÉCRANS */
 @media screen and (max-height: 700px) {
-  #input-zone { top: calc(125px + env(safe-area-inset-top)); }
+  #input-zone { top: calc(135px + env(safe-area-inset-top)); }
   #bulles { top: calc(195px + env(safe-area-inset-top)); bottom: calc(85px + env(safe-area-inset-bottom)); }
   #carte-swipe { max-height: 85dvh; padding: 18px 15px; gap: 10px; }
   .btn-note { height: 48px; }
