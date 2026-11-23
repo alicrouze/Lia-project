@@ -40,7 +40,7 @@ body { min-height: 100dvh; }
 /* LOGO DU MENU : ROND */
 #zone-logo {
   position: absolute;
-  top: calc(3vh + 20px + env(safe-area-inset-top));
+  top: calc(3vh + 50px + env(safe-area-inset-top));
   left: 6vw;
   width: 58px;
   height: 58px;
