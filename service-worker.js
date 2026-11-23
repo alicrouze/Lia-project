@@ -1,39 +1,54 @@
-const CACHE_NAME = "lia-pwa-v3";
+const CACHE_NAME = "3-application-v2";
 
-self.addEventListener("install", function(event) {
-  event.waitUntil(self.skipWaiting());
+const FICHIERS = [
+  "./",
+  "./index.html",
+  "./style.css",
+  "./script.js",
+  "./manifest.json",
+  "./logo.png",
+  "./icon-192.png",
+  "./icon-512.png",
+  "./logo_android.png",
+  "./images/ecran-accueil.jpg",
+  "./images/chat.jpg"
+];
+
+self.addEventListener("install", function (event) {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(function (cache) {
+        return cache.addAll(FICHIERS);
+      })
+      .then(function () {
+        return self.skipWaiting();
+      })
+  );
 });
 
-self.addEventListener("activate", function(event) {
+self.addEventListener("activate", function (event) {
   event.waitUntil(
-    caches.keys().then(function(keys) {
+    caches.keys().then(function (noms) {
       return Promise.all(
-        keys.filter(function(key) {
-          return key !== CACHE_NAME;
-        }).map(function(key) {
-          return caches.delete(key);
-        })
+        noms
+          .filter(function (nom) {
+            return nom !== CACHE_NAME;
+          })
+          .map(function (nom) {
+            return caches.delete(nom);
+          })
       );
-    }).then(function() {
+    }).then(function () {
       return self.clients.claim();
     })
   );
 });
 
-self.addEventListener("fetch", function(event) {
+self.addEventListener("fetch", function (event) {
   if (event.request.method !== "GET") return;
-  if (new URL(event.request.url).origin !== self.location.origin) return;
 
   event.respondWith(
-    fetch(event.request).then(function(response) {
-      if (response.ok) {
-        const copie = response.clone();
-        caches.open(CACHE_NAME).then(function(cache) {
-          cache.put(event.request, copie);
-        });
-      }
-      return response;
-    }).catch(function() {
+    fetch(event.request).catch(function () {
       return caches.match(event.request);
     })
   );
