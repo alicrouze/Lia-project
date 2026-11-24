@@ -225,3 +225,4 @@ body { min-height: 100dvh; }
   #ecran-intro { padding-top: calc(15px + env(safe-area-inset-top)); }
   #ecran-intro p { font-size: 13px; }
 }
+#bulles * { pointer-events: none !important; }
