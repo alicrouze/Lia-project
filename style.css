@@ -102,9 +102,9 @@ body { min-height: 100dvh; }
 #send-btn:disabled { opacity: 0.5; box-shadow: none; }
 
 /* BULLES DE CONVERSATION : SOUS L'INPUT */
-#bulles { position: absolute; top: calc(230px + env(safe-area-inset-top)); left: 0; right: 0; bottom: calc(90px + env(safe-area-inset-bottom)); display: flex; overflow-x: auto; overflow-y: hidden; touch-action: pan-x; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; align-items: flex-start; padding-top: 15px; }
+#bulles { background: rgba(255,0,0,0.25); position: absolute; top: calc(230px + env(safe-area-inset-top)); left: 0; right: 0; bottom: calc(90px + env(safe-area-inset-bottom)); display: flex; overflow-x: auto; overflow-y: hidden; touch-action: pan-x; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; align-items: flex-start; padding-top: 15px; }
 #bulles::-webkit-scrollbar { display: none; }
-.bulle { touch-action: pan-x; white-space: pre-wrap; min-width: 86vw; width: 86vw; margin: 0 7vw; scroll-snap-align: center; flex-shrink: 0; padding: 22px; background: rgba(255,255,255,0.10); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.20); border-radius: 24px; color: #fff; font-size: 16px; line-height: 1.6; display: block; max-height: 100%; overflow-y: auto; overscroll-behavior: contain; }
+.bulle { touch-action: pan-x; white-space: pre-wrap; min-width: 86vw; width: 86vw; margin: 0 7vw; scroll-snap-align: center; flex-shrink: 0; padding: 22px; background: rgba(255,255,255,0.10); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.20); border-radius: 24px; color: #fff; font-size: 16px; line-height: 1.6; display: block; max-height: none; overflow: visible; }
 .bulle.user { background: rgba(100,130,200,0.25); }
 .bulle.image { display: flex; align-items: center; justify-content: center; padding: 10px; }
 .bulle.image img { max-width: 100%; max-height: 250px; border-radius: 16px; object-fit: cover; }
