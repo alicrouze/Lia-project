@@ -324,7 +324,7 @@ function swipeCarte(note) {
     carteSwipe.style.background = "rgba(255, 165, 0, 0.4)";
     carteSwipe.style.transform = "translate(-50%, -50%)";
     carteSwipe.style.opacity = "1";
-    setTimeout(passerCarteSuivante, 1200);
+    setTimeout(passerCarteSuivante, 800);
   }
 }
 
@@ -340,11 +340,18 @@ function choisirPeche(peche) {
 function passerCarteSuivante() {
   indexCarte++;
   carteSwipe.classList.add("cachee");
-  setTimeout(afficherCarte, 500);
-  if (indexCarte >= phrasesCartes.length && !cartesFaites) {
+
+  if (indexCarte >= phrasesCartes.length) {
     cartesFaites = true;
-    if (resolveCartes) resolveCartes();
+    if (resolveCartes) {
+      const terminer = resolveCartes;
+      resolveCartes = null;
+      terminer();
+    }
+    return;
   }
+
+  setTimeout(afficherCarte, 500);
 }
 
 function demanderNom() {
