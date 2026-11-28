@@ -259,6 +259,7 @@ const BANQUE_CARTES = {
 
 let phrasesCartes = BANQUE_CARTES["Thème 1"];
 let indexCarte = 0;
+let reponseEnCours = false;
 const carteSwipe = document.getElementById('carte-swipe');
 const carteTexte = document.getElementById('carte-texte');
 const carteTitre = document.getElementById('carte-titre');
@@ -305,7 +306,8 @@ function afficherCartes() {
 }
 
 function swipeCarte(note) {
-  if (carteSwipe.classList.contains("cachee")) return;
+  if (carteSwipe.classList.contains("cachee") || reponseEnCours) return;
+  reponseEnCours = true;
 
   if (note >= 4) {
     carteSwipe.style.transition = "transform 1s ease, opacity 1s ease, background 0.3s ease";
@@ -329,7 +331,8 @@ function swipeCarte(note) {
 }
 
 function choisirPeche(peche) {
-  if (carteSwipe.classList.contains("cachee")) return;
+  if (carteSwipe.classList.contains("cachee") || reponseEnCours) return;
+  reponseEnCours = true;
   carteSwipe.style.transition = "all 0.4s ease";
   carteSwipe.style.background = "rgba(212, 169, 96, 0.5)";
   carteSwipe.style.transform = "scale(1.05)";
@@ -338,6 +341,8 @@ function choisirPeche(peche) {
 }
 
 function passerCarteSuivante() {
+  if (!reponseEnCours) return;
+  reponseEnCours = false;
   indexCarte++;
   carteSwipe.classList.add("cachee");
 
@@ -434,6 +439,7 @@ async function envoyer() {
         if (BANQUE_CARTES[currentTheme]) {
           phrasesCartes = BANQUE_CARTES[currentTheme];
           indexCarte = 0;
+          reponseEnCours = false;
           cartesFaites = false;
           resolveCartes = null;
           carteSwipe.classList.add("cachee");
