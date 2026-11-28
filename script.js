@@ -11,124 +11,21 @@ const imagesThemes = {
 const input = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
 
-const LIA_PERSONA = `Tu es 3, un miroir bienveillant, direct et perspicace. Ton but est de trouver une âme sœur à la personne en face de toi en comprenant ses contradictions.
-INTERDICTIONS : Pas d'astérisques (*), pas de listes, pas de numéros.
-RÈGLE ABSOLUE SUR LES BALISES : Tu ne dois JAMAIS afficher de balises comme [T1_Q1] ou [THEME:...] dans ton texte.
-STYLE : Tu n'es pas un questionnaire médical. Tu es une confidente intelligente. Parle un français impeccable, soutenu mais naturel.
-TROUVE TON INSPIRATION DANS LA SUBTILITÉ DE CETTE PHRASE : "Sur une montre ce ne sont pas les aiguilles qui indiquent le temps qui passe, mais l'usure du bracelet".
-Cherche l'usure, les failles, les détails invisibles derrière les apparences. Ne pose pas tes questions de façon brutale : à chaque fois que tu enchaînes sur une nouvelle question, fais un petit commentaire pour rebondir sur ce que la personne vient de dire, puis guide-la doucement vers la suite. Formule TOUJOURS des questions complètes et polies.
-RÈGLE SUPPLÉMENTAIRE : Tu connais déjà le sexe de l'utilisateur et ce qu'il cherche. Ne lui pose JAMAIS cette question.
-
-RÈGLES STRICTES :
-1. L'utilisateur a dit "Oui" pour commencer. Lance la question 1 du Thème 1.
-2. Ne pose qu'UNE SEULE question à la fois.
-3. TU NE DOIS JAMAIS REPETER UNE QUESTION. Dès que l'utilisateur répond, tu DOIS passer à la question suivante.
-4. Dès que tu as posé 3 questions d'un thème, change de thème et ajoute le code [THEME:LeNouveauThème] à la fin de ton message.
-
-QUESTIONS À POSER :
-THÈME 1 (Qui je suis) :
-1. Quelle qualité les autres vous attribuent-ils à tort ?
-2. Quel rôle jouez-vous pour qu'on vous aime ?
-3. Quelle version de vous montrez-vous au travail vs le soir ?
-4. Qu'est-ce qui vous met en colère plus vite que les autres ?
-5. Quel regret revient souvent la nuit ?
-6. Quand vous sentez-vous le plus vous-même ?
-7. Qu'est-ce que vous n'avez jamais dit à voix haute ?
-8. Comment réagissez-vous quand on vous critique ?
-9. Quelle part de vous voudriez-vous qu'on découvre en premier ?
-10. Si vous pouviez effacer un défaut, lequel et pourquoi ?
-
-THÈME 2 (Comment j'aime) :
-1. Comment montrez-vous votre amour : par les mots, les gestes, le temps, les cadeaux ?
-2. Comment avez-vous su que vous étiez amoureux la dernière fois ?
-3. Que faites-vous quand vous avez peur de perdre quelqu'un ?
-4. Êtes-vous plutôt celui qui s'accroche ou celui qui s'éloigne ?
-5. Qu'est-ce qui tue le désir ou l'amour chez vous ?
-6. Comment gérez-vous la jalousie ?
-7. Combien de temps avez-vous besoin pour faire confiance ?
-8. Comment vous disputez-vous : vous criez, vous vous taisez, vous partez ?
-9. Quelle blessure amoureuse n'est pas encore refermée ?
-10. À quelle vitesse tombez-vous amoureux ?
-
-THÈME 3 (Avec les autres) :
-1. Qui appelleriez-vous à 3 h du matin ?
-2. Comment vous comportez-vous avec quelqu'un que vous n'aimez pas ?
-3. Prenez-vous les devants ou attendez-vous qu'on vienne à vous ?
-4. Qu'est-ce qui vous épuise socialement ?
-5. Racontez-vous facilement vos problèmes ou les gardez-vous pour vous ?
-6. Comment réagissez-vous quand un ami vous déçoit ?
-7. Qu'est-ce que vos amis diraient de vous sans filtre ?
-8. Mentez-vous par politesse ? Sur quoi ?
-9. Comment faites-vous face à un conflit en groupe ?
-10. Que ressentez-vous quand quelqu'un réussit mieux que vous ?
-
-THÈME 4 (Mon corps et mon intimité - SOIS DOUCE) :
-1. Quand vous êtes-vous senti(e) le plus désirable ?
-2. De quoi avez-vous besoin pour vous sentir à l'aise avec quelqu'un de nouveau ?
-3. Quelle place a la tendresse pour vous ?
-4. Parlez-vous facilement de ce que vous aimez ou n'aimez pas ?
-5. Qu'est-ce qui vous coupe l'envie instantanément ?
-6. Quelle est votre définition de la sensualité ?
-7. Y a-t-il un sujet que vous n'osez pas aborder avec un partenaire ?
-8. À quel point le lien émotionnel compte-t-il avant l'intimité ?
-9. Qu'est-ce qui vous rend vulnérable devant quelqu'un ?
-10. Qu'aimeriez-vous explorer en confiance avec la bonne personne ?
-11. Parlez de vos fantasmes en toute liberté (soumission, fétichisme, shibari...) ?
-12. Qu'est-ce qui vous excite chez l'autre, mais que vous n'arrivez pas à demander ?
-13. Préférez-vous la spontanéité ou la complicité construite ?
-14. Comment définiriez-vous une relation intime épanouissante pour vous ?
-15. Quel compliment vous touche vraiment ?
-
-THÈME 5 (Ce qui compte pour moi) :
-1. Quelles sont vos trois valeurs non négociables ?
-2. Que feriez-vous si l'argent n'était pas un sujet ?
-3. Quel est votre rapport à la réussite ?
-4. Qu'est-ce qui donne du sens à vos journées ?
-5. Quelle injustice vous révolte ?
-6. Voulez-vous des enfants ? Pourquoi ?
-7. Où vous voyez-vous vivre dans 10 ans ?
-8. Qu'est-ce que la liberté signifie pour vous ?
-9. Quelle personne a influencé vos valeurs ?
-10. Que voulez-vous qu'on dise de vous à la fin de votre vie ?
-
-THÈME 6 (Ma famille) :
-1. Comment décririez-vous l'ambiance de votre maison d'enfance ?
-2. Comment vos parents se montraient-ils de l'affection ?
-3. Quel parent vous ressemble le plus ?
-4. Comment se réglaient les conflits chez vous ?
-5. Avez-vous eu l'impression de devoir mériter l'amour ?
-6. Qu'avez-vous promis de ne jamais reproduire ?
-7. Quelle tradition familiale voulez-vous garder ?
-8. Parlait-on des émotions chez vous ?
-9. Quel rôle avez-vous joué : le sage, le rebelle, le protecteur, l'invisible ?
-10. Quelle blessure d'enfance se réveille encore ?
-
-THÈME 7 (Mes contradictions et mes péchés) :
-1. Quelle vérité sur vous-même refusez-vous de voir ?
-2. Quel est le mensonge que vous racontez le plus souvent pour vous protéger ?
-3. Qu'est-ce que vous détestez chez les autres, parce que vous savez que vous avez la même chose en vous ?
-4. Quel conseil donnez-vous souvent aux autres, mais que vous ne suivez jamais ?
-5. Quelle qualité que vous affichez est en réalité un défaut ?
-6. Quand avez-vous blessé quelqu'un volontairement ?
-7. Quelle excuse vous répétez-vous le plus ?
-8. Quand fuyez-vous au lieu d'affronter ?
-9. Quelle part de vous sabote vos relations ?
-10. Qu'avez-vous gâché par orgueil ?
-11. Quelle est votre plus grande hypocrisie ?
-12. Quel comportement jugez-vous sévèrement chez les autres, alors que vous vous l'autorisez parfois ?
-13. Si vous deviez avouer une jalousie inavouable, ce serait envers qui ou quoi ?
-14. Quelle est la dernière fois où vous avez menti pour éviter un conflit ?
-15. Lequel de ces "péchés" vous ressemble le plus : l'orgueil, l'envie, la gourmandise, la luxure, l'avarice, la colère ou la paresse ?
-
-RÈGLES DE FIN DE MESSAGE :
-1. Si tu poses la dernière question du Thème 7, ajoute [ACTION:DEFAUTS].
-2. À la fin de CHAQUE message, tu dois ajouter le thème en cours (ex: [THEME:Qui je suis]).
-3. À la fin de CHAQUE message, tu dois ajouter le code de la question que tu viens de poser (ex: [Q:T1_Q6]).`;
+const LIA_PERSONA = `Tu es 3, un miroir bienveillant, direct et perspicace.
+Tu écoutes attentivement chaque réponse et tu y réagis avec empathie, finesse et naturel.
+Tu peux relever une contradiction ou une émotion avec tact, sans juger.
+Réponds en deux phrases au maximum, dans un français naturel et élégant.
+IMPORTANT : ne pose jamais de question, ne propose jamais de sujet et ne demande jamais de précision. Le programme affichera lui-même les questions exactes.
+N'invente aucune réponse à la place de la personne.
+N'utilise ni listes, ni numéros, ni astérisques.`;
 
 let historique = [];
 let compteurQuestions = 0;
 let nomUtilisateur = null;
 let currentTheme = "Thème 1";
+let currentCardTheme = "Thème 1";
+let banqueQuestions = [];
+let questionIndex = 0;
 let cartesFaites = false;
 let resolveCartes = null;
 
@@ -300,7 +197,7 @@ function afficherCartes() {
   return new Promise(function(resolve) {
     resolveCartes = resolve;
     indexCarte = 0;
-    phrasesCartes = BANQUE_CARTES[currentTheme];
+    phrasesCartes = BANQUE_CARTES[currentCardTheme];
     afficherCarte();
   });
 }
@@ -347,6 +244,16 @@ function passerCarteSuivante() {
   carteSwipe.classList.add("cachee");
 
   if (indexCarte >= phrasesCartes.length) {
+    const numeroTheme = Number(currentCardTheme.replace("Thème ", ""));
+
+    if (numeroTheme < 7) {
+      currentCardTheme = "Thème " + (numeroTheme + 1);
+      phrasesCartes = BANQUE_CARTES[currentCardTheme];
+      indexCarte = 0;
+      setTimeout(afficherCarte, 500);
+      return;
+    }
+
     cartesFaites = true;
     if (resolveCartes) {
       const terminer = resolveCartes;
@@ -358,6 +265,8 @@ function passerCarteSuivante() {
 
   setTimeout(afficherCarte, 500);
 }
+
+
 
 function demanderNom() {
   const mots1 = ['Lune', 'Ombre', 'Braise', 'Écho', 'Sable', 'Océan', 'Nuage', 'Soleil'];
@@ -371,96 +280,104 @@ function demanderNom() {
 async function envoyer() {
   const texte = input.value.trim();
   if (!texte) return;
+
   input.value = '';
   sendBtn.disabled = true;
   ajouterBulle(texte, 'user');
   historique.push({ role: 'user', content: texte });
 
-  if (!cartesFaites) {
-    await afficherCartes();
-  }
-
-  var images = imagesThemes[currentTheme];
-  if (images && compteurQuestions > 0 && compteurQuestions % 3 === 0) {
-    var imgIndex = Math.floor(compteurQuestions / 3);
-    if (imgIndex < images.length) {
-      await afficherImagePleinEcran(images[imgIndex]);
-    }
-  }
-
-  const bulleLia = ajouterBulle('', 'lia');
-  bulleLia.innerHTML = '<span class="chiffre" style="animation-delay: 0s">3</span> <span class="chiffre" style="animation-delay: 0.2s">3</span> <span class="chiffre" style="animation-delay: 0.4s">3</span>';
-
-  let essais = 0;
-  while (typeof puter === 'undefined' && essais < 50) {
-    await new Promise(r => setTimeout(r, 100));
-    essais++;
-  }
-  if (typeof puter === 'undefined') {
-    bulleLia.textContent = "Erreur : la bibliothèque 3 (Puter) n'a pas pu se charger.";
-    sendBtn.disabled = false;
-    return;
-  }
-
-  const startTime = Date.now();
   try {
+    if (!cartesFaites) {
+      await afficherCartes();
+    }
+
+    const bulleLia = ajouterBulle('', 'lia');
+    bulleLia.innerHTML = '<span class="chiffre" style="animation-delay: 0s">3</span> <span class="chiffre" style="animation-delay: 0.2s">3</span> <span class="chiffre" style="animation-delay: 0.4s">3</span>';
+
+    let essais = 0;
+    while (typeof puter === 'undefined' && essais < 50) {
+      await new Promise(r => setTimeout(r, 100));
+      essais++;
+    }
+
+    if (typeof puter === 'undefined') {
+      bulleLia.textContent = "Erreur : la bibliothèque 3 (Puter) n'a pas pu se charger.";
+      return;
+    }
+
+    const debut = Date.now();
     const reponse = await puter.ai.chat(historique, { model: 'gpt-4o-mini' });
-    let t = reponse;
-    if (typeof reponse === 'object' && reponse.message) {
-      t = reponse.message.content || reponse.message;
-    }
-    const elapsedTime = Date.now() - startTime;
-    if (elapsedTime < 1500) {
-      await new Promise(r => setTimeout(r, 1500 - elapsedTime));
+    let reaction = reponse;
+
+    if (typeof reponse === 'object' && reponse !== null && reponse.message) {
+      reaction = reponse.message.content || reponse.message;
     }
 
-    t = t.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
-    t = t.replace(/\[T\d_Q\d+\]/g, '').trim();
-    t = t.replace(/\[Q:.*?\]/g, '').trim();
+    if (typeof reaction !== 'string') reaction = String(reaction || '');
+    reaction = reaction.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
 
-    var THEME_MAP = {
-      "Qui je suis": "Thème 1",
-      "Comment j'aime": "Thème 2",
-      "Comment je suis avec les autres": "Thème 3",
-      "Mon corps et mon intimité": "Thème 4",
-      "Ce qui compte pour moi": "Thème 5",
-      "Ma famille": "Thème 6",
-      "Mes contradictions et mes péchés": "Thème 7"
-    };
+    const attente = 1500 - (Date.now() - debut);
+    if (attente > 0) await new Promise(r => setTimeout(r, attente));
 
-    var matchTheme = t.match(/\[THEME:(.*?)\]/);
-    if (matchTheme) {
-      document.getElementById('theme-courant').textContent = matchTheme[1].replace(/_/g, ' ').charAt(0).toUpperCase() + matchTheme[1].replace(/_/g, ' ').slice(1);
-      t = t.replace(matchTheme[0], '').trim();
-      var nouveauTheme = THEME_MAP[matchTheme[1]] || "Thème 1";
+    let message = reaction;
 
-      if (nouveauTheme !== currentTheme) {
-        currentTheme = nouveauTheme;
-        if (BANQUE_CARTES[currentTheme]) {
-          phrasesCartes = BANQUE_CARTES[currentTheme];
-          indexCarte = 0;
-          reponseEnCours = false;
-          cartesFaites = false;
-          resolveCartes = null;
-          carteSwipe.classList.add("cachee");
-          setTimeout(afficherCarte, 2000);
-        }
-      }
+    if (questionIndex < 80) {
+      const indexTheme = Math.floor(questionIndex / 5);
+      const indexQuestion = questionIndex % 5;
+      const theme = banqueQuestions[indexTheme];
+      const question = theme.questions[indexQuestion];
+
+      currentTheme = "Thème " + (indexTheme + 1);
+
+      const indicateur = document.getElementById('theme-courant');
+      if (indicateur) indicateur.textContent = theme.titre;
+
+      message += (message ? "\n\n" : "") + question;
+      questionIndex++;
+      compteurQuestions++;
+    } else {
+      message += (message ? "\n\n" : "") +
+        "Merci pour ta sincérité. Nous avons parcouru les 16 thèmes et les 80 questions. Tes réponses vont permettre de mieux comprendre ta personnalité et tes attentes.";
     }
 
-    bulleLia.textContent = t;
-    historique.push({ role: 'assistant', content: t });
+    bulleLia.textContent = message;
+    historique.push({ role: 'assistant', content: message });
 
-    compteurQuestions++;
   } catch (e) {
     console.error(e);
-    bulleLia.textContent = "Erreur Puter : " + (e.message || e || "Connexion perdue. Vérifie ton réseau.");
+    ajouterBulle("Une erreur est survenue : " + (e.message || e), 'lia');
+  } finally {
+    sendBtn.disabled = false;
+    input.focus();
   }
-  sendBtn.disabled = false;
-  input.focus();
+}
+
+async function chargerQuestions() {
+  const [reponse1, reponse2] = await Promise.all([
+    fetch('donnees/questions.json'),
+    fetch('donnees/questions-intimite.json')
+  ]);
+
+  if (!reponse1.ok || !reponse2.ok) {
+    throw new Error("Impossible de charger les fichiers de questions.");
+  }
+
+  const themes1 = await reponse1.json();
+  const themes2 = await reponse2.json();
+  banqueQuestions = [...themes1, ...themes2];
+
+  if (
+    banqueQuestions.length !== 16 ||
+    banqueQuestions.some(t =>
+      !t.titre || !Array.isArray(t.questions) || t.questions.length !== 5
+    )
+  ) {
+    throw new Error("Les questionnaires ne contiennent pas exactement 16 thèmes de 5 questions.");
+  }
 }
 
 async function demarrer() {
+  await chargerQuestions();
   nomUtilisateur = await demanderNom();
 
   var sexeUser = document.getElementById('sexe-user') ? document.getElementById('sexe-user').value : "Non précisé";

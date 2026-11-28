@@ -1,0 +1,82 @@
+[
+  {
+    "titre": "LA PERSONA",
+    "questions": [
+      "Adaptez-vous votre comportement selon les personnes que vous côtoyez ?",
+      "Vous arrive-t-il de jouer un rôle au travail ou en société ?",
+      "Avez-vous le sentiment que les autres ne connaissent pas votre vraie personnalité ?",
+      "Êtes-vous mal à l'aise quand on vous voit sans votre « façade » habituelle ?",
+      "Votre image sociale compte-t-elle beaucoup pour vous ?"
+    ]
+  },
+  {
+    "titre": "L'OMBRE",
+    "questions": [
+      "Certains traits de caractère chez les autres vous irritent-ils de manière disproportionnée ?",
+      "Avez-vous parfois des pensées ou des pulsions dont vous avez honte ?",
+      "Vous arrive-t-il de réagir de façon qui vous surprend vous-même ?",
+      "Projetez-vous parfois vos défauts sur les autres ?",
+      "Avez-vous déjà ressenti de l'envie ou de la jalousie que vous n'osiez pas admettre ?"
+    ]
+  },
+  {
+    "titre": "L'ANIMA ET L'ANIMUS",
+    "questions": [
+      "Vous sentez-vous attiré(e) par des personnes qui incarnent un idéal presque irréel ?",
+      "Tombez-vous amoureux(se) en projetant une image idéalisée sur l'autre ?",
+      "Reconnaissez-vous en vous des qualités traditionnellement associées au sexe opposé ?",
+      "Les mêmes types de partenaires se répètent-ils dans votre vie amoureuse ?",
+      "Avez-vous déjà rêvé d'une figure du sexe opposé qui vous guide ou vous trouble ?"
+    ]
+  },
+  {
+    "titre": "LE SOI ET L'INDIVIDUATION",
+    "questions": [
+      "Ressentez-vous le besoin de donner un sens profond à votre vie ?",
+      "Avez-vous déjà eu le sentiment de devenir « plus vous-même » avec le temps ?",
+      "Traversez-vous ou avez-vous traversé une crise qui a transformé votre vision de vous ?",
+      "Vous arrive-t-il de ressentir une unité intérieure, un sentiment de complétude ?",
+      "La quête de spiritualité ou de sens vous attire-t-elle ?"
+    ]
+  },
+  {
+    "titre": "L'INCONSCIENT COLLECTIF ET LES ARCHÉTYPES",
+    "questions": [
+      "Certains symboles (feu, eau, serpent, arbre) vous touchent-ils particulièrement ?",
+      "Vous reconnaissez-vous dans un archétype (le héros, le sage, le rebelle, le protecteur) ?",
+      "Certains mythes ou contes vous ont-ils marqué(e) de façon durable ?",
+      "Avez-vous déjà ressenti une émotion intense face à une image ou une histoire sans pouvoir l'expliquer ?",
+      "Avez-vous eu des rêves qui semblaient « plus grands que vous » ?"
+    ]
+  },
+  {
+    "titre": "INTROVERSION / EXTRAVERSION",
+    "questions": [
+      "Vous ressourcez-vous principalement dans la solitude ?",
+      "Préférez-vous agir avant de réfléchir ?",
+      "Êtes-vous plus énergisé(e) après une soirée entre amis qu'après une soirée seul(e) ?",
+      "Votre monde intérieur est-il plus important pour vous que le monde extérieur ?",
+      "Aimez-vous être au centre de l'attention ?"
+    ]
+  },
+  {
+    "titre": "LES QUATRE FONCTIONS",
+    "questions": [
+      "Prenez-vous vos décisions principalement par analyse logique ?",
+      "Vous fiez-vous d'abord à vos ressentis et à vos valeurs ?",
+      "Êtes-vous attentif(ve) aux détails concrets et à l'instant présent ?",
+      "Avez-vous souvent des intuitions justes sans savoir pourquoi ?",
+      "Vous projetez-vous plus facilement dans l'avenir que dans le concret ?"
+    ]
+  },
+  {
+    "titre": "LES COMPLEXES ET LES RÊVES",
+    "questions": [
+      "Certains sujets déclenchent-ils chez vous une réaction émotionnelle disproportionnée ?",
+      "Vous retrouvez-vous à répéter les mêmes schémas relationnels ?",
+      "Vous souvenez-vous régulièrement de vos rêves ?",
+      "Certains rêves récurrents vous suivent-ils depuis longtemps ?",
+      "Avez-vous le sentiment qu'un conflit intérieur ancien influence encore vos choix ?"
+    ]
+  }
+]
