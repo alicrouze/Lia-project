@@ -308,20 +308,23 @@ function swipeCarte(note) {
   if (carteSwipe.classList.contains("cachee")) return;
 
   if (note >= 4) {
+    carteSwipe.style.transition = "transform 1s ease, opacity 1s ease, background 0.3s ease";
     carteSwipe.style.background = "rgba(80, 255, 120, 0.4)";
     carteSwipe.style.transform = "translate(-50%, -130%)";
     carteSwipe.style.opacity = "0";
-    setTimeout(passerCarteSuivante, 2000);
+    setTimeout(passerCarteSuivante, 1000);
   } else if (note <= 2) {
+    carteSwipe.style.transition = "transform 1s ease, opacity 1s ease, background 0.3s ease";
     carteSwipe.style.background = "rgba(255, 80, 80, 0.4)";
     carteSwipe.style.transform = "translate(-50%, 130%)";
     carteSwipe.style.opacity = "0";
-    setTimeout(passerCarteSuivante, 2000);
+    setTimeout(passerCarteSuivante, 1000);
   } else {
-    carteSwipe.style.transition = "all 0.4s ease";
+    carteSwipe.style.transition = "background 0.5s ease";
     carteSwipe.style.background = "rgba(255, 165, 0, 0.4)";
-    carteSwipe.style.opacity = "0";
-    setTimeout(passerCarteSuivante, 400);
+    carteSwipe.style.transform = "translate(-50%, -50%)";
+    carteSwipe.style.opacity = "1";
+    setTimeout(passerCarteSuivante, 1200);
   }
 }
 
