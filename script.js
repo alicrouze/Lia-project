@@ -434,6 +434,9 @@ async function envoyer() {
         if (BANQUE_CARTES[currentTheme]) {
           phrasesCartes = BANQUE_CARTES[currentTheme];
           indexCarte = 0;
+          cartesFaites = false;
+          resolveCartes = null;
+          carteSwipe.classList.add("cachee");
           setTimeout(afficherCarte, 2000);
         }
       }
