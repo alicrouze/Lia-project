@@ -72,7 +72,26 @@ body { min-height: 100dvh; }
 }
 
 /* THÈME */
-.theme { position: absolute; top: calc(100px + env(safe-area-inset-top)); right: 7%; font-family: Baskerville, "Times New Roman", serif; font-style: italic; font-size: 13px; color: rgba(255,255,255,0.8); text-align: right; max-width: 55vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; z-index: 50; }
+.theme {
+  position: absolute;
+  top: auto;
+  bottom: calc(24px + env(safe-area-inset-bottom));
+  left: 5%;
+  right: 5%;
+  width: 90%;
+  max-width: 90%;
+  font-family: Baskerville, "Times New Roman", serif;
+  font-style: normal;
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+  z-index: 150;
+}
 
 /* ZONE DE SAISIE : AU-DESSUS DES BULLES */
 #input-zone {
@@ -102,7 +121,7 @@ body { min-height: 100dvh; }
 #send-btn:disabled { opacity: 0.5; box-shadow: none; }
 
 /* BULLES DE CONVERSATION : SOUS L'INPUT */
-#bulles { position: absolute; top: calc(230px + env(safe-area-inset-top)); left: 0; right: 0; bottom: calc(90px + env(safe-area-inset-bottom)); display: flex; overflow-x: auto; overflow-y: hidden; touch-action: pan-x; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; align-items: flex-start; padding-top: 15px; }
+#bulles { position: absolute; top: calc(230px + env(safe-area-inset-top)); left: 0; right: 0; bottom: calc(115px + env(safe-area-inset-bottom)); display: flex; overflow-x: auto; overflow-y: hidden; touch-action: pan-x; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; align-items: flex-start; padding-top: 15px; }
 #bulles::-webkit-scrollbar { display: none; }
 .bulle { touch-action: pan-x; white-space: pre-wrap; min-width: 88vw; width: 88vw; margin: 0 6vw; scroll-snap-align: center; flex-shrink: 0; padding: 22px; background: rgba(255,255,255,0.10); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.20); border-radius: 24px; color: #fff; font-size: 16px; line-height: 1.6; display: block; max-height: none; overflow: visible; }
 .bulle.user { background: rgba(100,130,200,0.25); }
